@@ -1,0 +1,26 @@
+.common-input {
+  width: 100%;
+  height: 46px;
+
+  input {
+    width: 100%;
+    height: 100%;
+    padding: 0 11px 1px 15px;
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 4px;
+    font-weight: 400;
+    font-size: 16px;
+    outline: none;
+
+    &:focus {
+      border: 1px solid black;
+    }
+  }
+
+  .warning {
+    font-family: "Noto Sans", "malgun gothic", AppleGothic, dotum, sans-serif;
+    margin: 10px 0;
+    font-size: 14px;
+    color: rgb(240, 63, 64);
+  }
+}
