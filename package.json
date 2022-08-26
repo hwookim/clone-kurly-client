@@ -10,6 +10,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "sass": "^1.54.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -50,17 +51,5 @@
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
     "webpack": "^5.74.0"
-  },
-  "eslintConfig": {
-    "overrides": [
-      {
-        "files": [
-          "**/*.stories.*"
-        ],
-        "rules": {
-          "import/no-anonymous-default-export": "off"
-        }
-      }
-    ]
   }
 }
