@@ -1,10 +1,10 @@
-import React from 'react';
+import React  from 'react';
 import './index.scss';
 
-export default function Input({ id, name, placeholder = '', type = 'text', warning = '' }) {
+export default function Input({ warning = '', ...args }) {
   return (
     <div className="common-input">
-      <input id={id} name={name} placeholder={placeholder} type={type}></input>
+      <input {...args}></input>
       {warning && <div className="warning">{warning}</div>}
     </div>
   );
