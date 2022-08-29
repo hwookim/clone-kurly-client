@@ -1,0 +1,144 @@
+@import '../../styles/variables.scss';
+
+header {
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.07) 0 3px 4px 0;
+}
+
+.header {
+  position: relative;
+  margin: 0 auto;
+  width: 1050px;
+  display: flex;
+  flex-direction: column;
+
+  &__user-info {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+
+    &__separator {
+      width: 1px;
+      height: 13px;
+      margin: 0 12px;
+      background-color: rgb(217, 217, 217);
+    }
+
+    &__signup {
+      color: $primary-color;
+    }
+  }
+
+  &__main {
+    padding-top: 35px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__left {
+      display: flex;
+      align-items: center;
+
+      &__logo {
+        width: 82px;
+        height: 42px;
+        margin-right: 20px;
+      }
+
+      &__link {
+        border: none;
+        background: none;
+        font-weight: 500;
+        color: $primary-color;
+      }
+    }
+
+    &__search {
+      position: absolute;
+      left: 325px;
+      width: 400px;
+      height: 48px;
+      padding-left: 14px;
+      display: flex;
+      justify-content: space-between;
+      border: 1px solid $primary-color;
+      border-radius: 6px;
+
+      input {
+        width: 300px;
+        border: none;
+        font-size: 16px;
+        letter-spacing: -0.33px;
+        outline: none;
+      }
+
+      button {
+        margin: 10px;
+        border: none;
+        background: transparent;
+      }
+    }
+
+    &__right {
+      position: absolute;
+      right: -6px;
+
+      button {
+        margin-left: 20px;
+        width: 36px;
+        height: 36px;
+        border: none;
+        background: transparent;
+      }
+    }
+  }
+
+  &__nav {
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 500;
+
+    &__category {
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    ul {
+      display: flex;
+
+      li {
+        width: 150px;
+        text-align: center;
+
+        &:hover {
+          color: $primary-color;
+          text-decoration: underline;
+          text-underline: $primary-color;
+          text-underline-offset: 4px;
+        }
+      }
+    }
+
+    &__notice {
+      padding: 6px 16px;
+      border: solid 1px #eee;
+      border-radius: 18px;
+      color: #666;
+      font-size: 13px;
+      letter-spacing: -0.32px;
+
+      span {
+        color: $primary-color;
+      }
+    }
+  }
+}

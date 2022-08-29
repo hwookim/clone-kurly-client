@@ -1,5 +1,13 @@
-* {
+body, body * {
   box-sizing: border-box;
   font-family: 'Noto Sans', 'malgun gothic', AppleGothic, dotum, sans-serif;
-  font-size: 14px;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }
