@@ -5,7 +5,7 @@ import useIsInViewport from '../../hooks/useIsInViewport';
 import UserButtons from './UserButtons';
 import SearchBar from './SearchBar';
 
-export default function Header({ warning = '', ...args }) {
+export default function Header() {
   const headerMainRef = useRef();
   const isInViewport = useIsInViewport(headerMainRef);
   const additionalClassName = useMemo(() => (isInViewport ? '' : '--sticky'), [isInViewport]);
@@ -22,8 +22,14 @@ export default function Header({ warning = '', ...args }) {
             로그인
           </Link>
           <div className="header__main__user-info__separator" />
-          <div>
-            <Link to="header__main__user-info__notice">고객센터 ▼</Link>
+          <div className="header__main__user-info__dropdown">
+            <Link to="/notice">고객센터 ▼</Link>
+            <div className="header__main__user-info__dropdown__content">
+              <Link to="/notice">공지사항</Link>
+              <Link to="/qna">자주하는 질문</Link>
+              <Link to="/inquiry/list">1:1 문의</Link>
+              <Link to="/inquiry/bulk-order">대량주문 문의</Link>
+            </div>
           </div>
         </div>
         <div className="header__main__left">
