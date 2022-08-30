@@ -2,7 +2,8 @@ import React, { useMemo, useRef } from 'react';
 import './Header.scss';
 import { Link } from 'react-router-dom';
 import useIsInViewport from '../../hooks/useIsInViewport';
-import UserButtons from "./UserButtons";
+import UserButtons from './UserButtons';
+import SearchBar from './SearchBar';
 
 export default function Header({ warning = '', ...args }) {
   const headerMainRef = useRef();
@@ -31,13 +32,8 @@ export default function Header({ warning = '', ...args }) {
             마켓컬리
           </Link>
         </div>
-        <div className={'header__main__search' + additionalClassName}>
-          <input type="text" placeholder="검색어를 입력해주세요" />
-          <button type="button">
-            <span className="material-symbols-outlined">search</span>
-          </button>
-        </div>
-        <UserButtons isSticky={!isInViewport}/>
+        <SearchBar isSticky={!isInViewport} />
+        <UserButtons isSticky={!isInViewport} />
       </div>
       <div className={'header__bottom' + additionalClassName}>
         <nav className="header__bottom__nav">
