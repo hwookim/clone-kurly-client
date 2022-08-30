@@ -94,6 +94,10 @@ header {
         height: 36px;
         border: none;
         background: transparent;
+
+        span {
+          font-size: 32px;
+        }
       }
     }
   }
@@ -107,8 +111,15 @@ header {
     font-weight: 500;
 
     &__category {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
       &:hover {
         color: $primary-color;
+      }
+      &__icon {
+        margin-top: -4px;
+        margin-right: 14px;
       }
     }
 
@@ -118,6 +129,7 @@ header {
       li {
         width: 150px;
         text-align: center;
+        cursor: pointer;
 
         &:hover {
           color: $primary-color;

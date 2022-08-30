@@ -31,13 +31,21 @@ export default function Header({ warning = '', ...args }) {
             <button type="button">O</button>
           </div>
           <div className="header__main__right">
-            <button type="button">O</button>
-            <button type="button">O</button>
-            <button type="button">O</button>
+            <button type="button">
+              <span className="material-symbols-outlined">location_on</span>
+            </button>
+            <button type="button">
+              <span className="material-symbols-outlined">favorite</span>
+            </button>
+            <button type="button">
+              <span className="material-symbols-outlined">shopping_cart</span>
+            </button>
           </div>
         </div>
         <nav className="header__nav">
-          <div className="header__nav__category">카테고리</div>
+          <div className="header__nav__category">
+            <span className="header__nav__category__icon material-symbols-outlined">menu</span>카테고리
+          </div>
           <ul>
             <li>신상품</li>
             <li>베스트</li>
