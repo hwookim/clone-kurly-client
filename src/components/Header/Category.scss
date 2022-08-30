@@ -1,0 +1,16 @@
+@import '../../styles/variables.scss';
+
+.category {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    color: $primary-color;
+  }
+
+  &__icon {
+    margin-top: -4px;
+    margin-right: 14px;
+  }
+}

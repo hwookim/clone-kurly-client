@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import useIsInViewport from '../../hooks/useIsInViewport';
 import UserButtons from './UserButtons';
 import SearchBar from './SearchBar';
+import Category from './Category';
 
 export default function Header() {
   const headerMainRef = useRef();
@@ -43,9 +44,7 @@ export default function Header() {
       </div>
       <div className={'header__bottom' + additionalClassName}>
         <nav className="header__bottom__nav">
-          <div className="header__bottom__nav__category">
-            <span className="header__bottom__nav__category__icon material-symbols-outlined">menu</span>카테고리
-          </div>
+          <Category />
           <ul>
             <li>신상품</li>
             <li>베스트</li>
