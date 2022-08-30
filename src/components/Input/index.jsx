@@ -1,11 +1,11 @@
 import React  from 'react';
-import './index.scss';
+import './Input.scss';
 
 export default function Input({ warning = '', ...args }) {
   return (
-    <div className="common-input">
+    <div className="input">
       <input {...args}></input>
-      {warning && <div className="warning">{warning}</div>}
+      {warning && <div className="input__warning">{warning}</div>}
     </div>
   );
 }

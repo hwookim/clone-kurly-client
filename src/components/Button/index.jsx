@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import './index.scss';
+import './Button.scss';
 
 export default function Button({ variant = 'default', ...args }) {
   const className = useMemo(() => (variant === 'primary' ? 'primary' : 'default'), [variant]);

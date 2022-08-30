@@ -1,4 +1,4 @@
-.common-input {
+.input {
   width: 100%;
   height: 46px;
 
@@ -16,7 +16,7 @@
     }
   }
 
-  .warning {
+  &__warning {
     margin: 10px 0;
     font-size: 14px;
     color: rgb(240, 63, 64);
