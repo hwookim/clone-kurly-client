@@ -122,30 +122,6 @@
         }
       }
     }
-
-    &__right {
-      position: absolute;
-      right: -6px;
-
-      &__button {
-        margin-left: 20px;
-        width: 36px;
-        height: 36px;
-        border: none;
-        background: transparent;
-
-        &__icon {
-          font-size: 32px;
-        }
-      }
-
-      &--sticky {
-        position: fixed;
-        top: 10px;
-        left: 50%;
-        margin-left: 383px;
-      }
-    }
   }
 
   &__bottom {

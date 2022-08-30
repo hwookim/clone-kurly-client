@@ -2,6 +2,7 @@ import React, { useMemo, useRef } from 'react';
 import './Header.scss';
 import { Link } from 'react-router-dom';
 import useIsInViewport from '../../hooks/useIsInViewport';
+import UserButtons from "./UserButtons";
 
 export default function Header({ warning = '', ...args }) {
   const headerMainRef = useRef();
@@ -36,17 +37,7 @@ export default function Header({ warning = '', ...args }) {
             <span className="material-symbols-outlined">search</span>
           </button>
         </div>
-        <div className={'header__main__right' + additionalClassName}>
-          <button className="header__main__right__button" type="button">
-            <span className="header__main__right__button__icon material-symbols-outlined">location_on</span>
-          </button>
-          <button className="header__main__right__button" type="button">
-            <span className="header__main__right__button__icon material-symbols-outlined">favorite</span>
-          </button>
-          <button className="header__main__right__button" type="button">
-            <span className="header__main__right__button__icon material-symbols-outlined">shopping_cart</span>
-          </button>
-        </div>
+        <UserButtons isSticky={!isInViewport}/>
       </div>
       <div className={'header__bottom' + additionalClassName}>
         <nav className="header__bottom__nav">
