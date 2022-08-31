@@ -1,4 +1,5 @@
 import { withRouter } from 'storybook-addon-react-router-v6';
+import { initialize, mswDecorator } from 'msw-storybook-addon';
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -10,4 +11,5 @@ export const parameters = {
   },
 };
 
-export const decorators = [withRouter];
+initialize();
+export const decorators = [mswDecorator, withRouter];
