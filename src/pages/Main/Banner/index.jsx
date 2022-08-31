@@ -35,6 +35,14 @@ export default function Banner() {
     [current, dataset.length]
   );
 
+  useEffect(() => {
+    let timer = setInterval(() => {
+      moveCarousel(+1);
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, [current, moveCarousel]);
+
   const onClickLeftButton = () => {
     moveCarousel(-1);
   };
