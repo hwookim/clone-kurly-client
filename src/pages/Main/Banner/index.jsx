@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 export default function Banner() {
   const [dataset, setDataset] = useState([]);
   const [current, setCurrent] = useState(0);
+  const [isHover, setIsHover] = useState(false);
   const bannerRef = useRef(null);
 
   useEffect(() => {
@@ -36,12 +37,13 @@ export default function Banner() {
   );
 
   useEffect(() => {
+    if (isHover) return;
     let timer = setInterval(() => {
       moveCarousel(+1);
     }, 4000);
 
     return () => clearInterval(timer);
-  }, [current, moveCarousel]);
+  }, [current, isHover, moveCarousel]);
 
   const onClickLeftButton = () => {
     moveCarousel(-1);
@@ -51,9 +53,22 @@ export default function Banner() {
     moveCarousel(+1);
   };
 
+  const onMouseEnterImage = () => {
+    setIsHover(true);
+  };
+
+  const onMouseLeaveImage = () => {
+    setIsHover(false);
+  };
+
   return (
     <div className="banner">
-      <div ref={bannerRef} className="banner__image-container">
+      <div
+        ref={bannerRef}
+        className="banner__image-container"
+        onMouseEnter={onMouseEnterImage}
+        onMouseLeave={onMouseLeaveImage}
+      >
         {dataset.map(({ id, image, link }) => (
           <Link key={id} to={link} className="banner__image-container__link">
             <img src={image} alt={`banner-${id}`} className="banner__image-container__link__image" />
