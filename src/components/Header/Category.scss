@@ -1,6 +1,8 @@
 @import '../../styles/variables.scss';
 
 .category {
+  position: relative;
+  height: 100%;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -12,5 +14,36 @@
   &__icon {
     margin-top: -4px;
     margin-right: 14px;
+  }
+
+  &__dropdown {
+    display: none;
+    position: absolute;
+    top: 56px;
+    left: 0;
+    width: 250px;
+    max-height: calc(-55px + 95vh);
+    border: 1px solid rgb(221, 221, 221);
+    background-color: white;
+    z-index: 1;
+    overflow-y: auto;
+
+    &__item {
+      height: 40px;
+      padding-left: 14px;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        background-color: rgb(247, 247, 247);
+      }
+    }
+  }
+
+  &:hover & {
+    &__dropdown {
+      display: block;
+      color: black;
+    }
   }
 }
