@@ -34,8 +34,9 @@
       display: flex;
       align-items: center;
 
-      &:hover {
+      &.active {
         background-color: rgb(247, 247, 247);
+        color: $primary-color;
       }
     }
   }
@@ -44,6 +45,39 @@
     &__dropdown {
       display: block;
       color: black;
+    }
+  }
+
+  &__sub-dropdown {
+    position: absolute;
+    top: 56px;
+    left: 248px;
+    width: 250px;
+    max-height: calc(-55px + 95vh);
+    border: 1px solid rgb(221, 221, 221);
+    border-left: none;
+    background-color: rgb(247, 247, 247);
+    z-index: 1;
+    overflow-y: auto;
+
+    &__item {
+      height: 40px;
+      padding-left: 14px;
+      display: flex;
+      align-items: center;
+      color: black;
+      &:hover {
+        color: $primary-color;
+        text-decoration: underline;
+        text-underline: $primary-color;
+        text-underline-offset: 4px;
+      }
+    }
+
+    &:hover {
+      .category__dropdown {
+        display: block;
+      }
     }
   }
 }
