@@ -19,6 +19,7 @@
     &__product-list {
       width: 100%;
       height: 434px;
+      overflow: hidden;
     }
 
     &__btn {
@@ -43,12 +44,14 @@
 
       &-left {
         left: 0;
+        transform: translateX(-50%);
         span {
           margin-left: 10px;
         }
       }
       &-right {
         right: 0;
+        transform: translateX(50%);
         span {
           margin-left: 2px;
         }
