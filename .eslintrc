@@ -9,15 +9,5 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "ignorePatterns": ["dist/", "node_modules/"],
-  "overrides": [
-    {
-      "files": [
-        "**/*.stories.*"
-      ],
-      "rules": {
-        "import/no-anonymous-default-export": "off"
-      }
-    }
-  ]
+  "ignorePatterns": ["dist/", "node_modules/"]
 }

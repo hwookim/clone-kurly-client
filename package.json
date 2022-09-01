@@ -10,16 +10,13 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
-    "sass": "^1.54.5",
-    "web-vitals": "^2.1.4"
+    "sass": "^1.54.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "eject": "react-scripts eject"
   },
   "browserslist": {
     "production": [
@@ -34,28 +31,10 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^6.5.10",
-    "@storybook/addon-essentials": "^6.5.10",
-    "@storybook/addon-interactions": "^6.5.10",
-    "@storybook/addon-links": "^6.5.10",
-    "@storybook/builder-webpack5": "^6.5.10",
-    "@storybook/manager-webpack5": "^6.5.10",
-    "@storybook/node-logger": "^6.5.10",
-    "@storybook/preset-create-react-app": "^4.1.2",
-    "@storybook/react": "^6.5.10",
-    "@storybook/testing-library": "^0.0.13",
-    "babel-plugin-named-exports-order": "^0.0.2",
     "eslint": "^8.22.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "msw": "^0.46.0",
-    "msw-storybook-addon": "^1.6.3",
     "prettier": "^2.7.1",
-    "prop-types": "^15.8.1",
-    "storybook-addon-react-router-v6": "^0.1.14",
     "webpack": "^5.74.0"
-  },
-  "msw": {
-    "workerDirectory": "public"
   }
 }
