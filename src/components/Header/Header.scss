@@ -104,7 +104,6 @@
       font-size: 16px;
       font-weight: 500;
 
-
       ul {
         margin-left: 30px;
         display: flex;
@@ -116,7 +115,7 @@
           &:hover {
             color: $primary-color;
             text-decoration: underline;
-            text-underline: $primary-color;
+            text-decoration-color: $primary-color;
             text-underline-offset: 4px;
           }
         }
