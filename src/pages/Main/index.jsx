@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './MainPage.scss';
-import Header from '../../components/Header';
 import Banner from './Banner';
 import ProductListItem from '../../components/ProductListItem';
 
