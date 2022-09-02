@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './MainPage.scss';
-import Header from '../../components/Header';
 import Banner from './Banner';
 import ProductListItem from '../../components/ProductListItem';
 
@@ -26,7 +25,6 @@ export default function MainPage() {
 
   return (
     <>
-      <Header />
       <Banner />
       <section className="main-contents">
         <div className="main-contents__title">이 상품 어때요?</div>
