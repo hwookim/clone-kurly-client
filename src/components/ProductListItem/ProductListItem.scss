@@ -1,12 +1,16 @@
-@import '../../../styles/variables.scss';
+@import '../../styles/variables.scss';
 
 .product-list-item {
   flex: 0 0 auto;
   display: block;
   width: 262.5px;
 
-  &__thumbnail {
+  a {
+    display: block;
     width: 250px;
+  }
+
+  &__thumbnail {
     height: 320px;
 
     &__img {
@@ -17,7 +21,8 @@
   }
 
   &__info {
-    padding-top: 10px;
+    padding-top: 14px;
+    padding-right: 10px;
 
     &__title {
       margin-bottom: 8px;
@@ -37,6 +42,21 @@
     &__price {
       font-weight: 800;
       line-height: 1.5;
+
+      &__discount {
+        margin-right: 7px;
+        color: rgb(250, 98, 47);
+      }
+
+      &__origin {
+        margin-top: 2px;
+        color: rgb(181, 181, 181);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: normal;
+        text-decoration-line: line-through;
+        text-decoration: line-through;
+      }
     }
   }
 }
