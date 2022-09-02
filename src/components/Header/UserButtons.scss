@@ -11,6 +11,7 @@
 
     &__icon {
       font-size: 32px;
+      font-variation-settings: 'wght' 300;
     }
   }
 
@@ -18,6 +19,7 @@
     position: fixed;
     top: 10px;
     left: 50%;
-    margin-left: 383px;
+    margin-left: 355px;
+    z-index: 1;
   }
 }
