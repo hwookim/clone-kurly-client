@@ -69,7 +69,7 @@
       &:hover {
         color: $primary-color;
         text-decoration: underline;
-        text-underline: $primary-color;
+        text-decoration-color: $primary-color;
         text-underline-offset: 4px;
       }
     }
