@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import './ProductListItem.scss';
 
 export default function ProductListItem({ product }) {
-  const { id, title, thumbnail, price } = product;
+  const { id, title, thumbnail, price, discount } = product;
+  const originPrice = useMemo(() => parseInt(price).toLocaleString('ko-KR'), [price]);
+  const salesPrice = useMemo(
+    () => (discount ? (parseInt(price) * (1 - parseFloat(discount))).toLocaleString('ko-KR') : originPrice),
+    [discount, originPrice, price]
+  );
+
   return (
     <Link key={title + id} to={`/products/${id}`} className="product-list-item">
       <div className="product-list-item__thumbnail">
@@ -11,7 +17,11 @@ export default function ProductListItem({ product }) {
       </div>
       <div className="product-list-item__info">
         <h3 className="product-list-item__info__title">{title}</h3>
-        <div className="product-list-item__info__price">{parseInt(price).toLocaleString('ko-KR')}원</div>
+        <div className="product-list-item__info__price">
+          {discount && <span className="product-list-item__info__price__discount">{discount * 100}%</span>}
+          <span className="product-list-item__info__price__sales">{salesPrice}원</span>
+          {discount && <div className="product-list-item__info__price__origin">{originPrice}원</div>}
+        </div>
       </div>
     </Link>
   );

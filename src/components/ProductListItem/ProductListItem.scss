@@ -37,6 +37,21 @@
     &__price {
       font-weight: 800;
       line-height: 1.5;
+
+      &__discount {
+        margin-right: 7px;
+        color: rgb(250, 98, 47);
+      }
+
+      &__origin {
+        margin-top: 2px;
+        color: rgb(181, 181, 181);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: normal;
+        text-decoration-line: line-through;
+        text-decoration: line-through;
+      }
     }
   }
 }
