@@ -20,7 +20,9 @@ export default function SignupPage() {
       setPassword(value);
     }
 
+    let flag = false;
     rules.signup[id].forEach((rule) => {
+      if (flag) return;
       if (rule.validate(value, password)) {
         setMessages((prev) => ({
           ...prev,
@@ -28,6 +30,7 @@ export default function SignupPage() {
         }));
         return;
       }
+      flag = true;
       setMessages((prev) => ({
         ...prev,
         [id]: rule.message,
