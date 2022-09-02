@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './SignupPage.scss';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -14,33 +14,40 @@ export default function SignupPage() {
     name: '',
   });
 
-  const validateRule = (id, value) => {
-    let flag = false;
-    rules.signup[id].forEach((rule) => {
-      if (flag) return;
-      if (rule.validate(value, password)) {
+  const validateRule = useCallback(
+    (id, value) => {
+      let flag = false;
+      rules.signup[id].forEach((rule) => {
+        if (flag) return;
+        if (rule.validate(value, password)) {
+          setMessages((prev) => ({
+            ...prev,
+            [id]: '',
+          }));
+          return;
+        }
+
+        flag = true;
         setMessages((prev) => ({
           ...prev,
-          [id]: '',
+          [id]: rule.message,
         }));
-        return;
-      }
-      flag = true;
-      setMessages((prev) => ({
-        ...prev,
-        [id]: rule.message,
-      }));
-    });
-  };
+      });
+    },
+    [password]
+  );
+
+  useEffect(() => {
+    if (passwordCheck) {
+      validateRule('passwordCheck', passwordCheck);
+    }
+  }, [password, passwordCheck, validateRule]);
 
   const onChange = (event) => {
     const { id, value } = event.target;
 
     if (id === 'password') {
       setPassword(value);
-      if (passwordCheck) {
-        validateRule('passwordCheck', passwordCheck);
-      }
     }
 
     if (id === 'passwordCheck') {
