@@ -15,6 +15,9 @@ export default function ProductListItem({ product }) {
       <Link key={title + id} to={`/products/${id}`}>
         <div className="product-list-item__thumbnail">
           <img src={thumbnail} alt="title" className="product-list-item__thumbnail__img" />
+          <button className="product-list-item__thumbnail__btn">
+            <span className="product-list-item__thumbnail__btn__icon material-symbols-outlined">shopping_cart</span>
+          </button>
         </div>
         <div className="product-list-item__info">
           <h3 className="product-list-item__info__title">{title}</h3>
