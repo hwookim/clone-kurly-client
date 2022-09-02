@@ -5,8 +5,12 @@
   display: block;
   width: 262.5px;
 
-  &__thumbnail {
+  a {
+    display: block;
     width: 250px;
+  }
+
+  &__thumbnail {
     height: 320px;
 
     &__img {
