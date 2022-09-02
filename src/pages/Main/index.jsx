@@ -26,7 +26,6 @@ export default function MainPage() {
 
   return (
     <>
-      <Header />
       <Banner />
       <section className="main-contents">
         <div className="main-contents__title">이 상품 어때요?</div>
