@@ -1,5 +1,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;300;400;500;700;900&display=swap');
+
+@font-face {
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(https://res.kurly.com/fonts/NotoSansKR-Light.woff2) format('woff2'),
+    url(https://res.kurly.com/fonts/NotoSansKR-Light.woff) format('woff'),
+    url(https://res.kurly.com/fonts/NotoSansKR-Light.otf) format('truetype');
+}
+
+@font-face {
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff2) format('woff2'),
+    url(https://res.kurly.com/fonts/NotoSansKR-Regular.woff) format('woff'),
+    url(https://res.kurly.com/fonts/NotoSansKR-Regular.otf) format('truetype');
+}
+
+@font-face {
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff2) format('woff2'),
+    url(https://res.kurly.com/fonts/NotoSansKR-Medium.woff) format('woff'),
+    url(https://res.kurly.com/fonts/NotoSansKR-Medium.otf) format('truetype');
+}
+
+@font-face {
+  font-family: Noto Sans;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff2) format('woff2'),
+    url(https://res.kurly.com/fonts/NotoSansKR-Bold.woff) format('woff'),
+    url(https://res.kurly.com/fonts/NotoSansKR-Bold.otf) format('truetype');
+}
 
 html,
 body {
