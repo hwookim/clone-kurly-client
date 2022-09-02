@@ -1,40 +1,17 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Banner.scss';
 import api from '../../../utils/api';
 import { Link } from 'react-router-dom';
+import useCarousel from '../../../hooks/useCarousel';
 
 export default function Banner() {
   const [dataset, setDataset] = useState([]);
-  const [current, setCurrent] = useState(0);
   const [isHover, setIsHover] = useState(false);
-  const bannerRef = useRef(null);
+  const { ref: bannerRef, current, moveCarousel } = useCarousel({ length: dataset.length, loop: true });
 
   useEffect(() => {
     api.get('/promotions').then((data) => setDataset(data));
   }, []);
-
-  useEffect(() => {
-    if (!bannerRef?.current) return;
-
-    bannerRef.current.style.transition = 'all 0.5s ease-in-out';
-    bannerRef.current.style.transform = `translateX(-${current}00%)`;
-  }, [current]);
-
-  const moveCarousel = useCallback(
-    (direction) => {
-      const value = current + direction;
-      if (value < 0) {
-        setCurrent(dataset.length - 1);
-        return;
-      }
-      if (value >= dataset.length) {
-        setCurrent(0);
-        return;
-      }
-      setCurrent(value);
-    },
-    [current, dataset.length]
-  );
 
   useEffect(() => {
     if (isHover) return;

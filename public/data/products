@@ -82,12 +82,5 @@
     "thumbnail": "https://cdn.pixabay.com/photo/2022/07/06/12/04/candles-7304948_1280.jpg",
     "description": "테스트를 위한 가짜상품입니다.",
     "price": 100000000
-  },
-  {
-    "id": 12,
-    "title": "가짜상품12",
-    "thumbnail": "https://cdn.pixabay.com/photo/2022/07/06/12/04/candles-7304948_1280.jpg",
-    "description": "테스트를 위한 가짜상품입니다.",
-    "price": 100000000
   }
 ]

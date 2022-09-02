@@ -4,7 +4,7 @@ import './MainProductList.scss';
 
 export default function MainProductList({ products }) {
   return (
-    <div className="product-list">
+    <>
       {products.map(({ id, thumbnail, title, price }) => (
         <Link key={title + id} to={`/products/${id}`} className="product-list-item">
           <div className="product-list-item__thumbnail">
@@ -16,6 +16,6 @@ export default function MainProductList({ products }) {
           </div>
         </Link>
       ))}
-    </div>
+    </>
   );
 }
