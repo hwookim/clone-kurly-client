@@ -6,6 +6,7 @@ import rules from '../../utils/rules';
 
 export default function SignupPage() {
   const [password, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState('');
   const [messages, setMessages] = useState({
     id: '',
     password: '',
@@ -13,13 +14,7 @@ export default function SignupPage() {
     name: '',
   });
 
-  const onChange = (event) => {
-    const { id, value } = event.target;
-
-    if (id === 'password') {
-      setPassword(value);
-    }
-
+  const validateRule = (id, value) => {
     let flag = false;
     rules.signup[id].forEach((rule) => {
       if (flag) return;
@@ -36,6 +31,23 @@ export default function SignupPage() {
         [id]: rule.message,
       }));
     });
+  };
+
+  const onChange = (event) => {
+    const { id, value } = event.target;
+
+    if (id === 'password') {
+      setPassword(value);
+      if (passwordCheck) {
+        validateRule('passwordCheck', passwordCheck);
+      }
+    }
+
+    if (id === 'passwordCheck') {
+      setPasswordCheck(value);
+    }
+
+    validateRule(id, value);
   };
 
   const onSubmit = (event) => {
