@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './SignupPage.scss';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -18,6 +18,7 @@ export default function SignupPage() {
     passwordCheck: '',
     name: '',
   });
+  const isNotValid = useMemo(() => Object.values(messages).some((value) => value), [messages]);
 
   const validateRule = useCallback(
     (id, value) => {
@@ -60,6 +61,11 @@ export default function SignupPage() {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+
+    Object.keys(values).forEach((key) => validateRule(key, values[key]));
+    if (isNotValid) {
+      return;
+    }
 
     await api.post('/signup', values);
   };
