@@ -52,25 +52,30 @@ export default function SignupPage() {
             <label htmlFor="id">
               아이디<span className="point">*</span>
             </label>
-            <Input id="id" placeholder="아이디를 입력해주세요" warning={messages.id} />
+            <Input id="id" type="text" placeholder="아이디를 입력해주세요" warning={messages.id} />
           </div>
           <div className="signup__content__form__input">
             <label htmlFor="password">
               비밀번호<span className="point">*</span>
             </label>
-            <Input id="password" placeholder="비밀번호를 입력해주세요" warning={messages.password} />
+            <Input id="password" type="password" placeholder="비밀번호를 입력해주세요" warning={messages.password} />
           </div>
           <div className="signup__content__form__input">
             <label htmlFor="passwordCheck">
               비밀번호 확인<span className="point">*</span>
             </label>
-            <Input id="passwordCheck" placeholder="비밀번호를 한번 더 입력해주세요" warning={messages.passwordCheck} />
+            <Input
+              id="passwordCheck"
+              type="password"
+              placeholder="비밀번호를 한번 더 입력해주세요"
+              warning={messages.passwordCheck}
+            />
           </div>
           <div className="signup__content__form__input">
             <label htmlFor="name">
               이름<span className="point">*</span>
             </label>
-            <Input id="name" placeholder="이름을 입력해주세요" warning={messages.name} />
+            <Input id="name" type="text" placeholder="이름을 입력해주세요" warning={messages.name} />
           </div>
           <Button type="submit" variant="primary">
             가입하기
