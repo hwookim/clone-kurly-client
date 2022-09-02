@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './MainPage.scss';
 import Header from '../../components/Header';
 import Banner from './Banner';
-import MainProductList from './MainProductList';
+import ProductListItem from '../../components/ProductListItem';
 
 import api from '../../utils/api';
 import useCarousel from '../../hooks/useCarousel';
-import { useMemo } from 'react';
 
 export default function MainPage() {
   const [products, setProducts] = useState([]);
@@ -34,7 +33,9 @@ export default function MainPage() {
         <div className="main-contents__carousel">
           <div className="main-contents__carousel__content">
             <div className="main-contents__carousel__content__product-list" ref={carouselRef}>
-              <MainProductList products={products} />
+              {products.map((product) => (
+                <ProductListItem key={product.id} product={product} />
+              ))}
             </div>
           </div>
           {current === 0 || (
