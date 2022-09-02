@@ -3,10 +3,15 @@ import './SignupPage.scss';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import rules from '../../utils/rules';
+import api from '../../utils/api';
 
 export default function SignupPage() {
-  const [password, setPassword] = useState('');
-  const [passwordCheck, setPasswordCheck] = useState('');
+  const [values, setValues] = useState({
+    id: '',
+    password: '',
+    passwordCheck: '',
+    name: '',
+  });
   const [messages, setMessages] = useState({
     id: '',
     password: '',
@@ -19,7 +24,7 @@ export default function SignupPage() {
       let flag = false;
       rules.signup[id].forEach((rule) => {
         if (flag) return;
-        if (rule.validate(value, password)) {
+        if (rule.validate(value, values.password)) {
           setMessages((prev) => ({
             ...prev,
             [id]: '',
@@ -34,31 +39,29 @@ export default function SignupPage() {
         }));
       });
     },
-    [password]
+    [values.password]
   );
 
   useEffect(() => {
-    if (passwordCheck) {
-      validateRule('passwordCheck', passwordCheck);
+    if (values.passwordCheck) {
+      validateRule('passwordCheck', values.passwordCheck);
     }
-  }, [password, passwordCheck, validateRule]);
+  }, [values.password, values.passwordCheck, validateRule]);
 
   const onChange = (event) => {
     const { id, value } = event.target;
 
-    if (id === 'password') {
-      setPassword(value);
-    }
-
-    if (id === 'passwordCheck') {
-      setPasswordCheck(value);
-    }
-
+    setValues((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
     validateRule(id, value);
   };
 
-  const onSubmit = (event) => {
+  const onSubmit = async (event) => {
     event.preventDefault();
+
+    await api.post('/signup', values);
   };
 
   return (
