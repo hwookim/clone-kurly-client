@@ -10,10 +10,10 @@
   color: $primary-color;
   cursor: pointer;
   font-size: inherit;
-}
 
-.btn.primary {
-  border: none;
-  background: $primary-color;
-  color: $default-color;
+  &.primary {
+    border: none;
+    background: $primary-color;
+    color: $default-color;
+  }
 }
