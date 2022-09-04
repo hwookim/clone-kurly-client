@@ -6,10 +6,10 @@ import NotFoundPage from './pages/NotFound';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
 
-const Router = () => {
+const Router = ({ user }) => {
   return (
     <BrowserRouter>
-      <Header />
+      <Header username={user?.name} />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/signup" element={<SignupPage />} />
