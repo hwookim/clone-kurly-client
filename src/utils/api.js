@@ -1,11 +1,21 @@
 import { BASE_URL } from '../config';
+import auth from './auth';
 
 const HTTP_METHOD = {
+  GET() {
+    return {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth.get()}`,
+      },
+    };
+  },
   POST(data) {
     return {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth.get()}`,
       },
       body: JSON.stringify({
         ...data,
@@ -17,6 +27,7 @@ const HTTP_METHOD = {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${auth.get()}`,
       },
       body: JSON.stringify({
         ...data,
@@ -25,6 +36,9 @@ const HTTP_METHOD = {
   },
   DELETE() {
     return {
+      headers: {
+        Authorization: `Bearer ${auth.get()}`,
+      },
       method: 'DELETE',
     };
   },
@@ -39,7 +53,7 @@ const api = (() => {
     Object.assign(config, conf);
   };
 
-  const getRequest = (url) => fetch(config.baseURL + url).then((response) => response.json());
+  const getRequest = (url) => fetch(config.baseURL + url, HTTP_METHOD.GET()).then((response) => response.json());
 
   const postRequest = (url, data) =>
     fetch(config.baseURL + url, HTTP_METHOD.POST(data)).then((response) => response.json());
