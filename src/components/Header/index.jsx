@@ -5,8 +5,9 @@ import useIsInViewport from '../../hooks/useIsInViewport';
 import UserButtons from './UserButtons';
 import SearchBar from './SearchBar';
 import Category from './Category';
+import Dropdown from './Dropdown';
 
-export default function Header() {
+export default function Header({ username }) {
   const headerMainRef = useRef();
   const isInViewport = useIsInViewport(headerMainRef);
   const additionalClassName = useMemo(() => (isInViewport ? '' : '--sticky'), [isInViewport]);
@@ -15,23 +16,30 @@ export default function Header() {
     <div className="header">
       <div className="header__main" ref={headerMainRef}>
         <div className="header__main__user-info">
-          <Link to="/signup" className="header__main__user-info__signup">
-            회원가입
-          </Link>
+          {username ? (
+            <Dropdown title={<Link to="/notice">{username} 님 ▼</Link>}>
+              <Link to="/carts">장바구니</Link>
+              <span>로그아웃</span>
+            </Dropdown>
+          ) : (
+            <>
+              <Link to="/signup" className="header__main__user-info__signup">
+                회원가입
+              </Link>
+              <div className="header__main__user-info__separator" />
+              <Link to="/login" className="header__main__user-info__login">
+                로그인
+              </Link>
+            </>
+          )}
           <div className="header__main__user-info__separator" />
-          <Link to="/login" className="header__main__user-info__login">
-            로그인
-          </Link>
-          <div className="header__main__user-info__separator" />
-          <div className="header__main__user-info__dropdown">
-            <Link to="/notice">고객센터 ▼</Link>
-            <div className="header__main__user-info__dropdown__content">
-              <Link to="/notice">공지사항</Link>
-              <Link to="/qna">자주하는 질문</Link>
-              <Link to="/inquiry/list">1:1 문의</Link>
-              <Link to="/inquiry/bulk-order">대량주문 문의</Link>
-            </div>
-          </div>
+          <Dropdown title={<Link to="/notice">고객센터 ▼</Link>}>
+            <Link to="/notice">공지사항</Link>
+            <Link to="/qna">자주하는 질문</Link>
+            <Link to="/inquiry/list">1:1 문의</Link>
+            <Link to="/inquiry/bulk-order">대량주문 문의</Link>
+          </Dropdown>
+          <div className="header__main__user-info__dropdown"></div>
         </div>
         <div className="header__main__left">
           <img className="header__main__left__logo" alt="로고" />
