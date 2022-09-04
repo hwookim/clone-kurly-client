@@ -1,16 +1,23 @@
 import React, { useMemo, useRef } from 'react';
 import './Header.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useIsInViewport from '../../hooks/useIsInViewport';
 import UserButtons from './UserButtons';
 import SearchBar from './SearchBar';
 import Category from './Category';
 import Dropdown from './Dropdown';
+import auth from '../../utils/auth';
 
 export default function Header({ username }) {
   const headerMainRef = useRef();
   const isInViewport = useIsInViewport(headerMainRef);
   const additionalClassName = useMemo(() => (isInViewport ? '' : '--sticky'), [isInViewport]);
+  const navigate = useNavigate();
+
+  const onLogout = () => {
+    auth.clear();
+    navigate(0);
+  };
 
   return (
     <div className="header">
@@ -19,7 +26,7 @@ export default function Header({ username }) {
           {username ? (
             <Dropdown title={<Link to="/notice">{username} 님 ▼</Link>}>
               <Link to="/carts">장바구니</Link>
-              <span>로그아웃</span>
+              <span onClick={onLogout}>로그아웃</span>
             </Dropdown>
           ) : (
             <>
