@@ -44,7 +44,7 @@ export default function ProductPage() {
           </div>
         </div>
         <div className="product__content__total-price">
-          총 상품금액 :<span className="product__content__total-price__value">{product.price.toLocaleString()}</span>
+          총 상품금액 :<span className="product__content__total-price__value">{(product.price * amount).toLocaleString()}</span>
           <span className="product__content__total-price__unit">원</span>
         </div>
         <Button variant="primary" className="product__content__cart">
