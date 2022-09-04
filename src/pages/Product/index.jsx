@@ -38,7 +38,7 @@ export default function ProductPage() {
         <div className="product__content__amount">
           <span>구매수량</span>
           <div className="product__content__amount__input">
-            <button onClick={onClickAmountButton(-1)}>-</button>
+            <button onClick={onClickAmountButton(-1)} disabled={amount === 1}>-</button>
             {amount}
             <button onClick={onClickAmountButton(+1)}>+</button>
           </div>

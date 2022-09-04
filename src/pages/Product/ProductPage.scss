@@ -69,6 +69,10 @@
           border: none;
           font-size: 14px;
           background-color: transparent;
+
+          &:disabled {
+            cursor: default;
+          }
         }
       }
     }
