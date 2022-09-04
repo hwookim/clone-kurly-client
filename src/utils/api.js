@@ -47,13 +47,14 @@ const HTTP_METHOD = {
 const api = (() => {
   const config = {
     baseURL: BASE_URL,
+    suffix: '',
   };
 
-  const init = (conf) => {
-    Object.assign(config, conf);
-  };
+  if (BASE_URL === 'http://localhost:3000/data') {
+    config.suffix = '.json'
+  }
 
-  const getRequest = (url) => fetch(config.baseURL + url, HTTP_METHOD.GET()).then((response) => response.json());
+  const getRequest = (url) => fetch(config.baseURL + url + config.suffix, HTTP_METHOD.GET()).then((response) => response.json());
 
   const postRequest = (url, data) =>
     fetch(config.baseURL + url, HTTP_METHOD.POST(data)).then((response) => response.json());
@@ -64,7 +65,6 @@ const api = (() => {
   const deleteRequest = (url) => fetch(config.baseURL + url, HTTP_METHOD.DELETE());
 
   return {
-    init,
     get: getRequest,
     post: postRequest,
     put: putRequest,
