@@ -1,3 +1,5 @@
+@import '../../styles/variables.scss';
+
 .product {
   margin: 30px auto auto;
   width: 1050px;
@@ -37,10 +39,24 @@
       line-height: 30px;
       letter-spacing: -0.5px;
 
-      span {
+      &__discount {
+        margin-right: 10px;
+        color: $discount-color;
+      }
+
+      &__unit {
         margin-left: 4px;
         font-size: 18px;
       }
+    }
+
+    &__origin-price {
+      margin-top: 10px;
+      font-size: 16px;
+      color: rgb(181, 181, 181);
+      text-decoration: line-through;
+      margin-right: 0px;
+      letter-spacing: -0.5px;
     }
 
     &__amount {
