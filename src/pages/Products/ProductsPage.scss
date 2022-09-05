@@ -11,6 +11,30 @@
     font-weight: 500;
   }
 
+  &__header {
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 500;
+
+    &__order {
+      display: flex;
+      color: rgb(153, 153, 153);
+
+      span {
+        cursor: pointer;
+      }
+
+      &__separator {
+        width: 1px;
+        height: 13px;
+        margin: 0 12px;
+        background-color: rgb(217, 217, 217);
+      }
+    }
+  }
+
   &__list {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;

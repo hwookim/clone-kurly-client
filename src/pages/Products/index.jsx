@@ -12,6 +12,7 @@ export default function ProductsPage() {
   useEffect(() => {
     api.get(`/products?${searchParams.toString()}`).then((data) => setProducts(data));
   }, [searchParams]);
+
   useEffect(() => {
     api.get(`/categories/${searchParams.get('category')}`).then((data) => setCategory(data));
   });
@@ -19,6 +20,14 @@ export default function ProductsPage() {
   return (
     <div className="products">
       <h3 className="products__title">{category.name}</h3>
+      <div className="products__header">
+        <div className="products__header__count">총 {products.length}건</div>
+        <div className="products__header__order">
+          <span>낮은 가격순</span>
+          <div className="products__header__order__separator" />
+          <span>높은 가격순</span>
+        </div>
+      </div>
       <div className="products__list">
         {products.map((product) => (
           <div className="products__list__item">
