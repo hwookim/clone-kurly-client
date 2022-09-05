@@ -22,8 +22,11 @@
       display: flex;
       color: rgb(153, 153, 153);
 
-      span {
+      &__method {
         cursor: pointer;
+        &.active {
+          color: black;
+        }
       }
 
       &__separator {
