@@ -20,21 +20,21 @@
     "title": "가아아아아아아아아아아아아아아아짜상사사사사ㅏ사앙품2222222222222",
     "thumbnail": "https://cdn.pixabay.com/photo/2022/07/06/12/04/candles-7304948_1280.jpg",
     "description": "테스트를 위한 가짜상품입니다.",
-    "price": 100000000
+    "price": 2000
   },
   {
     "id": 3,
     "title": "가짜상품3",
     "thumbnail": "https://cdn.pixabay.com/photo/2022/07/06/12/04/candles-7304948_1280.jpg",
     "description": "테스트를 위한 가짜상품입니다.",
-    "price": 100000000
+    "price": 400000
   },
   {
     "id": 4,
     "title": "가짜상품4",
     "thumbnail": "https://cdn.pixabay.com/photo/2022/07/06/12/04/candles-7304948_1280.jpg",
     "description": "테스트를 위한 가짜상품입니다.",
-    "price": 100000000
+    "price": 10000
   },
   {
     "id": 5,
@@ -55,14 +55,15 @@
     "title": "가짜상품",
     "thumbnail": "https://cdn.pixabay.com/photo/2022/07/06/12/04/candles-7304948_1280.jpg",
     "description": "테스트를 위한 가짜상품입니다.",
-    "price": 100000000
+    "price": 999999999999
   },
   {
     "id": 8,
     "title": "가짜상품8",
     "thumbnail": "https://cdn.pixabay.com/photo/2022/07/06/12/04/candles-7304948_1280.jpg",
     "description": "테스트를 위한 가짜상품입니다.",
-    "price": 100000000
+    "price": 100000000,
+    "discount": 0.5
   },
   {
     "id": 9,
@@ -76,7 +77,7 @@
     "title": "가짜상품10",
     "thumbnail": "https://cdn.pixabay.com/photo/2022/07/06/12/04/candles-7304948_1280.jpg",
     "description": "테스트를 위한 가짜상품입니다.",
-    "price": 100000000
+    "price": 39293000
   },
   {
     "id": 11,
