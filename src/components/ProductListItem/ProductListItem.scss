@@ -1,88 +1,79 @@
 @import '../../styles/variables.scss';
 
 .product-list-item {
-  flex: 0 0 auto;
-  display: block;
-  width: 262.5px;
+  cursor: pointer;
+  width: 95%;
 
-  &__content {
-    width: 250px;
-    cursor: pointer;
+  &__thumbnail {
+    position: relative;
+    overflow: hidden;
 
-    &__thumbnail {
-      position: relative;
-      height: 320px;
-      overflow: hidden;
+    &__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease-in-out;
 
-      &__img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition-duration: 0.3s;
-        transition-timing-function: ease-in-out;
-        transition-delay: 0s;
-        transition-property: all;
-
-        &:hover {
-          transform: scale(1.02);
-        }
-      }
-
-      &__btn {
-        position: absolute;
-        bottom: 16px;
-        right: 16px;
-        width: 45px;
-        height: 45px;
-        border: none;
-        border-radius: 50%;
-        background-color: rgba(151, 128, 157, 0.5);
-
-        &__icon {
-          font-variation-settings: 'wght' 300;
-          margin-top: 4px;
-          margin-left: 2px;
-          color: white;
-        }
+      &:hover {
+        transform: scale(1.02);
       }
     }
 
-    &__info {
-      padding-top: 14px;
-      padding-right: 10px;
+    &__btn {
+      position: absolute;
+      bottom: 16px;
+      right: 16px;
+      width: 45px;
+      height: 45px;
+      border: none;
+      border-radius: 50%;
+      background-color: rgba(151, 128, 157, 0.5);
 
-      &__title {
-        margin-bottom: 8px;
-        font-size: 18px;
-        line-height: 1.45;
-        overflow-x: hidden;
-        overflow-y: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        letter-spacing: normal;
-        word-break: break-word;
-        overflow-wrap: break-word;
+      &__icon {
+        font-variation-settings: 'wght' 300;
+        margin-top: 4px;
+        margin-left: 2px;
+        color: white;
+      }
+    }
+  }
+
+  &__info {
+    padding-top: 14px;
+    padding-right: 10px;
+
+    &__title {
+      margin-bottom: 8px;
+      font-size: 1em;
+      line-height: 1.45;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      letter-spacing: normal;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+
+    &__price {
+      font-size: 0.9em;
+      font-weight: 800;
+      line-height: 1.5;
+
+      &__discount {
+        margin-right: 7px;
+        color: $discount-color;
       }
 
-      &__price {
-        font-weight: 800;
-        line-height: 1.5;
-
-        &__discount {
-          margin-right: 7px;
-          color: $discount-color;
-        }
-
-        &__origin {
-          margin-top: 2px;
-          color: rgb(181, 181, 181);
-          font-size: 14px;
-          font-weight: 400;
-          line-height: normal;
-          text-decoration: line-through;
-        }
+      &__origin {
+        margin-top: 2px;
+        color: rgb(181, 181, 181);
+        font-size: 0.9em;
+        font-weight: 400;
+        line-height: normal;
+        text-decoration: line-through;
       }
     }
   }
