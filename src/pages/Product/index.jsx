@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './ProductPage.scss';
 import { useParams } from 'react-router-dom';
 import api from '../../utils/api';
@@ -12,6 +12,10 @@ export default function ProductPage() {
     description: '',
     price: 0,
   });
+  const salesPrice = useMemo(
+    () => (product.discount ? parseInt(product.price) * (1 - parseFloat(product.discount)) : parseInt(product.price)),
+    [product]
+  );
   const [amount, setAmount] = useState(1);
 
   useEffect(() => {
@@ -22,8 +26,8 @@ export default function ProductPage() {
     if (amount + change <= 0) {
       return;
     }
-    setAmount(prev => prev + change);
-  }
+    setAmount((prev) => prev + change);
+  };
 
   return (
     <article className="product">
@@ -32,19 +36,28 @@ export default function ProductPage() {
         <h2 className="product__content__title">{product.title}</h2>
         <p className="product__content__description">{product.description}</p>
         <div className="product__content__price">
-          {product.price.toLocaleString()}
-          <span>원</span>
+          {product.discount && (
+            <span className="product__content__price__discount">{parseFloat(product.discount) * 100}%</span>
+          )}
+          {salesPrice.toLocaleString('ko-Kr')}
+          <span className="product__content__price__unit">원</span>
         </div>
+        {product.discount && (
+          <div className="product__content__origin-price">{product.price.toLocaleString('ko-KR')}원</div>
+        )}
         <div className="product__content__amount">
           <span>구매수량</span>
           <div className="product__content__amount__input">
-            <button onClick={onClickAmountButton(-1)} disabled={amount === 1}>-</button>
+            <button onClick={onClickAmountButton(-1)} disabled={amount === 1}>
+              -
+            </button>
             {amount}
             <button onClick={onClickAmountButton(+1)}>+</button>
           </div>
         </div>
         <div className="product__content__total-price">
-          총 상품금액 :<span className="product__content__total-price__value">{(product.price * amount).toLocaleString()}</span>
+          총 상품금액 :
+          <span className="product__content__total-price__value">{(salesPrice * amount).toLocaleString('ko-KR')}</span>
           <span className="product__content__total-price__unit">원</span>
         </div>
         <Button variant="primary" className="product__content__cart">
