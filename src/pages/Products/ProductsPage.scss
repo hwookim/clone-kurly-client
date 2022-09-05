@@ -1,0 +1,17 @@
+@import '../../styles/variables.scss';
+
+.products {
+  margin: 30px auto auto;
+  width: 1050px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  &__item {
+    height: 650px;
+    font-size: 20px;
+
+    img {
+      height: 435px;
+    }
+  }
+}
