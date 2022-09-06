@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './ProductsPage.scss';
 import { useSearchParams } from 'react-router-dom';
 import ProductListItem from '../../components/ProductListItem';
-import api from '../../utils/api';
+import api from '../../apis';
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();

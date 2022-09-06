@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './ProductPage.scss';
 import { useParams } from 'react-router-dom';
-import api from '../../utils/api';
+import api from '../../apis';
 import Button from '../../components/Button';
 import AmountInput from '../../components/AmountInput';
 

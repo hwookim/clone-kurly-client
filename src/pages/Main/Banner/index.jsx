@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Banner.scss';
-import api from '../../../utils/api';
+import api from '../../../apis';
 import { Link } from 'react-router-dom';
 import useCarousel from '../../../hooks/useCarousel';
 

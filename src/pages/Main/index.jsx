@@ -3,7 +3,7 @@ import './MainPage.scss';
 import Banner from './Banner';
 import ProductListItem from '../../components/ProductListItem';
 
-import api from '../../utils/api';
+import api from '../../apis';
 import useCarousel from '../../hooks/useCarousel';
 
 export default function MainPage() {

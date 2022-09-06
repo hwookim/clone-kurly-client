@@ -1,6 +1,6 @@
 import Router from './Router';
 import { useEffect, useState } from 'react';
-import api from './utils/api';
+import api from './apis';
 import auth from './utils/auth';
 
 function App() {

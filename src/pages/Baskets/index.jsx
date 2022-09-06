@@ -4,7 +4,7 @@ import Button from '../../components/Button';
 import Checkbox from './Checkbox';
 import BasketItem from './BasketItem';
 
-import api from '../../utils/api';
+import api from '../../apis';
 import auth from '../../utils/auth';
 
 import './BasketsPage.scss';
