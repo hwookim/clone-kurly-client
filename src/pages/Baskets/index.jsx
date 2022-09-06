@@ -144,7 +144,7 @@ export default function BasketsPage() {
             </div>
             {isGuest && deliveryCharge > 0 && (
               <p className="baskets__content__right__bill__delivery-info">
-                {40000 - totalPrice}원 추가주문 시, <span>무료배송</span>
+                {40000 - (totalPrice - deliveryCharge)}원 추가주문 시, <span>무료배송</span>
               </p>
             )}
             <div className="baskets__content__right__bill__total">
