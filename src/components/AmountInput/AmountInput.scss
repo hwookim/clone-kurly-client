@@ -1,0 +1,19 @@
+.amount-input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(221, 223, 225);
+  width: 88px;
+  border-radius: 3px;
+  font-size: 14px;
+
+  button {
+    border: none;
+    font-size: 14px;
+    background-color: transparent;
+
+    &:disabled {
+      cursor: default;
+    }
+  }
+}
