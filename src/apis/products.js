@@ -4,10 +4,10 @@ const convertProduct = (data) => {
   const product = {
     ...data,
     price: parseInt(data.price),
-    discount: parseFloat(data.discount),
   };
 
   if (product.discount) {
+    product.discount = parseFloat(product.discount);
     product.salsePrice = product.price * (1 - product.discount);
   }
 
