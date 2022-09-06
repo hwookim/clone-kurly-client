@@ -14,11 +14,11 @@ export default function ProductListItem({ product }) {
   );
   const navigate = useNavigate();
 
-  const onClickProduct = () => {
+  const handleClickProduct = () => {
     navigate(`/products/${id}`);
   };
 
-  const onClickCartButton = useCallback(
+  const handleClickBasketButton = useCallback(
     async (event) => {
       event.preventDefault();
       event.stopPropagation();
@@ -28,10 +28,10 @@ export default function ProductListItem({ product }) {
   );
 
   return (
-    <div className="product-list-item" onClick={onClickProduct}>
+    <div className="product-list-item" onClick={handleClickProduct}>
       <div className="product-list-item__thumbnail">
         <img src={thumbnail} alt="title" className="product-list-item__thumbnail__img" />
-        <button className="product-list-item__thumbnail__btn" onClick={onClickCartButton}>
+        <button className="product-list-item__thumbnail__btn" onClick={handleClickBasketButton}>
           <span className="product-list-item__thumbnail__btn__icon material-symbols-outlined">shopping_cart</span>
         </button>
       </div>

@@ -14,14 +14,6 @@ export default function Category() {
     apis.categories.getAll().then((data) => setCategories(data));
   }, []);
 
-  const onMouseEnterCategory = (id) => () => {
-    setHoveredCategory(id);
-  };
-
-  const onMouseLeaveCategory = () => {
-    setHoveredCategory(-1);
-  };
-
   const renderSubCategories = useCallback(() => {
     const subCategories = categories[hoveredCategory].sub_categories;
     if (!subCategories) {
@@ -40,8 +32,16 @@ export default function Category() {
     );
   }, [categories, hoveredCategory]);
 
+  const handleMouseEnter = (id) => () => {
+    setHoveredCategory(id);
+  };
+  const handleMouseLeave = () => {
+    setHoveredCategory(-1);
+
+  };
+
   return (
-    <div className="category" onMouseLeave={onMouseLeaveCategory}>
+    <div className="category" onMouseLeave={handleMouseLeave}>
       <span className="category__icon material-symbols-outlined">menu</span>
       <span className="category__text">카테고리</span>
       <div className="category__dropdown" ref={dropdownRef}>
@@ -49,7 +49,7 @@ export default function Category() {
           <div
             key={name + id}
             className={'category__dropdown__item ' + (hoveredCategory === id && 'active')}
-            onMouseEnter={onMouseEnterCategory(id)}
+            onMouseEnter={handleMouseEnter(id)}
           >
             {name}
           </div>

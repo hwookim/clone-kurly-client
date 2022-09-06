@@ -17,11 +17,11 @@ export default function MainPage() {
     apis.products.getAll().then((data) => setProducts(data));
   }, []);
 
-  const onClickLeftButton = () => {
+  const handleClickLeftButton = () => {
     moveCarousel(-1);
   };
 
-  const onClickRightButton = () => {
+  const handleClickRightButton = () => {
     moveCarousel(+1);
   };
 
@@ -43,7 +43,7 @@ export default function MainPage() {
           {current === 0 || (
             <button
               className="main-contents__carousel__btn main-contents__carousel__btn-left"
-              onClick={onClickLeftButton}
+              onClick={handleClickLeftButton}
             >
               <span className="material-symbols-outlined">arrow_back_ios</span>
             </button>
@@ -51,7 +51,7 @@ export default function MainPage() {
           {current === carouselLength - 1 || (
             <button
               className="main-contents__carousel__btn main-contents__carousel__btn-right"
-              onClick={onClickRightButton}
+              onClick={handleClickRightButton}
             >
               <span className="material-symbols-outlined">arrow_forward_ios</span>
             </button>

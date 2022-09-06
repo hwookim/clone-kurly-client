@@ -25,19 +25,19 @@ export default function Banner() {
     return () => clearInterval(timer);
   }, [current, isHover, moveCarousel]);
 
-  const onClickLeftButton = () => {
+  const handleClickLeftButton = () => {
     moveCarousel(-1);
   };
 
-  const onClickRightButton = () => {
+  const handleClickRightButton = () => {
     moveCarousel(+1);
   };
 
-  const onMouseEnterImage = () => {
+  const handleMouseEnter = () => {
     setIsHover(true);
   };
 
-  const onMouseLeaveImage = () => {
+  const handleMouseLeave = () => {
     setIsHover(false);
   };
 
@@ -46,8 +46,8 @@ export default function Banner() {
       <div
         ref={bannerRef}
         className="banner__image-container"
-        onMouseEnter={onMouseEnterImage}
-        onMouseLeave={onMouseLeaveImage}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         {promotions.map(({ id, img_src, link }) => (
           <Link key={id} to={link} className="banner__image-container__link">
@@ -55,10 +55,10 @@ export default function Banner() {
           </Link>
         ))}
       </div>
-      <button className="banner__btn banner__btn-left" onClick={onClickLeftButton}>
+      <button className="banner__btn banner__btn-left" onClick={handleClickLeftButton}>
         <span className="material-symbols-outlined">chevron_left</span>
       </button>
-      <button className="banner__btn banner__btn-right" onClick={onClickRightButton}>
+      <button className="banner__btn banner__btn-right" onClick={handleClickRightButton}>
         <span className="material-symbols-outlined">chevron_right</span>
       </button>
       <div className="banner__counter">

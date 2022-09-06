@@ -64,7 +64,7 @@ export default function BasketsPage() {
     setDiscountPrice(discountPrice);
   }, [isGuest, priceInfo, selected]);
 
-  const onChangeAmount = async (targetId, value) => {
+  const handleAmountInput = async (targetId, value) => {
     const targetIndex = priceInfo.findIndex(({ id }) => id === targetId);
     const changedInfo = {
       ...priceInfo[targetIndex],
@@ -118,7 +118,7 @@ export default function BasketsPage() {
                   key={basket.id}
                   basket={basket}
                   check={selected.includes(basket.id)}
-                  onChangeAmount={onChangeAmount}
+                  onChangeAmount={handleAmountInput}
                   onSelect={handleSelect}
                   onRemove={handleRemove}
                 />

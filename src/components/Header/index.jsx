@@ -17,7 +17,7 @@ export default function Header({ username }) {
   const additionalClassName = useMemo(() => (isInViewport ? '' : '--sticky'), [isInViewport]);
   const navigate = useNavigate();
 
-  const onLogout = () => {
+  const handleClickLogout = () => {
     auth.clear();
     navigate(0);
   };
@@ -29,7 +29,7 @@ export default function Header({ username }) {
           {username ? (
             <Dropdown title={<Link to="/notice">{username} 님 ▼</Link>}>
               <Link to="/baskets">장바구니</Link>
-              <span onClick={onLogout}>로그아웃</span>
+              <span onClick={handleClickLogout}>로그아웃</span>
             </Dropdown>
           ) : (
             <>

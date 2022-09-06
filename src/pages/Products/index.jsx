@@ -31,17 +31,10 @@ export default function ProductsPage() {
     apis.categories.get(searchParams.get('category')).then((data) => setCategory(data));
   }, [searchParams]);
 
-  const onClickASC = () => {
+  const handleClickOrder = (orderType) => () => {
     setSearchParams({
       category: searchParams.get('category'),
-      order: 'asc',
-    });
-  };
-
-  const onClickDESC = () => {
-    setSearchParams({
-      category: searchParams.get('category'),
-      order: 'desc',
+      order: orderType,
     });
   };
 
@@ -51,13 +44,16 @@ export default function ProductsPage() {
       <div className="products__header">
         <div className="products__header__count">총 {products.length}건</div>
         <div className="products__header__order">
-          <span className={'products__header__order__method ' + (order === 'asc' ? 'active' : '')} onClick={onClickASC}>
+          <span
+            className={'products__header__order__method ' + (order === 'asc' ? 'active' : '')}
+            onClick={handleClickOrder('asc')}
+          >
             낮은 가격순
           </span>
           <div className="products__header__order__separator" />
           <span
             className={'products__header__order__method ' + (order === 'desc' ? 'active' : '')}
-            onClick={onClickDESC}
+            onClick={handleClickOrder('desc')}
           >
             높은 가격순
           </span>
