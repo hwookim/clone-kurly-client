@@ -86,6 +86,11 @@ export default function BasketsPage() {
     setSelected(changed);
   };
 
+  const handleRemove = (targetId) => {
+    const changed = baskets.filter(({ id }) => id !== targetId);
+    setBaskets(changed);
+  };
+
   return (
     <div className="baskets">
       <h2 className="baskets__title">장바구니</h2>
@@ -109,6 +114,7 @@ export default function BasketsPage() {
                   check={selected.includes(basket.id)}
                   onChangeAmount={onChangeAmount}
                   onSelect={handleSelect}
+                  onRemove={handleRemove}
                 />
               ))
             )}

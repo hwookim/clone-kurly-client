@@ -8,7 +8,7 @@ import auth from '../../utils/auth';
 
 import './BasketItem.scss';
 
-export default function BasketItem({ basket, check, onChangeAmount, onSelect }) {
+export default function BasketItem({ basket, check, onChangeAmount, onSelect, onRemove }) {
   const { id, product, amount: defaultAmount } = basket;
   const [amount, setAmount] = useState(defaultAmount);
   const price = useMemo(() => parseInt(product.price) * parseInt(amount), [amount, product]);
@@ -27,6 +27,10 @@ export default function BasketItem({ basket, check, onChangeAmount, onSelect }) 
     onSelect(id);
   };
 
+  const handleClickRemoveButton = () => {
+    onRemove(id);
+  }
+
   return (
     <li className="basket-item">
       <Checkbox value={check} onChange={handleSelect} />
@@ -41,7 +45,7 @@ export default function BasketItem({ basket, check, onChangeAmount, onSelect }) 
         </div>
         {isLoggedIn && salesPrice && <div className="basket-item__price__origin">{price.toLocaleString('ko-KR')}</div>}
       </div>
-      <button className="basket-item__delete">
+      <button className="basket-item__remove" onClick={handleClickRemoveButton}>
         <span className="material-symbols-outlined">close</span>
       </button>
     </li>
