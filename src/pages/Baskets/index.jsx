@@ -17,8 +17,11 @@ export default function BasketsPage() {
   const [deliveryCharge, setDeliveryCharge] = useState(0);
   const [selected, setSelected] = useState([]);
   const isAllSelected = useMemo(() => baskets.every(({ id }) => selected.includes(id)), [baskets, selected]);
-  const totalPrice = useMemo(() => price - discountPrice + deliveryCharge, [deliveryCharge, discountPrice, price]);
   const isGuest = useMemo(() => !auth.isLoggedIn(), []);
+  const totalPrice = useMemo(
+    () => price + deliveryCharge - (isGuest ? 0 : discountPrice),
+    [deliveryCharge, discountPrice, isGuest, price]
+  );
 
   useEffect(() => {
     (async () => {
@@ -53,10 +56,13 @@ export default function BasketsPage() {
       .reduce((a, b) => a + b, 0);
     setPrice(price);
 
-    if (isGuest) {
-      setDiscountPrice(0);
-      setDeliveryCharge(price >= 40000 ? 0 : 3000);
+    if (priceInfo.length === 0) {
+      setDeliveryCharge(0);
       return;
+    }
+
+    if (isGuest) {
+      setDeliveryCharge(price >= 40000 ? 0 : 3000);
     }
     const discountPrice = selectedBaskets.map(({ discount, amount }) => discount * amount).reduce((a, b) => a + b, 0);
     setDiscountPrice(discountPrice);
@@ -86,6 +92,11 @@ export default function BasketsPage() {
     setSelected(changed);
   };
 
+  const handleRemove = (targetId) => {
+    const changed = baskets.filter(({ id }) => id !== targetId);
+    setBaskets(changed);
+  };
+
   return (
     <div className="baskets">
       <h2 className="baskets__title">장바구니</h2>
@@ -109,6 +120,7 @@ export default function BasketsPage() {
                   check={selected.includes(basket.id)}
                   onChangeAmount={onChangeAmount}
                   onSelect={handleSelect}
+                  onRemove={handleRemove}
                 />
               ))
             )}
@@ -130,11 +142,13 @@ export default function BasketsPage() {
             <div className="baskets__content__right__bill__item">
               <span>상품할인금액</span>
               <span>
-                {discountPrice > 0 && '-'}
-                {discountPrice.toLocaleString()} 원
+                {!isGuest && discountPrice > 0 && '-'}
+                {isGuest ? 0 : discountPrice.toLocaleString()} 원
               </span>
             </div>
-            {isGuest && <p className="baskets__content__right__bill__discount-info">로그인 후 할인 금액 적용</p>}
+            {isGuest && discountPrice > 0 && (
+              <p className="baskets__content__right__bill__discount-info">로그인 후 할인 금액 적용</p>
+            )}
             <div className="baskets__content__right__bill__item">
               <span>배송비</span>
               <span>
