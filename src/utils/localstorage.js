@@ -53,7 +53,8 @@ const localstorage = {
       return;
     }
     const targetIndex = baskets.findIndex((basket) => basket.id === id);
-    localstorage.set(STORAGE_KEYS.BASKETS, baskets.splice(targetIndex, 1));
+    baskets.splice(targetIndex, 1);
+    localstorage.set(STORAGE_KEYS.BASKETS, baskets);
   },
 };
 
