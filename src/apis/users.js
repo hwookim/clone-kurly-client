@@ -2,7 +2,10 @@ import request from './utils/request';
 import auth from '../utils/auth';
 
 const users = {
-  get() {
+  async get() {
+    if (!auth.isLoggedIn()) {
+      return;
+    }
     return request.get('/users').catch(() => auth.clear());
   },
 
