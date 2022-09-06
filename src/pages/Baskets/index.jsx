@@ -16,7 +16,10 @@ export default function BasketsPage() {
   const [discountPrice, setDiscountPrice] = useState(0);
   const [deliveryCharge, setDeliveryCharge] = useState(0);
   const [selected, setSelected] = useState([]);
-  const isAllSelected = useMemo(() => baskets.every(({ id }) => selected.includes(id)), [baskets, selected]);
+  const isAllSelected = useMemo(
+    () => baskets.length > 0 && baskets.every(({ id }) => selected.includes(id)),
+    [baskets, selected]
+  );
   const isGuest = useMemo(() => !auth.isLoggedIn(), []);
   const totalPrice = useMemo(
     () => price + deliveryCharge - (isGuest ? 0 : discountPrice),
