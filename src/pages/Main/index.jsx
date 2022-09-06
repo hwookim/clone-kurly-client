@@ -32,8 +32,8 @@ export default function MainPage() {
           <div className="main-contents__carousel__content">
             <div className="main-contents__carousel__content__product-list" ref={carouselRef}>
               {products.map((product) => (
-                <div className="main-contents__carousel__content__product-list__item">
-                  <ProductListItem key={product.id} product={product} />
+                <div key={product.id} className="main-contents__carousel__content__product-list__item">
+                  <ProductListItem product={product} />
                 </div>
               ))}
             </div>
