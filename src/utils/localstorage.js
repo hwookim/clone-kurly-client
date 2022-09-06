@@ -4,11 +4,7 @@ export const STORAGE_KEYS = {
 
 const localstorage = {
   set(key, value) {
-    const localStorageData = window.localStorage.getItem(key);
-    const storageArr = localStorageData ? JSON.parse(localStorageData) : [];
-    storageArr.unshift(value);
-
-    window.localStorage.setItem(key, JSON.stringify(storageArr));
+    window.localStorage.setItem(key, JSON.stringify(value));
   },
 
   get(key) {
