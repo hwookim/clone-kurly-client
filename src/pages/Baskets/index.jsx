@@ -64,13 +64,15 @@ export default function BasketsPage() {
     setDiscountPrice(discountPrice);
   }, [isGuest, priceInfo, selected]);
 
-  const onChangeAmount = (targetId, value) => {
+  const onChangeAmount = async (targetId, value) => {
     const targetIndex = priceInfo.findIndex(({ id }) => id === targetId);
     const changedInfo = {
       ...priceInfo[targetIndex],
       amount: value,
     };
     setPriceInfo((prev) => [...prev.slice(0, targetIndex), changedInfo, ...prev.slice(targetIndex + 1, prev.length)]);
+
+    await apis.baskets.update(targetId, value);
   };
 
   const handleSelectAll = () => {
@@ -88,9 +90,11 @@ export default function BasketsPage() {
     setSelected(changed);
   };
 
-  const handleRemove = (targetId) => {
+  const handleRemove = async (targetId) => {
     const changed = baskets.filter(({ id }) => id !== targetId);
     setBaskets(changed);
+
+    await apis.baskets.remove(targetId);
   };
 
   return (

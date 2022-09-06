@@ -13,6 +13,14 @@ const baskets = {
       product: products.find(({ id }) => id === product_id),
     }));
   },
+
+  update(id, amount) {
+    return request.post(`/baskets/${id}`, { amount });
+  },
+
+  remove(id) {
+    return request.delete(`/baskets/${id}`);
+  },
 };
 
 export default baskets;
