@@ -46,7 +46,11 @@ export default function BasketsPage() {
   }, [baskets]);
 
   useEffect(() => {
-    const price = priceInfo.map(({ price, amount }) => price * amount).reduce((a, b) => a + b, 0);
+    const selectedBaskets = priceInfo.filter(({ id }) => selected.includes(id));
+    const price = selectedBaskets
+      .filter(({ id }) => selected.includes(id))
+      .map(({ price, amount }) => price * amount)
+      .reduce((a, b) => a + b, 0);
     setPrice(price);
 
     if (isGuest) {
@@ -54,9 +58,9 @@ export default function BasketsPage() {
       setDeliveryCharge(price >= 40000 ? 0 : 3000);
       return;
     }
-    const discountPrice = priceInfo.map(({ discount, amount }) => discount * amount).reduce((a, b) => a + b, 0);
+    const discountPrice = selectedBaskets.map(({ discount, amount }) => discount * amount).reduce((a, b) => a + b, 0);
     setDiscountPrice(discountPrice);
-  }, [isGuest, priceInfo]);
+  }, [isGuest, priceInfo, selected]);
 
   const onChangeAmount = (targetId, value) => {
     const targetIndex = priceInfo.findIndex(({ id }) => id === targetId);
