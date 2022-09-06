@@ -10,15 +10,6 @@ export default function ProductsPage() {
   const [category, setCategory] = useState('카테고리');
   const order = useMemo(() => searchParams.get('order'), [searchParams]);
 
-  const convertProduct = useCallback((product) => {
-    const { price, discount } = product;
-    const salesPrice = discount ? parseInt(price) * (1 - parseFloat(discount)) : parseInt(price);
-    return {
-      salesPrice,
-      ...product,
-    };
-  }, []);
-
   const orderProducts = useCallback(
     (products) => {
       if (!order) {
@@ -30,11 +21,8 @@ export default function ProductsPage() {
   );
 
   useEffect(() => {
-    api.products.getAll(searchParams).then((data) => {
-      const products = data.map((product) => convertProduct(product));
-      setProducts(orderProducts(products));
-    });
-  }, [convertProduct, order, orderProducts, searchParams]);
+    api.products.getAll(searchParams).then((data) => setProducts(orderProducts(products)));
+  }, [order, orderProducts, searchParams]);
 
   useEffect(() => {
     api.categories.get(searchParams.get('category')).then((data) => setCategory(data));

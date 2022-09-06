@@ -34,8 +34,8 @@ export default function BasketsPage() {
   useEffect(() => {
     const priceInfo = baskets.map(({ id, product, amount }) => ({
       id,
-      price: parseInt(product.price),
-      discount: parseInt(product.price) * parseFloat(product.discount),
+      price: product.price,
+      discount: product.price * product.discount,
       amount: parseInt(amount),
     }));
     setPriceInfo(priceInfo);
