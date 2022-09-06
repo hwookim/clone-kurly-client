@@ -5,10 +5,12 @@ import localstorage from '../utils/localstorage';
 
 const baskets = {
   async create(product_id, amount = 1) {
-    if (auth.isLoggedIn()) {
-      return request.post('/baskets', { product_id, amount });
+    const isGuest = !auth.isLoggedIn();
+    if (isGuest) {
+      localstorage.createBasket(product_id, amount);
+      return;
     }
-    localstorage.createBasket(product_id, amount);
+    return request.post('/baskets', { product_id, amount });
   },
 
   async getAll() {
@@ -27,7 +29,8 @@ const baskets = {
   async update(id, amount) {
     const isGuest = !auth.isLoggedIn();
     if (isGuest) {
-      return localstorage.updateBasket(id, amount);
+      localstorage.updateBasket(id, amount);
+      return;
     }
     return request.put(`/baskets/${id}`, { amount });
   },
@@ -35,7 +38,8 @@ const baskets = {
   async remove(id) {
     const isGuest = !auth.isLoggedIn();
     if (isGuest) {
-      return localstorage.removeBasket(id);
+      localstorage.removeBasket(id);
+      return;
     }
     return request.delete(`/baskets/${id}`);
   },
