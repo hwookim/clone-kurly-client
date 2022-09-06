@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import './SearchBar.scss'
+
+import './SearchBar.scss';
 
 export default function SearchBar({ isSticky }) {
   const className = useMemo(() => 'search-bar' + (isSticky ? '--sticky' : ''), [isSticky]);

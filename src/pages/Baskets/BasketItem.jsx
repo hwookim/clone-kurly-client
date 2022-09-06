@@ -12,10 +12,7 @@ export default function BasketItem({ basket, check, onChangeAmount, onSelect, on
   const { id, product, amount: defaultAmount } = basket;
   const [amount, setAmount] = useState(defaultAmount);
   const price = useMemo(() => product.price * amount, [amount, product]);
-  const salesPrice = useMemo(
-    () => (product.salesPrice ? product.salesPrice * amount : null),
-    [amount, product]
-  );
+  const salesPrice = useMemo(() => (product.salesPrice ? product.salesPrice * amount : null), [amount, product]);
   const isLoggedIn = useMemo(() => auth.isLoggedIn(), []);
 
   const onChange = (changed) => {

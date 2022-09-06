@@ -1,7 +1,9 @@
 import React, { useCallback, useMemo } from 'react';
-import './ProductListItem.scss';
 import { useNavigate } from 'react-router-dom';
+
 import apis from '../../apis';
+
+import './ProductListItem.scss';
 
 export default function ProductListItem({ product }) {
   const { id, title, thumbnail, price, discount } = product;
@@ -16,11 +18,14 @@ export default function ProductListItem({ product }) {
     navigate(`/products/${id}`);
   };
 
-  const onClickCartButton = useCallback(async (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    await apis.baskets.create(id);
-  }, [id]);
+  const onClickCartButton = useCallback(
+    async (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      await apis.baskets.create(id);
+    },
+    [id]
+  );
 
   return (
     <div className="product-list-item" onClick={onClickProduct}>

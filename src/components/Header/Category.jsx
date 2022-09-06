@@ -1,6 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import './Category.scss';
+
 import apis from '../../apis';
+
+import './Category.scss';
 
 export default function Category() {
   const [categories, setCategories] = useState(null);

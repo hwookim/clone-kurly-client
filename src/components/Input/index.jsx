@@ -1,4 +1,5 @@
-import React  from 'react';
+import React from 'react';
+
 import './Input.scss';
 
 export default function Input({ warning = '', ...args }) {

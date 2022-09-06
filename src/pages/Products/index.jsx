@@ -1,8 +1,11 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import './ProductsPage.scss';
 import { useSearchParams } from 'react-router-dom';
+
 import ProductListItem from '../../components/ProductListItem';
+
 import apis from '../../apis';
+
+import './ProductsPage.scss';
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,7 +24,7 @@ export default function ProductsPage() {
   );
 
   useEffect(() => {
-    apis.products.getAll(searchParams).then((data) => setProducts(orderProducts(products)));
+    apis.products.getAll(searchParams).then((data) => setProducts(orderProducts(data)));
   }, [order, orderProducts, searchParams]);
 
   useEffect(() => {

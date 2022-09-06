@@ -1,9 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import './SignupPage.scss';
+
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+
 import rules from '../../utils/rules';
 import apis from '../../apis';
+
+import './SignupPage.scss';
 
 export default function SignupPage() {
   const [values, setValues] = useState({

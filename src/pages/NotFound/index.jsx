@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './NotFoundPage.scss';
 
 import Button from '../../components/Button';
