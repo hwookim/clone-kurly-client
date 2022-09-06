@@ -3,6 +3,7 @@ import './ProductPage.scss';
 import { useParams } from 'react-router-dom';
 import api from '../../utils/api';
 import Button from '../../components/Button';
+import AmountInput from '../../components/AmountInput';
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -18,16 +19,13 @@ export default function ProductPage() {
   );
   const [amount, setAmount] = useState(1);
 
+  const onChangeAmount = (value) => {
+    setAmount(value);
+  };
+
   useEffect(() => {
     api.get(`/products/${id}`).then((data) => setProduct(data));
   }, [id]);
-
-  const onClickAmountButton = (change) => () => {
-    if (amount + change <= 0) {
-      return;
-    }
-    setAmount((prev) => prev + change);
-  };
 
   return (
     <article className="product">
@@ -47,13 +45,7 @@ export default function ProductPage() {
         )}
         <div className="product__content__amount">
           <span>구매수량</span>
-          <div className="product__content__amount__input">
-            <button onClick={onClickAmountButton(-1)} disabled={amount === 1}>
-              -
-            </button>
-            {amount}
-            <button onClick={onClickAmountButton(+1)}>+</button>
-          </div>
+          <AmountInput value={amount} onChange={onChangeAmount} />
         </div>
         <div className="product__content__total-price">
           총 상품금액 :

@@ -42,10 +42,11 @@
         }
       }
 
-      &__items {
+      &__list {
+        border-top: 1px solid rgb(51, 51, 51);
+
         &__empty {
           padding: 115px 0;
-          border-top: 1px solid rgb(51, 51, 51);
           font-size: 16px;
           line-height: 24px;
           text-align: center;
@@ -72,7 +73,27 @@
         }
 
         &__item {
-          padding-bottom: 12px;
+          padding-top: 12px;
+        }
+
+        &__discount-info {
+          padding: 2px 0;
+          color: rgb(102, 102, 102);
+          font-size: 12px;
+          line-height: 18px;
+          text-align: right;
+        }
+
+        &__delivery-info {
+          padding: 2px 0;
+          color: $primary-color;
+          font-size: 12px;
+          line-height: 18px;
+          text-align: right;
+
+          span {
+            font-weight: 700;
+          }
         }
 
         &__total {

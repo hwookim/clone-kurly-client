@@ -55,7 +55,7 @@
       font-size: 16px;
       color: rgb(181, 181, 181);
       text-decoration: line-through;
-      margin-right: 0px;
+      margin-right: 0;
       letter-spacing: -0.5px;
     }
 
@@ -70,26 +70,6 @@
 
       span {
         width: 130px;
-      }
-
-      &__input {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border: 1px solid rgb(221, 223, 225);
-        width: 88px;
-        border-radius: 3px;
-        font-size: 14px;
-
-        button {
-          border: none;
-          font-size: 14px;
-          background-color: transparent;
-
-          &:disabled {
-            cursor: default;
-          }
-        }
       }
     }
 
