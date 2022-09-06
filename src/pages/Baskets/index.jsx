@@ -16,7 +16,10 @@ export default function BasketsPage() {
   const [discountPrice, setDiscountPrice] = useState(0);
   const [deliveryCharge, setDeliveryCharge] = useState(0);
   const [selected, setSelected] = useState([]);
-  const isAllSelected = useMemo(() => baskets.every(({ id }) => selected.includes(id)), [baskets, selected]);
+  const isAllSelected = useMemo(
+    () => baskets.length > 0 && baskets.every(({ id }) => selected.includes(id)),
+    [baskets, selected]
+  );
   const isGuest = useMemo(() => !auth.isLoggedIn(), []);
   const totalPrice = useMemo(
     () => price + deliveryCharge - (isGuest ? 0 : discountPrice),
@@ -61,13 +64,15 @@ export default function BasketsPage() {
     setDiscountPrice(discountPrice);
   }, [isGuest, priceInfo, selected]);
 
-  const onChangeAmount = (targetId, value) => {
+  const onChangeAmount = async (targetId, value) => {
     const targetIndex = priceInfo.findIndex(({ id }) => id === targetId);
     const changedInfo = {
       ...priceInfo[targetIndex],
       amount: value,
     };
     setPriceInfo((prev) => [...prev.slice(0, targetIndex), changedInfo, ...prev.slice(targetIndex + 1, prev.length)]);
+
+    await apis.baskets.update(targetId, value);
   };
 
   const handleSelectAll = () => {
@@ -85,9 +90,11 @@ export default function BasketsPage() {
     setSelected(changed);
   };
 
-  const handleRemove = (targetId) => {
+  const handleRemove = async (targetId) => {
     const changed = baskets.filter(({ id }) => id !== targetId);
     setBaskets(changed);
+
+    await apis.baskets.remove(targetId);
   };
 
   return (
