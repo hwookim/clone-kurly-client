@@ -19,7 +19,7 @@ const baskets = {
 
   async update(id, amount) {
     if (auth.isLoggedIn()) {
-      return request.post(`/baskets/${id}`, { amount });
+      return request.put(`/baskets/${id}`, { amount });
     }
     const baskets = localstorage.get(STORAGE_KEYS.BASKETS) || [];
     const targetIndex = baskets.findIndex((basket) => basket.id === id);
