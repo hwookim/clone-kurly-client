@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import './Category.scss';
-import api from '../../apis';
+import apis from '../../apis';
 
 export default function Category() {
   const [categories, setCategories] = useState(null);
@@ -9,7 +9,7 @@ export default function Category() {
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-    api.categories.getAll().then((data) => setCategories(data));
+    apis.categories.getAll().then((data) => setCategories(data));
   }, []);
 
   const onMouseEnterCategory = (id) => () => {

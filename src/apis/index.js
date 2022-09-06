@@ -4,7 +4,7 @@ import products from './products';
 import promotions from "./promotions";
 import users from './users';
 
-const api = {
+const apis = {
   baskets,
   categories,
   products,
@@ -12,4 +12,4 @@ const api = {
   users,
 };
 
-export default api;
+export default apis;

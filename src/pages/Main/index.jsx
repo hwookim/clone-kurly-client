@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import ProductListItem from '../../components/ProductListItem';
 import Banner from './Banner';
 
-import api from '../../apis';
+import apis from '../../apis';
 import useCarousel from '../../hooks/useCarousel';
 
 import './MainPage.scss';
@@ -14,7 +14,7 @@ export default function MainPage() {
   const { ref: carouselRef, current, moveCarousel } = useCarousel({ length: carouselLength });
 
   useEffect(() => {
-    api.products.getAll().then((data) => setProducts(data));
+    apis.products.getAll().then((data) => setProducts(data));
   }, []);
 
   const onClickLeftButton = () => {

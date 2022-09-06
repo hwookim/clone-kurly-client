@@ -4,7 +4,7 @@ import Button from '../../components/Button';
 import Checkbox from './Checkbox';
 import BasketItem from './BasketItem';
 
-import api from '../../apis';
+import apis from '../../apis';
 import auth from '../../utils/auth';
 
 import './BasketsPage.scss';
@@ -25,7 +25,7 @@ export default function BasketsPage() {
 
   useEffect(() => {
     (async () => {
-      const baskets = await api.baskets.getAll();
+      const baskets = await apis.baskets.getAll();
       setBaskets(baskets);
       setSelected(baskets.map(({ id }) => id));
     })();

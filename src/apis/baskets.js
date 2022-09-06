@@ -1,10 +1,10 @@
 import request from './utils/request';
-import api from './index';
+import apis from './index';
 
 const baskets = {
   async getAll() {
     const baskets = await request.get('/baskets');
-    const getProductPromise = baskets.map(({ product_id }) => api.products.get(product_id));
+    const getProductPromise = baskets.map(({ product_id }) => apis.products.get(product_id));
     const products = await Promise.all(getProductPromise);
 
     return baskets.map(({ product_id, ...basket }) => ({

@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './ProductsPage.scss';
 import { useSearchParams } from 'react-router-dom';
 import ProductListItem from '../../components/ProductListItem';
-import api from '../../apis';
+import apis from '../../apis';
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,11 +21,11 @@ export default function ProductsPage() {
   );
 
   useEffect(() => {
-    api.products.getAll(searchParams).then((data) => setProducts(orderProducts(products)));
+    apis.products.getAll(searchParams).then((data) => setProducts(orderProducts(products)));
   }, [order, orderProducts, searchParams]);
 
   useEffect(() => {
-    api.categories.get(searchParams.get('category')).then((data) => setCategory(data));
+    apis.categories.get(searchParams.get('category')).then((data) => setCategory(data));
   }, [searchParams]);
 
   const onClickASC = () => {

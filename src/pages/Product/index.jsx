@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './ProductPage.scss';
 import { useParams } from 'react-router-dom';
-import api from '../../apis';
+import apis from '../../apis';
 import Button from '../../components/Button';
 import AmountInput from '../../components/AmountInput';
 
@@ -20,7 +20,7 @@ export default function ProductPage() {
   };
 
   useEffect(() => {
-    api.products.get(id).then((data) => setProduct(data));
+    apis.products.get(id).then((data) => setProduct(data));
   }, [id]);
 
   return (

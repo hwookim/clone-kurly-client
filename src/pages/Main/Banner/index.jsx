@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import useCarousel from '../../../hooks/useCarousel';
 
-import api from '../../../apis';
+import apis from '../../../apis';
 
 import './Banner.scss';
 
@@ -13,7 +13,7 @@ export default function Banner() {
   const { ref: bannerRef, current, moveCarousel } = useCarousel({ length: promotions.length, loop: true });
 
   useEffect(() => {
-    api.promotions.getAll().then((data) => setPromotions(data));
+    apis.promotions.getAll().then((data) => setPromotions(data));
   }, []);
 
   useEffect(() => {

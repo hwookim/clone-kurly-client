@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 
-import api from '../../apis';
+import apis from '../../apis';
 
 export default function LoginPage() {
   const [values, setValues] = useState({
@@ -31,7 +31,7 @@ export default function LoginPage() {
       return;
     }
 
-    api.users
+    apis.users
       .login(values)
       .then(() => navigate('/'))
       .catch((err) => alert(err));
