@@ -16,6 +16,8 @@ export default function BasketsPage() {
   const [discountPrice, setDiscountPrice] = useState(0);
   const [deliveryCharge, setDeliveryCharge] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [selected, setSelected] = useState([]);
+  const isAllSelected = useMemo(() => baskets.every(({ id }) => selected.includes(id)), [baskets, selected]);
   const isGuest = useMemo(() => !auth.isLoggedIn(), []);
 
   useEffect(() => {
@@ -29,6 +31,7 @@ export default function BasketsPage() {
         product: products.find(({ id }) => id === product_id),
       }));
       setBaskets(baskets);
+      setSelected(baskets.map(({ id }) => id));
     })();
   }, []);
 
@@ -68,13 +71,30 @@ export default function BasketsPage() {
     setPriceInfo((prev) => [...prev.slice(0, targetIndex), changedInfo, ...prev.slice(targetIndex + 1, prev.length)]);
   };
 
+  const handleSelectAll = () => {
+    const ids = baskets.map(({ id }) => id);
+    setSelected((prev) => (prev.length === 0 ? ids : []));
+  };
+
+  const handleSelect = (targetId) => {
+    const isNotSelected = !selected.includes(targetId);
+    if (isNotSelected) {
+      setSelected((prev) => [...prev, targetId]);
+      return;
+    }
+    const changed = selected.filter((id) => targetId !== id);
+    setSelected(changed);
+  };
+
   return (
     <div className="baskets">
       <h2 className="baskets__title">장바구니</h2>
       <div className="baskets__content">
         <div className="baskets__content__left">
           <div className="baskets__content__left__buttons">
-            <Checkbox>전체선택 (0/0)</Checkbox>
+            <Checkbox value={isAllSelected} onChange={handleSelectAll}>
+              전체선택 ({selected.length}/{baskets.length})
+            </Checkbox>
             <span className="baskets__content__left__buttons__separator" />
             <button>선택삭제</button>
           </div>
@@ -82,11 +102,21 @@ export default function BasketsPage() {
             {baskets.length === 0 ? (
               <li className="baskets__content__left__list__empty">장바구니에 담긴 상품이 없습니다.</li>
             ) : (
-              baskets.map((basket) => <BasketItem key={basket.id} basket={basket} onChangeAmount={onChangeAmount} />)
+              baskets.map((basket) => (
+                <BasketItem
+                  key={basket.id}
+                  basket={basket}
+                  check={selected.includes(basket.id)}
+                  onChangeAmount={onChangeAmount}
+                  onSelect={handleSelect}
+                />
+              ))
             )}
           </ul>
           <div className="baskets__content__left__buttons">
-            <Checkbox>전체선택 (0/0)</Checkbox>
+            <Checkbox value={isAllSelected} onChange={handleSelectAll}>
+              전체선택 ({selected.length}/{baskets.length})
+            </Checkbox>
             <span className="baskets__content__left__buttons__separator" />
             <button>선택삭제</button>
           </div>
