@@ -11,6 +11,7 @@ import './BasketsPage.scss';
 
 export default function BasketsPage() {
   const [baskets, setBaskets] = useState([]);
+  const [priceInfo, setPriceInfo] = useState([]);
   const [price, setPrice] = useState(0);
   const [discountPrice, setDiscountPrice] = useState(0);
   const [deliveryCharge, setDeliveryCharge] = useState(0);
@@ -32,12 +33,16 @@ export default function BasketsPage() {
   }, []);
 
   useEffect(() => {
-    const priceInfo = baskets.map(({ product, amount }) => ({
+    const priceInfo = baskets.map(({ id, product, amount }) => ({
+      id,
       price: parseInt(product.price),
       discount: parseInt(product.price) * parseFloat(product.discount),
       amount: parseInt(amount),
     }));
+    setPriceInfo(priceInfo);
+  }, [baskets]);
 
+  useEffect(() => {
     const price = priceInfo.map(({ price, amount }) => price * amount).reduce((a, b) => a + b, 0);
     setPrice(price);
 
@@ -48,11 +53,20 @@ export default function BasketsPage() {
     }
     const discountPrice = priceInfo.map(({ discount, amount }) => discount * amount).reduce((a, b) => a + b, 0);
     setDiscountPrice(discountPrice);
-  }, [baskets, isGuest]);
+  }, [isGuest, priceInfo]);
 
   useEffect(() => {
     setTotalPrice(price - discountPrice + deliveryCharge);
   }, [price, discountPrice, deliveryCharge]);
+
+  const onChangeAmount = (targetId, value) => {
+    const targetIndex = priceInfo.findIndex(({ id }) => id === targetId);
+    const changedInfo = {
+      ...priceInfo[targetIndex],
+      amount: value,
+    };
+    setPriceInfo((prev) => [...prev.slice(0, targetIndex), changedInfo, ...prev.slice(targetIndex + 1, prev.length)]);
+  };
 
   return (
     <div className="baskets">
@@ -68,7 +82,7 @@ export default function BasketsPage() {
             {baskets.length === 0 ? (
               <li className="baskets__content__left__list__empty">장바구니에 담긴 상품이 없습니다.</li>
             ) : (
-              baskets.map((basket) => <BasketItem key={basket.id} basket={basket} />)
+              baskets.map((basket) => <BasketItem key={basket.id} basket={basket} onChangeAmount={onChangeAmount} />)
             )}
           </ul>
           <div className="baskets__content__left__buttons">
