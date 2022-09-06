@@ -32,9 +32,18 @@
     width: 127px;
     text-align: right;
     word-break: break-all;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 24px;
+    &__sales {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 24px;
+    }
+    &__origin {
+      font-size: 14px;
+      line-height: 24px;
+      color: rgb(181, 181, 181);
+      text-decoration: line-through;
+      padding-top: 4px;
+    }
   }
 
   &__delete {
