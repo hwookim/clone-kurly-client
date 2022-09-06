@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
-import './UserButtons.scss';
 import { Link } from 'react-router-dom';
+
+import './UserButtons.scss';
 
 export default function UserButtons({ isSticky }) {
   const className = useMemo(() => 'user-buttons' + (isSticky ? '--sticky' : ''), [isSticky]);

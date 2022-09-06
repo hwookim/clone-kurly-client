@@ -1,5 +1,5 @@
 import { BASE_URL } from '../../config';
-import HTTP_METHOD from "./method";
+import HTTP_METHOD from './method';
 
 const request = (() => {
   const config = {

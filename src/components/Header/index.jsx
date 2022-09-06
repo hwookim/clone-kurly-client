@@ -1,12 +1,15 @@
 import React, { useMemo, useRef } from 'react';
-import './Header.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import useIsInViewport from '../../hooks/useIsInViewport';
+
 import UserButtons from './UserButtons';
 import SearchBar from './SearchBar';
 import Category from './Category';
 import Dropdown from './Dropdown';
+
+import useIsInViewport from '../../hooks/useIsInViewport';
 import auth from '../../utils/auth';
+
+import './Header.scss';
 
 export default function Header({ username }) {
   const headerMainRef = useRef();

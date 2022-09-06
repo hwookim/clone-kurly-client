@@ -46,7 +46,7 @@
       margin-bottom: 8px;
       font-size: 1em;
       line-height: 1.45;
-      @include shortened-text
+      @include shortened-text;
     }
 
     &__price {

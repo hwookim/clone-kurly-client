@@ -1,5 +1,6 @@
-import React  from 'react';
-import './AmountInput.scss'
+import React from 'react';
+
+import './AmountInput.scss';
 
 export default function AmountInput({ value, onChange }) {
   const onClickAmountButton = (change) => () => {
