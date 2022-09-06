@@ -16,4 +16,11 @@
     background: $primary-color;
     color: $default-color;
   }
+
+  &:disabled {
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(221, 221, 221);
+    cursor: default;
+  }
 }
