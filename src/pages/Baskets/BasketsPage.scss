@@ -1,0 +1,122 @@
+@import '../../styles/variables.scss';
+
+.baskets {
+  margin: 0 auto;
+  width: 1050px;
+
+  &__title {
+    margin: 50px auto;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 35px;
+    text-align: center;
+  }
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+
+    &__left {
+      width: 742px;
+
+      &__buttons {
+        margin: 20px 0;
+
+        label {
+          font-size: 14px;
+          line-height: 26px;
+
+          input {
+            margin-right: 12px;
+          }
+        }
+
+        &__separator {
+          display: inline-block;
+          width: 1px;
+          height: 14px;
+          margin: 6px 20px 0;
+          background-color: rgb(221, 221, 221);
+        }
+
+        button {
+          margin: 0;
+          padding: 0;
+          border: none;
+          font-size: 14px;
+          line-height: 26px;
+          background-color: transparent;
+        }
+      }
+
+      &__items {
+        &__empty {
+          padding: 115px 0;
+          border-top: 1px solid rgb(51, 51, 51);
+          font-size: 16px;
+          line-height: 24px;
+          text-align: center;
+          color: rgb(181, 181, 181);
+        }
+      }
+    }
+
+    &__right {
+      margin-top: 60px;
+      width: 284px;
+
+      &__bill {
+        padding: 20px;
+        border: 1px solid rgb(242, 242, 242);
+        background-color: rgb(250, 250, 250);
+        font-size: 16px;
+        line-height: 24px;
+        white-space: nowrap;
+
+        div {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        &__item {
+          padding-bottom: 12px;
+        }
+
+        &__total {
+          padding-top: 32px;
+
+          &__price {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 28px;
+          }
+        }
+      }
+    }
+
+    button {
+      margin-top: 20px;
+      height: 56px;
+    }
+
+    ul {
+      margin-top: 16px;
+
+      li {
+        padding-left: 7px;
+        padding-top: 4px;
+        font-size: 12px;
+        line-height: 16px;
+        color: rgb(102, 102, 102);
+
+        &::before {
+          position: absolute;
+          margin-left: -6px;
+          width: 1px;
+          height: 1px;
+          content: '·';
+        }
+      }
+    }
+  }
+}
