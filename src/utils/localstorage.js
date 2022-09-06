@@ -47,7 +47,7 @@ const localstorage = {
   },
 
   removeBasket(id) {
-    const baskets = localstorage.get(STORAGE_KEYS.BASKETS) || [];
+    const baskets = localstorage.getBaskets();
     if (baskets.length === 1) {
       localstorage.set(STORAGE_KEYS.BASKETS, []);
       return;

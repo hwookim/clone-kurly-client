@@ -35,7 +35,7 @@ const baskets = {
   async remove(id) {
     const isGuest = !auth.isLoggedIn();
     if (isGuest) {
-      return localstorage.removeBasket();
+      return localstorage.removeBasket(id);
     }
     return request.delete(`/baskets/${id}`);
   },
