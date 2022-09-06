@@ -1,8 +1,16 @@
-import request from "./utils/request";
+import request from './utils/request';
+import api from './index';
 
 const baskets = {
-  getAll() {
-    return request.get('/baskets');
+  async getAll() {
+    const baskets = await request.get('/baskets');
+    const getProductPromise = baskets.map(({ product_id }) => api.products.get(product_id));
+    const products = await Promise.all(getProductPromise);
+
+    return baskets.map(({ product_id, ...basket }) => ({
+      ...basket,
+      product: products.find(({ id }) => id === product_id),
+    }));
   },
 };
 
