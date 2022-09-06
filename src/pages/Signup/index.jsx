@@ -68,7 +68,7 @@ export default function SignupPage() {
       return;
     }
 
-    await api.post('/signup', values);
+    await api.users.signup(values);
   };
 
   return (
