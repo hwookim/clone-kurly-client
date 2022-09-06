@@ -6,8 +6,9 @@ const users = {
     return request.get('/users').catch(() => auth.clear());
   },
 
-  login(values) {
-    return request.post('/login', values);
+  async login(values) {
+    const { accessToken } = await request.post('/login', values);
+    auth.set(accessToken);
   },
 };
 
