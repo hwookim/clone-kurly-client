@@ -1,22 +1,47 @@
-import React from 'react';
-import './BasketsPage.scss';
+import React, { useEffect, useState } from 'react';
+
 import Button from '../../components/Button';
-import Checkbox from "./Checkbox";
+import Checkbox from './Checkbox';
+import BasketItem from './BasketItem';
+
+import api from '../../utils/api';
+
+import './BasketsPage.scss';
 
 export default function BasketsPage() {
+  const [baskets, setBaskets] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const result = await api.get('/baskets');
+      const getProductPromise = result.map(({ product_id }) => api.get(`/products/${product_id}`));
+      const products = await Promise.all(getProductPromise);
+
+      const baskets = result.map(({ product_id, ...basket }) => ({
+        ...basket,
+        product: products.find(({ id }) => id === product_id),
+      }));
+      setBaskets(baskets);
+    })();
+  }, []);
+
   return (
     <div className="baskets">
       <h2 className="baskets__title">장바구니</h2>
       <div className="baskets__content">
         <div className="baskets__content__left">
           <div className="baskets__content__left__buttons">
-            <Checkbox >전체선택 (0/0)</Checkbox>
+            <Checkbox>전체선택 (0/0)</Checkbox>
             <span className="baskets__content__left__buttons__separator" />
             <button>선택삭제</button>
           </div>
-          <div className="baskets__content__left__items">
-            <div className="baskets__content__left__items__empty">장바구니에 담긴 상품이 없습니다.</div>
-          </div>
+          <ul className="baskets__content__left__list">
+            {baskets.length === 0 ? (
+              <li className="baskets__content__left__list__empty">장바구니에 담긴 상품이 없습니다.</li>
+            ) : (
+              baskets.map((basket) => <BasketItem key={basket.id} basket={basket} />)
+            )}
+          </ul>
           <div className="baskets__content__left__buttons">
             <Checkbox>전체선택 (0/0)</Checkbox>
             <span className="baskets__content__left__buttons__separator" />

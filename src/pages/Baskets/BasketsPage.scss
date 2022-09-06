@@ -42,10 +42,11 @@
         }
       }
 
-      &__items {
+      &__list {
+        border-top: 1px solid rgb(51, 51, 51);
+
         &__empty {
           padding: 115px 0;
-          border-top: 1px solid rgb(51, 51, 51);
           font-size: 16px;
           line-height: 24px;
           text-align: center;
