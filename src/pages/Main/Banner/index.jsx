@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import useCarousel from '../../../hooks/useCarousel';
-
 import apis from '../../../apis';
 
 import './Banner.scss';
@@ -10,10 +9,17 @@ import './Banner.scss';
 export default function Banner() {
   const [promotions, setPromotions] = useState([]);
   const [isHover, setIsHover] = useState(false);
-  const { ref: bannerRef, current, moveCarousel } = useCarousel({ length: promotions.length, loop: true });
+  const {
+    ref: bannerRef,
+    current,
+    moveCarousel,
+  } = useCarousel({
+    length: promotions.length,
+    infinite: true,
+  });
 
   useEffect(() => {
-    apis.promotions.getAll().then((data) => setPromotions(data));
+    apis.promotions.getAll().then((data) => setPromotions([data[data.length - 1], ...data, data[0]]));
   }, []);
 
   useEffect(() => {
@@ -49,8 +55,8 @@ export default function Banner() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {promotions.map(({ id, img_src, link }) => (
-          <Link key={id} to={link} className="banner__image-container__link">
+        {promotions.map(({ id, img_src, link }, index) => (
+          <Link key={index} to={link} className="banner__image-container__link">
             <img src={img_src} alt={`banner-${id}`} className="banner__image-container__link__image" />
           </Link>
         ))}
@@ -62,7 +68,7 @@ export default function Banner() {
         <span className="material-symbols-outlined">chevron_right</span>
       </button>
       <div className="banner__counter">
-        {current + 1} / {promotions.length}
+        {current + 1} / {promotions.length - 2}
       </div>
     </div>
   );
