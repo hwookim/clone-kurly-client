@@ -25,7 +25,7 @@ export default function Header({ username }) {
         <div className="header__main__user-info">
           {username ? (
             <Dropdown title={<Link to="/notice">{username} 님 ▼</Link>}>
-              <Link to="/carts">장바구니</Link>
+              <Link to="/baskets">장바구니</Link>
               <span onClick={onLogout}>로그아웃</span>
             </Dropdown>
           ) : (

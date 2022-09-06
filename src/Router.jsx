@@ -7,6 +7,7 @@ import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
 import ProductPage from './pages/Product';
 import ProductsPage from './pages/Products';
+import BasketsPage from './pages/Baskets';
 
 const Router = ({ user }) => {
   return (
@@ -18,6 +19,7 @@ const Router = ({ user }) => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/:id" element={<ProductPage />} />
+        <Route path="/baskets" element={<BasketsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
