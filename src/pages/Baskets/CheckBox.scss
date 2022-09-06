@@ -1,0 +1,27 @@
+@import '../../styles/variables.scss';
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 26px;
+  cursor: pointer;
+
+  input {
+    display: none;
+  }
+
+  span {
+    margin-right: 12px;
+  }
+
+  &__icon {
+    font-variation-settings: 'FILL' 0;
+    color: rgb(230 230 230);
+
+    &--checked {
+      font-variation-settings: 'FILL' 1;
+      color: $primary-color;
+    }
+  }
+}

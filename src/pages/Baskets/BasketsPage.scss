@@ -21,15 +21,8 @@
 
       &__buttons {
         margin: 20px 0;
-
-        label {
-          font-size: 14px;
-          line-height: 26px;
-
-          input {
-            margin-right: 12px;
-          }
-        }
+        display: flex;
+        align-items: center;
 
         &__separator {
           display: inline-block;
