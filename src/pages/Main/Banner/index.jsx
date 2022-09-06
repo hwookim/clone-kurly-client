@@ -49,9 +49,9 @@ export default function Banner() {
         onMouseEnter={onMouseEnterImage}
         onMouseLeave={onMouseLeaveImage}
       >
-        {promotions.map(({ id, image, link }) => (
+        {promotions.map(({ id, img_src, link }) => (
           <Link key={id} to={link} className="banner__image-container__link">
-            <img src={image} alt={`banner-${id}`} className="banner__image-container__link__image" />
+            <img src={img_src} alt={`banner-${id}`} className="banner__image-container__link__image" />
           </Link>
         ))}
       </div>
