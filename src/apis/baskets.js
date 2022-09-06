@@ -9,6 +9,7 @@ const baskets = {
 
     return baskets.map(({ product_id, ...basket }) => ({
       ...basket,
+      amount: parseInt(basket.amount),
       product: products.find(({ id }) => id === product_id),
     }));
   },

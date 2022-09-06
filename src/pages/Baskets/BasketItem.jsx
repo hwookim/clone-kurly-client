@@ -11,7 +11,7 @@ import './BasketItem.scss';
 export default function BasketItem({ basket, check, onChangeAmount, onSelect, onRemove }) {
   const { id, product, amount: defaultAmount } = basket;
   const [amount, setAmount] = useState(defaultAmount);
-  const price = useMemo(() => product.price * parseInt(amount), [amount, product]);
+  const price = useMemo(() => product.price * amount, [amount, product]);
   const salesPrice = useMemo(
     () => (product.salesPrice ? product.salesPrice * amount : null),
     [amount, product]
