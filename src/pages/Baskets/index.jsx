@@ -1,6 +1,7 @@
 import React from 'react';
 import './BasketsPage.scss';
 import Button from '../../components/Button';
+import Checkbox from "./Checkbox";
 
 export default function BasketsPage() {
   return (
@@ -9,10 +10,7 @@ export default function BasketsPage() {
       <div className="baskets__content">
         <div className="baskets__content__left">
           <div className="baskets__content__left__buttons">
-            <label>
-              <input type="checkbox" />
-              전체선택 (0/0)
-            </label>
+            <Checkbox >전체선택 (0/0)</Checkbox>
             <span className="baskets__content__left__buttons__separator" />
             <button>선택삭제</button>
           </div>
@@ -20,10 +18,7 @@ export default function BasketsPage() {
             <div className="baskets__content__left__items__empty">장바구니에 담긴 상품이 없습니다.</div>
           </div>
           <div className="baskets__content__left__buttons">
-            <label>
-              <input type="checkbox" />
-              전체선택 (0/0)
-            </label>
+            <Checkbox>전체선택 (0/0)</Checkbox>
             <span className="baskets__content__left__buttons__separator" />
             <button>선택삭제</button>
           </div>
