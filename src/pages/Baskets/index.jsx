@@ -15,7 +15,7 @@ export default function BasketsPage() {
   const [discountPrice, setDiscountPrice] = useState(0);
   const [deliveryCharge, setDeliveryCharge] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
-  const isLoggedIn = useMemo(() => auth.isLoggedIn(), []);
+  const isGuest = useMemo(() => !auth.isLoggedIn(), []);
 
   useEffect(() => {
     (async () => {
@@ -37,16 +37,18 @@ export default function BasketsPage() {
       discount: parseInt(product.price) * parseFloat(product.discount),
       amount: parseInt(amount),
     }));
+
     const price = priceInfo.map(({ price, amount }) => price * amount).reduce((a, b) => a + b, 0);
     setPrice(price);
-    if (!isLoggedIn) {
+
+    if (isGuest) {
       setDiscountPrice(0);
-      setDeliveryCharge(price >= 40000 ? 3000 : 0);
+      setDeliveryCharge(price >= 40000 ? 0 : 3000);
       return;
     }
     const discountPrice = priceInfo.map(({ discount, amount }) => discount * amount).reduce((a, b) => a + b, 0);
     setDiscountPrice(discountPrice);
-  }, [baskets, isLoggedIn]);
+  }, [baskets, isGuest]);
 
   useEffect(() => {
     setTotalPrice(price - discountPrice + deliveryCharge);
@@ -77,18 +79,30 @@ export default function BasketsPage() {
         </div>
         <div className="baskets__content__right">
           <div className="baskets__content__right__bill">
-            <div className="baskets__content__right__bill__item">
+            <div>
               <span>상품금액</span>
               <span>{price.toLocaleString()} 원</span>
             </div>
             <div className="baskets__content__right__bill__item">
               <span>상품할인금액</span>
-              <span>-{discountPrice.toLocaleString()} 원</span>
+              <span>
+                {discountPrice > 0 && '-'}
+                {discountPrice.toLocaleString()} 원
+              </span>
             </div>
+            {isGuest && <p className="baskets__content__right__bill__discount-info">로그인 후 할인 금액 적용</p>}
             <div className="baskets__content__right__bill__item">
               <span>배송비</span>
-              <span>{deliveryCharge.toLocaleString()} 원</span>
+              <span>
+                {deliveryCharge > 0 && '+'}
+                {deliveryCharge.toLocaleString()} 원
+              </span>
             </div>
+            {isGuest && deliveryCharge > 0 && (
+              <p className="baskets__content__right__bill__delivery-info">
+                {40000 - totalPrice}원 추가주문 시, <span>무료배송</span>
+              </p>
+            )}
             <div className="baskets__content__right__bill__total">
               <span>결제예정금액</span>
               <span>
