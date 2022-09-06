@@ -3,7 +3,7 @@ import './SignupPage.scss';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import rules from '../../utils/rules';
-import api from '../../utils/api';
+import apis from '../../apis';
 
 export default function SignupPage() {
   const [values, setValues] = useState({
@@ -68,7 +68,7 @@ export default function SignupPage() {
       return;
     }
 
-    await api.post('/signup', values);
+    await apis.users.signup(values);
   };
 
   return (

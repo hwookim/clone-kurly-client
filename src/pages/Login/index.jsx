@@ -5,8 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 
-import api from '../../utils/api';
-import auth from '../../utils/auth';
+import apis from '../../apis';
 
 export default function LoginPage() {
   const [values, setValues] = useState({
@@ -24,7 +23,7 @@ export default function LoginPage() {
     }));
   };
 
-  const onSubmit = async (event) => {
+  const onSubmit = (event) => {
     event.preventDefault();
 
     const isAnyEmpty = Object.values(values).some((value) => !value);
@@ -32,14 +31,10 @@ export default function LoginPage() {
       return;
     }
 
-    try {
-      const { accessToken } = await api.post('/login', values);
-      auth.set(accessToken);
-      navigate('/');
-    } catch (error) {
-      // TODO: 로그인 실패 시 로직 추가
-      alert(error);
-    }
+    apis.users
+      .login(values)
+      .then(() => navigate('/'))
+      .catch((err) => alert(err));
   };
 
   return (

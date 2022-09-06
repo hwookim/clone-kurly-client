@@ -11,10 +11,10 @@ import './BasketItem.scss';
 export default function BasketItem({ basket, check, onChangeAmount, onSelect, onRemove }) {
   const { id, product, amount: defaultAmount } = basket;
   const [amount, setAmount] = useState(defaultAmount);
-  const price = useMemo(() => parseInt(product.price) * parseInt(amount), [amount, product]);
+  const price = useMemo(() => product.price * amount, [amount, product]);
   const salesPrice = useMemo(
-    () => (product.discount ? price * (1 - parseFloat(product.discount)) : null),
-    [price, product.discount]
+    () => (product.salesPrice ? product.salesPrice * amount : null),
+    [amount, product]
   );
   const isLoggedIn = useMemo(() => auth.isLoggedIn(), []);
 
@@ -29,7 +29,7 @@ export default function BasketItem({ basket, check, onChangeAmount, onSelect, on
 
   const handleClickRemoveButton = () => {
     onRemove(id);
-  }
+  };
 
   return (
     <li className="basket-item">

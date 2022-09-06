@@ -4,7 +4,7 @@ import Button from '../../components/Button';
 import Checkbox from './Checkbox';
 import BasketItem from './BasketItem';
 
-import api from '../../utils/api';
+import apis from '../../apis';
 import auth from '../../utils/auth';
 
 import './BasketsPage.scss';
@@ -25,14 +25,7 @@ export default function BasketsPage() {
 
   useEffect(() => {
     (async () => {
-      const result = await api.get('/baskets');
-      const getProductPromise = result.map(({ product_id }) => api.get(`/products/${product_id}`));
-      const products = await Promise.all(getProductPromise);
-
-      const baskets = result.map(({ product_id, ...basket }) => ({
-        ...basket,
-        product: products.find(({ id }) => id === product_id),
-      }));
+      const baskets = await apis.baskets.getAll();
       setBaskets(baskets);
       setSelected(baskets.map(({ id }) => id));
     })();
@@ -41,9 +34,9 @@ export default function BasketsPage() {
   useEffect(() => {
     const priceInfo = baskets.map(({ id, product, amount }) => ({
       id,
-      price: parseInt(product.price),
-      discount: parseInt(product.price) * parseFloat(product.discount),
-      amount: parseInt(amount),
+      amount,
+      price: product.price,
+      discount: product.price * product.discount,
     }));
     setPriceInfo(priceInfo);
   }, [baskets]);

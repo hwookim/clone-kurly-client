@@ -2,22 +2,13 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './ProductsPage.scss';
 import { useSearchParams } from 'react-router-dom';
 import ProductListItem from '../../components/ProductListItem';
-import api from '../../utils/api';
+import apis from '../../apis';
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState('카테고리');
   const order = useMemo(() => searchParams.get('order'), [searchParams]);
-
-  const convertProduct = useCallback((product) => {
-    const { price, discount } = product;
-    const salesPrice = discount ? parseInt(price) * (1 - parseFloat(discount)) : parseInt(price);
-    return {
-      salesPrice,
-      ...product,
-    };
-  }, []);
 
   const orderProducts = useCallback(
     (products) => {
@@ -30,14 +21,11 @@ export default function ProductsPage() {
   );
 
   useEffect(() => {
-    api.get(`/products?${searchParams.toString()}`).then((data) => {
-      const products = data.map((product) => convertProduct(product));
-      setProducts(orderProducts(products));
-    });
-  }, [convertProduct, order, orderProducts, searchParams]);
+    apis.products.getAll(searchParams).then((data) => setProducts(orderProducts(products)));
+  }, [order, orderProducts, searchParams]);
 
   useEffect(() => {
-    api.get(`/categories/${searchParams.get('category')}`).then((data) => setCategory(data));
+    apis.categories.get(searchParams.get('category')).then((data) => setCategory(data));
   }, [searchParams]);
 
   const onClickASC = () => {

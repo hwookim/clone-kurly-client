@@ -4,9 +4,9 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ProductListItem({ product }) {
   const { id, title, thumbnail, price, discount } = product;
-  const originPrice = useMemo(() => parseInt(price).toLocaleString('ko-KR'), [price]);
+  const originPrice = useMemo(() => price.toLocaleString('ko-KR'), [price]);
   const salesPrice = useMemo(
-    () => (discount ? (parseInt(price) * (1 - parseFloat(discount))).toLocaleString('ko-KR') : originPrice),
+    () => (discount ? (price * (1 - discount)).toLocaleString('ko-KR') : originPrice),
     [discount, originPrice, price]
   );
   const navigate = useNavigate();
