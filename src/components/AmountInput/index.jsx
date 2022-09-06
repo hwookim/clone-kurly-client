@@ -3,7 +3,7 @@ import React from 'react';
 import './AmountInput.scss';
 
 export default function AmountInput({ value, onChange }) {
-  const onClickAmountButton = (change) => () => {
+  const handleAmountInput = (change) => () => {
     if (value + change <= 0) {
       return;
     }
@@ -12,11 +12,11 @@ export default function AmountInput({ value, onChange }) {
 
   return (
     <div className="amount-input">
-      <button onClick={onClickAmountButton(-1)} disabled={value === 1}>
+      <button onClick={handleAmountInput(-1)} disabled={value === 1}>
         -
       </button>
       {value}
-      <button onClick={onClickAmountButton(+1)}>+</button>
+      <button onClick={handleAmountInput(+1)}>+</button>
     </div>
   );
 }

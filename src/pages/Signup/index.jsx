@@ -63,7 +63,7 @@ export default function SignupPage() {
     validateRule(id, value);
   };
 
-  const onSubmit = async (event) => {
+  const handleSubmitForm = async (event) => {
     event.preventDefault();
 
     Object.keys(values).forEach((key) => validateRule(key, values[key]));
@@ -82,7 +82,7 @@ export default function SignupPage() {
           <span className="point">* </span>
           필수입력사항
         </div>
-        <form className="signup__content__form" onChange={onChange} onSubmit={onSubmit}>
+        <form className="signup__content__form" onChange={onChange} onSubmit={handleSubmitForm}>
           <div className="signup__content__form__input">
             <label htmlFor="id">
               아이디<span className="point">*</span>

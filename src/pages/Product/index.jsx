@@ -23,7 +23,7 @@ export default function ProductPage() {
     apis.products.get(id).then((data) => setProduct(data));
   }, [id]);
 
-  const onChangeAmount = (value) => {
+  const handleAmountInput = (value) => {
     setAmount(value);
   };
 
@@ -47,7 +47,7 @@ export default function ProductPage() {
         )}
         <div className="product__content__amount">
           <span>구매수량</span>
-          <AmountInput value={amount} onChange={onChangeAmount} />
+          <AmountInput value={amount} onChange={handleAmountInput} />
         </div>
         <div className="product__content__total-price">
           총 상품금액 :

@@ -15,7 +15,7 @@ export default function LoginPage() {
   });
   const navigate = useNavigate();
 
-  const onChange = (event) => {
+  const handleChangeInputs = (event) => {
     const { id, value } = event.target;
 
     setValues((prev) => ({
@@ -24,7 +24,7 @@ export default function LoginPage() {
     }));
   };
 
-  const onSubmit = (event) => {
+  const handleSubmitForm = (event) => {
     event.preventDefault();
 
     const isAnyEmpty = Object.values(values).some((value) => !value);
@@ -41,7 +41,7 @@ export default function LoginPage() {
   return (
     <div className="login">
       <div className="login__title">로그인</div>
-      <form className="login__form" onChange={onChange} onSubmit={onSubmit}>
+      <form className="login__form" onChange={handleChangeInputs} onSubmit={handleSubmitForm}>
         <Input id="id" placeholder="아이디를 입력해주세요"></Input>
         <Input id="password" type="password" placeholder="비밀번호를 입력해주세요"></Input>
         <Button type="submit" variant="primary">

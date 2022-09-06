@@ -15,7 +15,7 @@ export default function BasketItem({ basket, check, onChangeAmount, onSelect, on
   const salesPrice = useMemo(() => (product.salesPrice ? product.salesPrice * amount : null), [amount, product]);
   const isLoggedIn = useMemo(() => auth.isLoggedIn(), []);
 
-  const onChange = (changed) => {
+  const handleAmountInput = (changed) => {
     setAmount(changed);
     onChangeAmount(id, changed);
   };
@@ -35,7 +35,7 @@ export default function BasketItem({ basket, check, onChangeAmount, onSelect, on
         <img src={product.thumbnail} alt={product.title} />
       </Link>
       <div className="basket-item__title">{product.title}</div>
-      <AmountInput value={amount} onChange={onChange} />
+      <AmountInput value={amount} onChange={handleAmountInput} />
       <div className="basket-item__price">
         <div className="basket-item__price__sales">
           {isLoggedIn && salesPrice ? salesPrice.toLocaleString('ko-KR') : price.toLocaleString('ko-KR')}원
