@@ -9,8 +9,8 @@ function App() {
     if (!auth.isLoggedIn()) {
       return;
     }
-    api
-      .get('/profile')
+    api.users
+      .get()
       .then((data) => {
         setUser(data);
       })

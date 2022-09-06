@@ -9,7 +9,7 @@ export default function Category() {
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-    api.get('/categories').then((data) => setCategories(data));
+    api.categories.getAll().then((data) => setCategories(data));
   }, []);
 
   const onMouseEnterCategory = (id) => () => {

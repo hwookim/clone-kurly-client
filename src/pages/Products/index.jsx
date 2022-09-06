@@ -30,14 +30,14 @@ export default function ProductsPage() {
   );
 
   useEffect(() => {
-    api.get(`/products?${searchParams.toString()}`).then((data) => {
+    api.products.getAll(searchParams).then((data) => {
       const products = data.map((product) => convertProduct(product));
       setProducts(orderProducts(products));
     });
   }, [convertProduct, order, orderProducts, searchParams]);
 
   useEffect(() => {
-    api.get(`/categories/${searchParams.get('category')}`).then((data) => setCategory(data));
+    api.categories.get(searchParams.get('category')).then((data) => setCategory(data));
   }, [searchParams]);
 
   const onClickASC = () => {

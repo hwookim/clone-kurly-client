@@ -25,8 +25,8 @@ export default function BasketsPage() {
 
   useEffect(() => {
     (async () => {
-      const result = await api.get('/baskets');
-      const getProductPromise = result.map(({ product_id }) => api.get(`/products/${product_id}`));
+      const result = await api.baskets.getAll();
+      const getProductPromise = result.map(({ product_id }) => api.products.get(product_id));
       const products = await Promise.all(getProductPromise);
 
       const baskets = result.map(({ product_id, ...basket }) => ({

@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import './Banner.scss';
-import api from '../../../apis';
 import { Link } from 'react-router-dom';
+
 import useCarousel from '../../../hooks/useCarousel';
 
+import api from '../../../apis';
+
+import './Banner.scss';
+
 export default function Banner() {
-  const [dataset, setDataset] = useState([]);
+  const [promotions, setPromotions] = useState([]);
   const [isHover, setIsHover] = useState(false);
-  const { ref: bannerRef, current, moveCarousel } = useCarousel({ length: dataset.length, loop: true });
+  const { ref: bannerRef, current, moveCarousel } = useCarousel({ length: promotions.length, loop: true });
 
   useEffect(() => {
-    api.get('/promotions').then((data) => setDataset(data));
+    api.promotions.getAll().then((data) => setPromotions(data));
   }, []);
 
   useEffect(() => {
@@ -46,7 +49,7 @@ export default function Banner() {
         onMouseEnter={onMouseEnterImage}
         onMouseLeave={onMouseLeaveImage}
       >
-        {dataset.map(({ id, image, link }) => (
+        {promotions.map(({ id, image, link }) => (
           <Link key={id} to={link} className="banner__image-container__link">
             <img src={image} alt={`banner-${id}`} className="banner__image-container__link__image" />
           </Link>
@@ -59,7 +62,7 @@ export default function Banner() {
         <span className="material-symbols-outlined">chevron_right</span>
       </button>
       <div className="banner__counter">
-        {current + 1} / {dataset.length}
+        {current + 1} / {promotions.length}
       </div>
     </div>
   );

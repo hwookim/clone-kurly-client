@@ -33,7 +33,7 @@ export default function LoginPage() {
     }
 
     try {
-      const { accessToken } = await api.post('/login', values);
+      const { accessToken } = await api.users.login(values);
       auth.set(accessToken);
       navigate('/');
     } catch (error) {

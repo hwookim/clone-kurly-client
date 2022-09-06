@@ -24,7 +24,7 @@ export default function ProductPage() {
   };
 
   useEffect(() => {
-    api.get(`/products/${id}`).then((data) => setProduct(data));
+    api.products.get(id).then((data) => setProduct(data));
   }, [id]);
 
   return (
