@@ -9,12 +9,9 @@ function App() {
     if (!auth.isLoggedIn()) {
       return;
     }
-    api.users
-      .get()
-      .then((data) => {
-        setUser(data);
-      })
-      .catch(() => auth.clear());
+    api.users.get().then((data) => {
+      setUser(data);
+    });
   }, []);
   return <Router user={user} />;
 }
