@@ -15,9 +15,9 @@ export default function BasketsPage() {
   const [price, setPrice] = useState(0);
   const [discountPrice, setDiscountPrice] = useState(0);
   const [deliveryCharge, setDeliveryCharge] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
   const [selected, setSelected] = useState([]);
   const isAllSelected = useMemo(() => baskets.every(({ id }) => selected.includes(id)), [baskets, selected]);
+  const totalPrice = useMemo(() => price - discountPrice + deliveryCharge, [deliveryCharge, discountPrice, price]);
   const isGuest = useMemo(() => !auth.isLoggedIn(), []);
 
   useEffect(() => {
@@ -57,10 +57,6 @@ export default function BasketsPage() {
     const discountPrice = priceInfo.map(({ discount, amount }) => discount * amount).reduce((a, b) => a + b, 0);
     setDiscountPrice(discountPrice);
   }, [isGuest, priceInfo]);
-
-  useEffect(() => {
-    setTotalPrice(price - discountPrice + deliveryCharge);
-  }, [price, discountPrice, deliveryCharge]);
 
   const onChangeAmount = (targetId, value) => {
     const targetIndex = priceInfo.findIndex(({ id }) => id === targetId);
@@ -155,7 +151,7 @@ export default function BasketsPage() {
             </div>
           </div>
           <Button variant="primary" disabled={selected.length === 0}>
-            {selected.length !== 0 ? '주문하기': '상품을 담아주세요'}
+            {selected.length !== 0 ? '주문하기' : '상품을 담아주세요'}
           </Button>
           <ul>
             <li>[주문완료] 상태일 경우에만 주문 취소 가능합니다.</li>
