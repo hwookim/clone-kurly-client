@@ -4,6 +4,13 @@ import auth from '../utils/auth';
 import localstorage from '../utils/localstorage';
 
 const baskets = {
+  async create(product_id, amount = 1) {
+    if (auth.isLoggedIn()) {
+      return request.post('/baskets', { product_id, amount });
+    }
+    localstorage.createBasket(product_id, amount);
+  },
+
   async getAll() {
     const isGuest = !auth.isLoggedIn();
     const baskets = isGuest ? localstorage.getBaskets() : await request.get('/baskets');

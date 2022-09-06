@@ -19,13 +19,17 @@ export default function ProductPage() {
   });
   const [amount, setAmount] = useState(1);
 
+  useEffect(() => {
+    apis.products.get(id).then((data) => setProduct(data));
+  }, [id]);
+
   const onChangeAmount = (value) => {
     setAmount(value);
   };
 
-  useEffect(() => {
-    apis.products.get(id).then((data) => setProduct(data));
-  }, [id]);
+  const handleClickBasketButton = async () => {
+    await apis.baskets.create(id, amount);
+  };
 
   return (
     <article className="product">
@@ -52,7 +56,7 @@ export default function ProductPage() {
           </span>
           <span className="product__content__total-price__unit">원</span>
         </div>
-        <Button variant="primary" className="product__content__cart">
+        <Button variant="primary" className="product__content__cart" onClick={handleClickBasketButton}>
           장바구니 담기
         </Button>
       </div>
