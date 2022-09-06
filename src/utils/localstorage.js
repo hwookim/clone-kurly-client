@@ -1,3 +1,7 @@
+export const STORAGE_KEYS = {
+  BASKETS: 'baskets',
+};
+
 const localstorage = {
   set(key, value) {
     const localStorageData = window.localStorage.getItem(key);
