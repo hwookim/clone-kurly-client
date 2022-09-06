@@ -15,7 +15,9 @@ export default function BasketsPage() {
   const [price, setPrice] = useState(0);
   const [discountPrice, setDiscountPrice] = useState(0);
   const [deliveryCharge, setDeliveryCharge] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [selected, setSelected] = useState([]);
+  const isAllSelected = useMemo(() => baskets.every(({ id }) => selected.includes(id)), [baskets, selected]);
+  const totalPrice = useMemo(() => price - discountPrice + deliveryCharge, [deliveryCharge, discountPrice, price]);
   const isGuest = useMemo(() => !auth.isLoggedIn(), []);
 
   useEffect(() => {
@@ -29,6 +31,7 @@ export default function BasketsPage() {
         product: products.find(({ id }) => id === product_id),
       }));
       setBaskets(baskets);
+      setSelected(baskets.map(({ id }) => id));
     })();
   }, []);
 
@@ -43,7 +46,11 @@ export default function BasketsPage() {
   }, [baskets]);
 
   useEffect(() => {
-    const price = priceInfo.map(({ price, amount }) => price * amount).reduce((a, b) => a + b, 0);
+    const selectedBaskets = priceInfo.filter(({ id }) => selected.includes(id));
+    const price = selectedBaskets
+      .filter(({ id }) => selected.includes(id))
+      .map(({ price, amount }) => price * amount)
+      .reduce((a, b) => a + b, 0);
     setPrice(price);
 
     if (isGuest) {
@@ -51,13 +58,9 @@ export default function BasketsPage() {
       setDeliveryCharge(price >= 40000 ? 0 : 3000);
       return;
     }
-    const discountPrice = priceInfo.map(({ discount, amount }) => discount * amount).reduce((a, b) => a + b, 0);
+    const discountPrice = selectedBaskets.map(({ discount, amount }) => discount * amount).reduce((a, b) => a + b, 0);
     setDiscountPrice(discountPrice);
-  }, [isGuest, priceInfo]);
-
-  useEffect(() => {
-    setTotalPrice(price - discountPrice + deliveryCharge);
-  }, [price, discountPrice, deliveryCharge]);
+  }, [isGuest, priceInfo, selected]);
 
   const onChangeAmount = (targetId, value) => {
     const targetIndex = priceInfo.findIndex(({ id }) => id === targetId);
@@ -68,13 +71,30 @@ export default function BasketsPage() {
     setPriceInfo((prev) => [...prev.slice(0, targetIndex), changedInfo, ...prev.slice(targetIndex + 1, prev.length)]);
   };
 
+  const handleSelectAll = () => {
+    const ids = baskets.map(({ id }) => id);
+    setSelected((prev) => (prev.length === 0 ? ids : []));
+  };
+
+  const handleSelect = (targetId) => {
+    const isNotSelected = !selected.includes(targetId);
+    if (isNotSelected) {
+      setSelected((prev) => [...prev, targetId]);
+      return;
+    }
+    const changed = selected.filter((id) => targetId !== id);
+    setSelected(changed);
+  };
+
   return (
     <div className="baskets">
       <h2 className="baskets__title">장바구니</h2>
       <div className="baskets__content">
         <div className="baskets__content__left">
           <div className="baskets__content__left__buttons">
-            <Checkbox>전체선택 (0/0)</Checkbox>
+            <Checkbox value={isAllSelected} onChange={handleSelectAll}>
+              전체선택 ({selected.length}/{baskets.length})
+            </Checkbox>
             <span className="baskets__content__left__buttons__separator" />
             <button>선택삭제</button>
           </div>
@@ -82,11 +102,21 @@ export default function BasketsPage() {
             {baskets.length === 0 ? (
               <li className="baskets__content__left__list__empty">장바구니에 담긴 상품이 없습니다.</li>
             ) : (
-              baskets.map((basket) => <BasketItem key={basket.id} basket={basket} onChangeAmount={onChangeAmount} />)
+              baskets.map((basket) => (
+                <BasketItem
+                  key={basket.id}
+                  basket={basket}
+                  check={selected.includes(basket.id)}
+                  onChangeAmount={onChangeAmount}
+                  onSelect={handleSelect}
+                />
+              ))
             )}
           </ul>
           <div className="baskets__content__left__buttons">
-            <Checkbox>전체선택 (0/0)</Checkbox>
+            <Checkbox value={isAllSelected} onChange={handleSelectAll}>
+              전체선택 ({selected.length}/{baskets.length})
+            </Checkbox>
             <span className="baskets__content__left__buttons__separator" />
             <button>선택삭제</button>
           </div>
@@ -114,7 +144,7 @@ export default function BasketsPage() {
             </div>
             {isGuest && deliveryCharge > 0 && (
               <p className="baskets__content__right__bill__delivery-info">
-                {40000 - totalPrice}원 추가주문 시, <span>무료배송</span>
+                {40000 - (totalPrice - deliveryCharge)}원 추가주문 시, <span>무료배송</span>
               </p>
             )}
             <div className="baskets__content__right__bill__total">
@@ -124,8 +154,8 @@ export default function BasketsPage() {
               </span>
             </div>
           </div>
-          <Button variant="primary" disabled>
-            상품을 담아주세요
+          <Button variant="primary" disabled={selected.length === 0}>
+            {selected.length !== 0 ? '주문하기' : '상품을 담아주세요'}
           </Button>
           <ul>
             <li>[주문완료] 상태일 경우에만 주문 취소 가능합니다.</li>
