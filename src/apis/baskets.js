@@ -40,6 +40,10 @@ const baskets = {
       return request.delete(`/baskets/${id}`);
     }
     const baskets = localstorage.get(STORAGE_KEYS.BASKETS) || [];
+    if (baskets.length === 1) {
+      localstorage.set(STORAGE_KEYS.BASKETS, []);
+      return;
+    }
     const targetIndex = baskets.findIndex((basket) => basket.id === id);
     localstorage.set(STORAGE_KEYS.BASKETS, baskets.splice(targetIndex, 1));
   },
