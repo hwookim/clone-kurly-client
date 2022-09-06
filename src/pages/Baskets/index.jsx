@@ -1,15 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 import Button from '../../components/Button';
 import Checkbox from './Checkbox';
 import BasketItem from './BasketItem';
 
 import api from '../../utils/api';
+import auth from '../../utils/auth';
 
 import './BasketsPage.scss';
 
 export default function BasketsPage() {
   const [baskets, setBaskets] = useState([]);
+  const [price, setPrice] = useState(0);
+  const [discountPrice, setDiscountPrice] = useState(0);
+  const [deliveryCharge, setDeliveryCharge] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const isLoggedIn = useMemo(() => auth.isLoggedIn(), []);
 
   useEffect(() => {
     (async () => {
@@ -24,6 +30,27 @@ export default function BasketsPage() {
       setBaskets(baskets);
     })();
   }, []);
+
+  useEffect(() => {
+    const priceInfo = baskets.map(({ product, amount }) => ({
+      price: parseInt(product.price),
+      discount: parseInt(product.price) * parseFloat(product.discount),
+      amount: parseInt(amount),
+    }));
+    const price = priceInfo.map(({ price, amount }) => price * amount).reduce((a, b) => a + b, 0);
+    setPrice(price);
+    if (!isLoggedIn) {
+      setDiscountPrice(0);
+      setDeliveryCharge(price >= 40000 ? 3000 : 0);
+      return;
+    }
+    const discountPrice = priceInfo.map(({ discount, amount }) => discount * amount).reduce((a, b) => a + b, 0);
+    setDiscountPrice(discountPrice);
+  }, [baskets, isLoggedIn]);
+
+  useEffect(() => {
+    setTotalPrice(price - discountPrice + deliveryCharge);
+  }, [price, discountPrice, deliveryCharge]);
 
   return (
     <div className="baskets">
@@ -52,20 +79,20 @@ export default function BasketsPage() {
           <div className="baskets__content__right__bill">
             <div className="baskets__content__right__bill__item">
               <span>상품금액</span>
-              <span>0 원</span>
+              <span>{price.toLocaleString()} 원</span>
             </div>
             <div className="baskets__content__right__bill__item">
               <span>상품할인금액</span>
-              <span>0 원</span>
+              <span>-{discountPrice.toLocaleString()} 원</span>
             </div>
             <div className="baskets__content__right__bill__item">
               <span>배송비</span>
-              <span>0 원</span>
+              <span>{deliveryCharge.toLocaleString()} 원</span>
             </div>
             <div className="baskets__content__right__bill__total">
               <span>결제예정금액</span>
               <span>
-                <span className="baskets__content__right__bill__total__price">0</span> 원
+                <span className="baskets__content__right__bill__total__price">{totalPrice.toLocaleString()}</span> 원
               </span>
             </div>
           </div>
