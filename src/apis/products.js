@@ -4,6 +4,7 @@ const convertProduct = (data) => {
   const product = {
     ...data,
     price: parseInt(data.price),
+    salesPrice: parseInt(data.price),
   };
 
   if (product.discount) {
@@ -16,7 +17,7 @@ const convertProduct = (data) => {
 
 const products = {
   async get(id) {
-    const data = request.get(`/products/${id}`);
+    const data = await request.get(`/products/${id}`);
     return convertProduct(data);
   },
 
