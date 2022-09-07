@@ -33,17 +33,27 @@ export default function ProductPage() {
 
   return (
     <article className="product">
-      <img src={product.thumbnail} alt={product.title} className="product__thumbnail" />
+      <img
+        src={product.thumbnail}
+        alt={product.title}
+        className="product__thumbnail"
+      />
       <div className="product__content">
         <h2 className="product__content__title">{product.title}</h2>
         <p className="product__content__description">{product.description}</p>
         <div className="product__content__price">
-          {product.discount && <span className="product__content__price__discount">{product.discount * 100}%</span>}
+          {product.discount && (
+            <span className="product__content__price__discount">
+              {product.discount * 100}%
+            </span>
+          )}
           {product.salesPrice.toLocaleString('ko-Kr')}
           <span className="product__content__price__unit">원</span>
         </div>
         {product.discount && (
-          <div className="product__content__origin-price">{product.price.toLocaleString('ko-KR')}원</div>
+          <div className="product__content__origin-price">
+            {product.price.toLocaleString('ko-KR')}원
+          </div>
         )}
         <div className="product__content__amount">
           <span>구매수량</span>
@@ -56,7 +66,11 @@ export default function ProductPage() {
           </span>
           <span className="product__content__total-price__unit">원</span>
         </div>
-        <Button variant="primary" className="product__content__cart" onClick={handleClickBasketButton}>
+        <Button
+          variant="primary"
+          className="product__content__cart"
+          onClick={handleClickBasketButton}
+        >
           장바구니 담기
         </Button>
       </div>

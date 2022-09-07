@@ -14,7 +14,10 @@ import './Header.scss';
 export default function Header({ username }) {
   const headerMainRef = useRef();
   const isInViewport = useIsInViewport(headerMainRef);
-  const additionalClassName = useMemo(() => (isInViewport ? '' : '--sticky'), [isInViewport]);
+  const additionalClassName = useMemo(
+    () => (isInViewport ? '' : '--sticky'),
+    [isInViewport]
+  );
   const navigate = useNavigate();
 
   const handleClickLogout = () => {

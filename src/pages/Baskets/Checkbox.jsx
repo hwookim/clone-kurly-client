@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 
 import './CheckBox.scss';
 
-export default function Checkbox({ children, checked, value, onChange, ...args }) {
+export default function Checkbox({
+  children,
+  checked,
+  value,
+  onChange,
+  ...args
+}) {
   const [isChecked, setIsChecked] = useState(checked || value || false);
 
   useEffect(() => {
@@ -21,8 +27,21 @@ export default function Checkbox({ children, checked, value, onChange, ...args }
 
   return (
     <label className="checkbox">
-      <input type="checkbox" checked={isChecked} {...args} value={isChecked} onChange={handleChange} />
-      <span className={'material-symbols-outlined checkbox__icon' + (isChecked ? '--checked' : '')}>check_circle</span>
+      <input
+        {...args}
+        type="checkbox"
+        checked={isChecked}
+        value={isChecked}
+        onChange={handleChange}
+      />
+      <span
+        className={
+          'material-symbols-outlined checkbox__icon' +
+          (isChecked ? '--checked' : '')
+        }
+      >
+        check_circle
+      </span>
       {children}
     </label>
   );

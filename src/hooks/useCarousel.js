@@ -2,11 +2,24 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 const TRANSITION = 'all 0.5s ease-in-out';
 
-export default function useCarousel({ length, infinite = false }) {
+export default function useCarousel(config = { infinite: false }) {
+  const { infinite } = config;
+  const [data, setData] = useState([]);
   const [current, setCurrent] = useState(infinite ? 1 : 0);
   const [infiniteCurrent, setInfiniteCurrent] = useState(0);
   const [transition, setTransition] = useState('');
   const ref = useRef(null);
+
+  useEffect(() => {
+    if (!ref?.current) return;
+
+    ref.current.style.transition = transition;
+    ref.current.style.transform = `translateX(-${current}00%)`;
+  }, [current, transition]);
+
+  const setInfiniteData = useCallback((data) => {
+    setData([data[data.length - 1], ...data, data[0]]);
+  }, []);
 
   const replaceSlide = useCallback((index) => {
     const timer = setTimeout(() => {
@@ -19,13 +32,6 @@ export default function useCarousel({ length, infinite = false }) {
     };
   }, []);
 
-  useEffect(() => {
-    if (!ref?.current) return;
-
-    ref.current.style.transition = transition;
-    ref.current.style.transform = `translateX(-${current}00%)`;
-  }, [current, transition]);
-
   const moveCarousel = (direction) => {
     setTransition(TRANSITION);
     const value = current + direction;
@@ -36,11 +42,11 @@ export default function useCarousel({ length, infinite = false }) {
 
     setCurrent(value);
     if (value === 0) {
-      setInfiniteCurrent(length - 3);
-      replaceSlide(length - 2);
+      setInfiniteCurrent(data.length - 3);
+      replaceSlide(data.length - 2);
       return;
     }
-    if (value > length - 2) {
+    if (value > data.length - 2) {
       setInfiniteCurrent(0);
       replaceSlide(1);
       return;
@@ -49,6 +55,8 @@ export default function useCarousel({ length, infinite = false }) {
   };
 
   return {
+    data,
+    setData: infinite ? setInfiniteData : setData,
     current: infinite ? infiniteCurrent : current,
     moveCarousel,
     ref,

@@ -17,7 +17,8 @@ export default function BasketsPage() {
   const [deliveryCharge, setDeliveryCharge] = useState(0);
   const [selected, setSelected] = useState([]);
   const isAllSelected = useMemo(
-    () => baskets.length > 0 && baskets.every(({ id }) => selected.includes(id)),
+    () =>
+      baskets.length > 0 && baskets.every(({ id }) => selected.includes(id)),
     [baskets, selected]
   );
   const isGuest = useMemo(() => !auth.isLoggedIn(), []);
@@ -60,7 +61,9 @@ export default function BasketsPage() {
     if (isGuest) {
       setDeliveryCharge(price >= 40000 ? 0 : 3000);
     }
-    const discountPrice = selectedBaskets.map(({ discount, amount }) => discount * amount).reduce((a, b) => a + b, 0);
+    const discountPrice = selectedBaskets
+      .map(({ discount, amount }) => discount * amount)
+      .reduce((a, b) => a + b, 0);
     setDiscountPrice(discountPrice);
   }, [isGuest, priceInfo, selected]);
 
@@ -70,7 +73,11 @@ export default function BasketsPage() {
       ...priceInfo[targetIndex],
       amount: value,
     };
-    setPriceInfo((prev) => [...prev.slice(0, targetIndex), changedInfo, ...prev.slice(targetIndex + 1, prev.length)]);
+    setPriceInfo((prev) => [
+      ...prev.slice(0, targetIndex),
+      changedInfo,
+      ...prev.slice(targetIndex + 1, prev.length),
+    ]);
 
     await apis.baskets.update(targetId, value);
   };
@@ -111,7 +118,9 @@ export default function BasketsPage() {
           </div>
           <ul className="baskets__content__left__list">
             {baskets.length === 0 ? (
-              <li className="baskets__content__left__list__empty">장바구니에 담긴 상품이 없습니다.</li>
+              <li className="baskets__content__left__list__empty">
+                장바구니에 담긴 상품이 없습니다.
+              </li>
             ) : (
               baskets.map((basket) => (
                 <BasketItem
@@ -147,7 +156,9 @@ export default function BasketsPage() {
               </span>
             </div>
             {isGuest && discountPrice > 0 && (
-              <p className="baskets__content__right__bill__discount-info">로그인 후 할인 금액 적용</p>
+              <p className="baskets__content__right__bill__discount-info">
+                로그인 후 할인 금액 적용
+              </p>
             )}
             <div className="baskets__content__right__bill__item">
               <span>배송비</span>
@@ -158,13 +169,17 @@ export default function BasketsPage() {
             </div>
             {isGuest && deliveryCharge > 0 && (
               <p className="baskets__content__right__bill__delivery-info">
-                {40000 - (totalPrice - deliveryCharge)}원 추가주문 시, <span>무료배송</span>
+                {40000 - (totalPrice - deliveryCharge)}원 추가주문 시,{' '}
+                <span>무료배송</span>
               </p>
             )}
             <div className="baskets__content__right__bill__total">
               <span>결제예정금액</span>
               <span>
-                <span className="baskets__content__right__bill__total__price">{totalPrice.toLocaleString()}</span> 원
+                <span className="baskets__content__right__bill__total__price">
+                  {totalPrice.toLocaleString()}
+                </span>{' '}
+                원
               </span>
             </div>
           </div>
@@ -173,7 +188,10 @@ export default function BasketsPage() {
           </Button>
           <ul>
             <li>[주문완료] 상태일 경우에만 주문 취소 가능합니다.</li>
-            <li>[마이컬리 > 주문내역 상세페이지] 에서 직접 취소하실 수 있습니다.</li>
+            <li>
+              [마이컬리 &gt; 주문내역 상세페이지] 에서 직접 취소하실 수
+              있습니다.
+            </li>
           </ul>
         </div>
       </div>
