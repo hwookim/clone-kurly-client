@@ -21,36 +21,28 @@ export default function SignupPage() {
     passwordCheck: '',
     name: '',
   });
-  const [isNotValid, setIsNotValid] = useState(true);
 
   const validateRule = useCallback(
     (id, value) => {
-      let flag = false;
-      rules.signup[id].forEach((rule) => {
-        if (flag) return;
+      for (const rule of rules.signup[id]) {
         if (rule.validate(value, values.password)) {
-          setMessages((prev) => ({
-            ...prev,
-            [id]: '',
-          }));
-          return;
+          continue;
         }
-
-        flag = true;
-        setMessages((prev) => ({
-          ...prev,
-          [id]: rule.message,
-        }));
-      });
-      setIsNotValid(flag);
+        return rule.message;
+      }
+      return '';
     },
     [values.password]
   );
 
   useEffect(() => {
-    if (values.passwordCheck) {
-      validateRule('passwordCheck', values.passwordCheck);
-    }
+    if (!values.passwordCheck) return;
+
+    const message = validateRule('passwordCheck', values.passwordCheck);
+    setMessages((prev) => ({
+      ...prev,
+      passwordCheck: message,
+    }));
   }, [values.password, values.passwordCheck, validateRule]);
 
   const handleChangeInputs = (event) => {
@@ -60,16 +52,24 @@ export default function SignupPage() {
       ...prev,
       [id]: value,
     }));
-    validateRule(id, value);
+
+    const message = validateRule(id, value);
+    setMessages((prev) => ({
+      ...prev,
+      [id]: message,
+    }));
   };
 
   const handleSubmitForm = async (event) => {
     event.preventDefault();
 
-    Object.keys(values).forEach((key) => validateRule(key, values[key]));
-
-    if (isNotValid) {
-      return;
+    for (const key of Object.keys(values)) {
+      const message = validateRule(key, values[key]);
+      setMessages((prev) => ({
+        ...prev,
+        [key]: message,
+      }));
+      if (message) return;
     }
 
     await apis.users.signup(values);
