@@ -41,8 +41,8 @@ export default function SignupPage() {
           ...prev,
           [id]: rule.message,
         }));
-        setIsNotValid(true);
       });
+      setIsNotValid(flag);
     },
     [values.password]
   );
@@ -53,7 +53,7 @@ export default function SignupPage() {
     }
   }, [values.password, values.passwordCheck, validateRule]);
 
-  const onChange = (event) => {
+  const handleChangeInputs = (event) => {
     const { id, value } = event.target;
 
     setValues((prev) => ({
@@ -67,6 +67,7 @@ export default function SignupPage() {
     event.preventDefault();
 
     Object.keys(values).forEach((key) => validateRule(key, values[key]));
+
     if (isNotValid) {
       return;
     }
@@ -82,7 +83,7 @@ export default function SignupPage() {
           <span className="point">* </span>
           필수입력사항
         </div>
-        <form className="signup__content__form" onChange={onChange} onSubmit={handleSubmitForm}>
+        <form className="signup__content__form" onChange={handleChangeInputs} onSubmit={handleSubmitForm}>
           <div className="signup__content__form__input">
             <label htmlFor="id">
               아이디<span className="point">*</span>
