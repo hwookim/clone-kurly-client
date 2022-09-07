@@ -1,24 +1,15 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 
 import apis from '../../apis';
+import useQuery from '../../hooks/useQuery';
 
 import './Category.scss';
 
 export default function Category() {
-  const [categories, setCategories] = useState(null);
+  const categories = useQuery('category', () => apis.categories.getAll());
   const [hoveredCategory, setHoveredCategory] = useState(-1);
   const isHovered = useMemo(() => hoveredCategory !== -1, [hoveredCategory]);
   const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    apis.categories.getAll().then((data) => setCategories(data));
-  }, []);
 
   const renderSubCategories = useCallback(() => {
     const subCategories = categories[hoveredCategory].sub_categories;
