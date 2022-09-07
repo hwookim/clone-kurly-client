@@ -10,15 +10,15 @@ import './ProductsPage.scss';
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const isASC = useMemo(
-    () => searchParams.get('order') === 'asc',
+  const isDESC = useMemo(
+    () => searchParams.get('order') === 'desc',
     [searchParams]
   );
 
   const orderProducts = useCallback(
-    (isASC) => (products) => {
+    (isDESC) => (products) => {
       return products.sort((a, b) =>
-        isASC ? a.salesPrice - b.salesPrice : b.salesPrice - a.salesPrice
+        isDESC ? b.salesPrice - a.salesPrice : a.salesPrice - b.salesPrice
       );
     },
     []
@@ -29,7 +29,7 @@ export default function ProductsPage() {
     () => apis.products.getAll(searchParams),
     {
       initialData: [],
-      onSuccess: orderProducts(isASC),
+      onSuccess: orderProducts(isDESC),
     }
   );
   const category = useQuery(
@@ -53,7 +53,7 @@ export default function ProductsPage() {
         <div className="products__header__order">
           <span
             className={
-              'products__header__order__method ' + (isASC ? 'active' : '')
+              'products__header__order__method ' + (isDESC ? '' : 'active')
             }
             onClick={handleClickOrder('asc')}
           >
@@ -62,7 +62,7 @@ export default function ProductsPage() {
           <div className="products__header__order__separator" />
           <span
             className={
-              'products__header__order__method ' + (isASC ? '' : 'active')
+              'products__header__order__method ' + (isDESC ? 'active' : '')
             }
             onClick={handleClickOrder('desc')}
           >
