@@ -6,14 +6,14 @@ export default function useQuery(
   api = () => new Promise(),
   config = {}
 ) {
-  const { initialData, onSucess = () => {}, onFail = () => {} } = config;
+  const { initialData, onSuccess = () => {}, onFail = () => {} } = config;
   const [data, setData] = useState(initialData);
 
   useEffect(() => {
     api()
       .then((result) => {
         setData(result);
-        onSucess(result);
+        onSuccess(result);
       })
       .catch((err) => onFail(err));
   }, [key]);
