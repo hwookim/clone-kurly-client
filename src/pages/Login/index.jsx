@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import Button from '../../components/Button';
 import Input from '../../components/Input';
 
 import apis from '../../apis';
@@ -52,11 +51,11 @@ export default function LoginPage() {
           type="password"
           placeholder="비밀번호를 입력해주세요"
         ></Input>
-        <Button type="submit" variant="primary">
+        <button type="submit" variant="primary">
           로그인
-        </Button>
+        </button>
         <Link to="/signup">
-          <Button type="button">회원가입</Button>
+          <button type="button">회원가입</button>
         </Link>
       </form>
     </div>

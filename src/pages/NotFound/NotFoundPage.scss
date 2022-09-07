@@ -37,5 +37,9 @@
     width: 150px;
     height: 44px;
     font-size: 14px;
+
+    button {
+      @include primary-btn;
+    }
   }
 }

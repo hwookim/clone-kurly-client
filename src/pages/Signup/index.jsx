@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import Input from '../../components/Input';
-import Button from '../../components/Button';
 
 import rules from '../../utils/rules';
 import apis from '../../apis';
@@ -135,9 +134,9 @@ export default function SignupPage() {
               warning={messages.name}
             />
           </div>
-          <Button type="submit" variant="primary">
+          <button type="submit" variant="primary">
             가입하기
-          </Button>
+          </button>
         </form>
       </div>
     </div>

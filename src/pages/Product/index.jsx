@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import Button from '../../components/Button';
 import AmountInput from '../../components/AmountInput';
 
 import useQuery from '../../hooks/useQuery';
@@ -65,13 +64,13 @@ export default function ProductPage() {
           </span>
           <span className="product__content__total-price__unit">원</span>
         </div>
-        <Button
+        <button
           variant="primary"
-          className="product__content__cart"
+          className="product__content__cart-btn"
           onClick={handleClickBasketButton}
         >
           장바구니 담기
-        </Button>
+        </button>
       </div>
     </article>
   );

@@ -49,8 +49,8 @@
       }
 
       button {
+        @include primary-btn;
         margin: 40px 0;
-
         width: 220px;
         height: 56px;
       }
