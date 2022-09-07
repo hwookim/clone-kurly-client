@@ -35,12 +35,12 @@ export default function useCarousel(config = { infinite: false }) {
   const moveCarousel = (direction) => {
     setTransition(TRANSITION);
     const value = current + direction;
+
+    setCurrent(value);
     if (!infinite) {
-      setCurrent(value);
       return;
     }
 
-    setCurrent(value);
     if (value === 0) {
       setInfiniteCurrent(data.length - 3);
       replaceSlide(data.length - 2);
