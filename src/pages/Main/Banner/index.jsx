@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import useCarousel from '../../../hooks/useCarousel';
+import useQuery from '../../../hooks/useQuery';
 import apis from '../../../apis';
 
 import './Banner.scss';
-
 export default function Banner() {
   const {
     data: promotions,
@@ -16,9 +16,9 @@ export default function Banner() {
   } = useCarousel({ infinite: true });
   const [isHover, setIsHover] = useState(false);
 
-  useEffect(() => {
-    apis.promotions.getAll().then((data) => setPromotions(data));
-  }, [setPromotions]);
+  useQuery('promotinos', () => apis.promotions.getAll(), {
+    onSuccess: setPromotions,
+  });
 
   useEffect(() => {
     if (isHover) return;
