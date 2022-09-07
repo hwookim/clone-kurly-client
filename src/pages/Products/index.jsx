@@ -18,17 +18,25 @@ export default function ProductsPage() {
       if (!order) {
         return products;
       }
-      return products.sort((a, b) => (order === 'asc' ? a.salesPrice - b.salesPrice : b.salesPrice - a.salesPrice));
+      return products.sort((a, b) =>
+        order === 'asc'
+          ? a.salesPrice - b.salesPrice
+          : b.salesPrice - a.salesPrice
+      );
     },
     [order]
   );
 
   useEffect(() => {
-    apis.products.getAll(searchParams).then((data) => setProducts(orderProducts(data)));
+    apis.products
+      .getAll(searchParams)
+      .then((data) => setProducts(orderProducts(data)));
   }, [order, orderProducts, searchParams]);
 
   useEffect(() => {
-    apis.categories.get(searchParams.get('category')).then((data) => setCategory(data));
+    apis.categories
+      .get(searchParams.get('category'))
+      .then((data) => setCategory(data));
   }, [searchParams]);
 
   const handleClickOrder = (orderType) => () => {
@@ -45,14 +53,20 @@ export default function ProductsPage() {
         <div className="products__header__count">총 {products.length}건</div>
         <div className="products__header__order">
           <span
-            className={'products__header__order__method ' + (order === 'asc' ? 'active' : '')}
+            className={
+              'products__header__order__method ' +
+              (order === 'asc' ? 'active' : '')
+            }
             onClick={handleClickOrder('asc')}
           >
             낮은 가격순
           </span>
           <div className="products__header__order__separator" />
           <span
-            className={'products__header__order__method ' + (order === 'desc' ? 'active' : '')}
+            className={
+              'products__header__order__method ' +
+              (order === 'desc' ? 'active' : '')
+            }
             onClick={handleClickOrder('desc')}
           >
             높은 가격순

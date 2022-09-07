@@ -17,15 +17,23 @@ const request = (() => {
     return config.baseURL + url + '.json';
   };
 
-  const getRequest = (url) => fetch(convertURL(url), HTTP_METHOD.GET()).then((response) => response.json());
+  const getRequest = (url) =>
+    fetch(convertURL(url), HTTP_METHOD.GET()).then((response) =>
+      response.json()
+    );
 
   const postRequest = (url, data) =>
-    fetch(config.baseURL + url, HTTP_METHOD.POST(data)).then((response) => response.json());
+    fetch(config.baseURL + url, HTTP_METHOD.POST(data)).then((response) =>
+      response.json()
+    );
 
   const putRequest = (url, data) =>
-    fetch(config.baseURL + url, HTTP_METHOD.PUT(data)).then((response) => response.json());
+    fetch(config.baseURL + url, HTTP_METHOD.PUT(data)).then((response) =>
+      response.json()
+    );
 
-  const deleteRequest = (url) => fetch(config.baseURL + url, HTTP_METHOD.DELETE());
+  const deleteRequest = (url) =>
+    fetch(config.baseURL + url, HTTP_METHOD.DELETE());
 
   return {
     get: getRequest,

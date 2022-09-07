@@ -15,8 +15,13 @@ const baskets = {
 
   async getAll() {
     const isGuest = !auth.isLoggedIn();
-    const baskets = isGuest ? localstorage.getBaskets() : await request.get('/baskets');
-    const getProductPromise = baskets.map(({ product_id }) => apis.products.get(product_id));
+    const baskets = isGuest
+      ? localstorage.getBaskets()
+      : await request.get('/baskets');
+
+    const getProductPromise = baskets.map(({ product_id }) =>
+      apis.products.get(product_id)
+    );
     const products = await Promise.all(getProductPromise);
 
     return baskets.map(({ product_id, ...basket }) => ({

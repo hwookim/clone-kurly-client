@@ -1,4 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from 'react';
 
 import apis from '../../apis';
 
@@ -24,7 +30,11 @@ export default function Category() {
     return (
       <div className="category__sub-dropdown" style={{ height }}>
         {subCategories.map(({ id, name }) => (
-          <div key={name + id} className="category__sub-dropdown__item" data-id={id}>
+          <div
+            key={name + id}
+            className="category__sub-dropdown__item"
+            data-id={id}
+          >
             {name}
           </div>
         ))}
@@ -37,7 +47,6 @@ export default function Category() {
   };
   const handleMouseLeave = () => {
     setHoveredCategory(-1);
-
   };
 
   return (
@@ -48,7 +57,9 @@ export default function Category() {
         {categories?.map(({ id, name }) => (
           <div
             key={name + id}
-            className={'category__dropdown__item ' + (hoveredCategory === id && 'active')}
+            className={
+              'category__dropdown__item ' + (hoveredCategory === id && 'active')
+            }
             onMouseEnter={handleMouseEnter(id)}
           >
             {name}

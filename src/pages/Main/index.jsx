@@ -11,7 +11,11 @@ import './MainPage.scss';
 export default function MainPage() {
   const [products, setProducts] = useState([]);
   const carouselLength = useMemo(() => products.length / 4, [products]);
-  const { ref: carouselRef, current, moveCarousel } = useCarousel({ length: carouselLength });
+  const {
+    ref: carouselRef,
+    current,
+    moveCarousel,
+  } = useCarousel({ length: carouselLength });
 
   useEffect(() => {
     apis.products.getAll().then((data) => setProducts(data));
@@ -32,9 +36,15 @@ export default function MainPage() {
         <div className="main-contents__title">이 상품 어때요?</div>
         <div className="main-contents__carousel">
           <div className="main-contents__carousel__content">
-            <div className="main-contents__carousel__content__product-list" ref={carouselRef}>
+            <div
+              className="main-contents__carousel__content__product-list"
+              ref={carouselRef}
+            >
               {products.map((product) => (
-                <div key={product.id} className="main-contents__carousel__content__product-list__item">
+                <div
+                  key={product.id}
+                  className="main-contents__carousel__content__product-list__item"
+                >
                   <ProductListItem product={product} />
                 </div>
               ))}
@@ -53,7 +63,9 @@ export default function MainPage() {
               className="main-contents__carousel__btn main-contents__carousel__btn-right"
               onClick={handleClickRightButton}
             >
-              <span className="material-symbols-outlined">arrow_forward_ios</span>
+              <span className="material-symbols-outlined">
+                arrow_forward_ios
+              </span>
             </button>
           )}
         </div>

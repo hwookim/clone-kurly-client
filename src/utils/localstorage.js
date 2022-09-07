@@ -22,13 +22,21 @@ const localstorage = {
 
   createBasket(product_id, amount) {
     const baskets = localstorage.getBaskets();
-    const existedBasket = baskets.find((baskets) => baskets.product_id === product_id);
+    const existedBasket = baskets.find(
+      (baskets) => baskets.product_id === product_id
+    );
     if (existedBasket) {
-      localstorage.updateBasket(existedBasket.id, existedBasket.amount + amount);
+      localstorage.updateBasket(
+        existedBasket.id,
+        existedBasket.amount + amount
+      );
       return;
     }
     const id = baskets.length > 0 ? baskets[baskets.length - 1].id + 1 : 1;
-    localstorage.set(STORAGE_KEYS.BASKETS, [...baskets, { id, product_id, amount }]);
+    localstorage.set(STORAGE_KEYS.BASKETS, [
+      ...baskets,
+      { id, product_id, amount },
+    ]);
   },
 
   updateBasket(id, amount) {
