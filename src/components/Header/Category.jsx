@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import apis from '../../apis';
 import useQuery from '../../hooks/useQuery';
@@ -21,13 +22,14 @@ export default function Category() {
     return (
       <div className="category__sub-dropdown" style={{ height }}>
         {subCategories.map(({ id, name }) => (
-          <div
+          <Link
             key={name + id}
+            to={`/products?category=${id}`}
             className="category__sub-dropdown__item"
             data-id={id}
           >
             {name}
-          </div>
+          </Link>
         ))}
       </div>
     );
@@ -46,15 +48,16 @@ export default function Category() {
       <span className="category__text">카테고리</span>
       <div className="category__dropdown" ref={dropdownRef}>
         {categories?.map(({ id, name }) => (
-          <div
+          <Link
             key={name + id}
+            to={`/products?category=${id}`}
             className={
               'category__dropdown__item ' + (hoveredCategory === id && 'active')
             }
             onMouseEnter={handleMouseEnter(id)}
           >
             {name}
-          </div>
+          </Link>
         ))}
       </div>
       {isHovered && renderSubCategories()}
