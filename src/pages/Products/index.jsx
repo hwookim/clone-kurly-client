@@ -13,24 +13,21 @@ export default function ProductsPage() {
   const [category, setCategory] = useState('카테고리');
   const order = useMemo(() => searchParams.get('order'), [searchParams]);
 
-  const orderProducts = useCallback(
-    (products) => {
-      if (!order) {
-        return products;
-      }
-      return products.sort((a, b) =>
-        order === 'asc'
-          ? a.salesPrice - b.salesPrice
-          : b.salesPrice - a.salesPrice
-      );
-    },
-    [order]
-  );
+  const orderProducts = useCallback((products, order) => {
+    if (!order) {
+      return products;
+    }
+    return products.sort((a, b) =>
+      order === 'asc'
+        ? a.salesPrice - b.salesPrice
+        : b.salesPrice - a.salesPrice
+    );
+  }, []);
 
   useEffect(() => {
     apis.products
       .getAll(searchParams)
-      .then((data) => setProducts(orderProducts(data)));
+      .then((data) => setProducts(orderProducts(data, order)));
   }, [order, orderProducts, searchParams]);
 
   useEffect(() => {
