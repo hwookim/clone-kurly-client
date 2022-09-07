@@ -12,3 +12,33 @@ $discount-color: rgb(250, 98, 47);
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
 }
+
+@mixin btn {
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  cursor: pointer;
+  font-size: inherit;
+
+  &:disabled {
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(221, 221, 221);
+    cursor: default;
+  }
+}
+
+@mixin primary-btn {
+  @include btn;
+  border: none;
+  background: $primary-color;
+  color: $default-color;
+}
+
+@mixin secondary-btn {
+  @include btn;
+  border: 1px solid $primary-color;
+  border-radius: 4px;
+  background: $default-color;
+  color: $primary-color;
+}

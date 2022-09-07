@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 
-import Button from '../../components/Button';
 import Checkbox from './Checkbox';
 import BasketItem from './BasketItem';
 
@@ -183,9 +182,9 @@ export default function BasketsPage() {
               </span>
             </div>
           </div>
-          <Button variant="primary" disabled={selected.length === 0}>
+          <button disabled={selected.length === 0}>
             {selected.length !== 0 ? '주문하기' : '상품을 담아주세요'}
-          </Button>
+          </button>
           <ul>
             <li>[주문완료] 상태일 경우에만 주문 취소 가능합니다.</li>
             <li>

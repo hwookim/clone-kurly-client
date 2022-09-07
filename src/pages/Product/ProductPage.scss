@@ -91,7 +91,8 @@
       }
     }
 
-    &__cart {
+    &__cart-btn {
+      @include primary-btn;
       margin-top: 20px;
       height: 56px;
     }
