@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 
 import ProductListItem from '../../components/ProductListItem';
 import Banner from './Banner';
@@ -7,6 +7,7 @@ import apis from '../../apis';
 import useCarousel from '../../hooks/useCarousel';
 
 import './MainPage.scss';
+import useQuery from '../../hooks/useQuery';
 
 export default function MainPage() {
   const {
@@ -18,9 +19,9 @@ export default function MainPage() {
   } = useCarousel();
   const carouselLength = useMemo(() => products.length / 4, [products]);
 
-  useEffect(() => {
-    apis.products.getAll().then((data) => setProducts(data));
-  }, [setProducts]);
+  useQuery('products', () => apis.products.getAll(), {
+    onSuccess: setProducts,
+  });
 
   const handleClickLeftButton = () => {
     moveCarousel(-1);
