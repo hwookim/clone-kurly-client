@@ -7,22 +7,18 @@ import apis from '../../../apis';
 import './Banner.scss';
 
 export default function Banner() {
-  const [promotions, setPromotions] = useState([]);
-  const [isHover, setIsHover] = useState(false);
   const {
+    data: promotions,
+    setData: setPromotions,
     ref: bannerRef,
     current,
     moveCarousel,
-  } = useCarousel({
-    length: promotions.length,
-    infinite: true,
-  });
+  } = useCarousel({ infinite: true });
+  const [isHover, setIsHover] = useState(false);
 
   useEffect(() => {
-    apis.promotions
-      .getAll()
-      .then((data) => setPromotions([data[data.length - 1], ...data, data[0]]));
-  }, []);
+    apis.promotions.getAll().then((data) => setPromotions(data));
+  }, [setPromotions]);
 
   useEffect(() => {
     if (isHover) return;

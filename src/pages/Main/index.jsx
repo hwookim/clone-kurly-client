@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 import ProductListItem from '../../components/ProductListItem';
 import Banner from './Banner';
@@ -9,17 +9,18 @@ import useCarousel from '../../hooks/useCarousel';
 import './MainPage.scss';
 
 export default function MainPage() {
-  const [products, setProducts] = useState([]);
-  const carouselLength = useMemo(() => products.length / 4, [products]);
   const {
+    data: products,
+    setData: setProducts,
     ref: carouselRef,
     current,
     moveCarousel,
-  } = useCarousel({ length: carouselLength });
+  } = useCarousel();
+  const carouselLength = useMemo(() => products.length / 4, [products]);
 
   useEffect(() => {
     apis.products.getAll().then((data) => setProducts(data));
-  }, []);
+  }, [setProducts]);
 
   const handleClickLeftButton = () => {
     moveCarousel(-1);
@@ -40,9 +41,9 @@ export default function MainPage() {
               className="main-contents__carousel__content__product-list"
               ref={carouselRef}
             >
-              {products.map((product) => (
+              {products.map((product, index) => (
                 <div
-                  key={product.id}
+                  key={index}
                   className="main-contents__carousel__content__product-list__item"
                 >
                   <ProductListItem product={product} />
