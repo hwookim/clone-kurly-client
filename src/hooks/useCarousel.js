@@ -23,6 +23,7 @@ export default function useCarousel(config = { infinite: false }) {
   }, []);
 
   const replaceSlide = useCallback((index) => {
+    setInfiniteCurrent(index - 1);
     const timer = setTimeout(() => {
       setTransition('');
       setCurrent(index);
@@ -34,9 +35,7 @@ export default function useCarousel(config = { infinite: false }) {
   }, []);
 
   const moveCarousel = (direction) => {
-    if (delay) {
-      return;
-    }
+    if (delay) return;
     setDelay(true);
 
     setTransition(TRANSITION);
@@ -46,17 +45,14 @@ export default function useCarousel(config = { infinite: false }) {
     setTimeout(() => {
       setDelay(false);
     }, 500);
-    if (!infinite) {
-      return;
-    }
+
+    if (!infinite) return;
 
     if (value === 0) {
-      setInfiniteCurrent(data.length - 3);
       replaceSlide(data.length - 2);
       return;
     }
     if (value > data.length - 2) {
-      setInfiniteCurrent(0);
       replaceSlide(1);
       return;
     }
