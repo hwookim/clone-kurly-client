@@ -15,7 +15,7 @@ const users = {
   },
 
   signup(values) {
-    return request.post('/login', values);
+    return request.post('/signup', values);
   },
 };
 
