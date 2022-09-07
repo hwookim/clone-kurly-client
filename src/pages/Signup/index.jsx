@@ -69,7 +69,10 @@ export default function SignupPage() {
         ...prev,
         [key]: message,
       }));
-      if (message) return;
+      if (message) {
+        document.getElementById(key).focus();
+        return;
+      }
     }
 
     await apis.users.signup(values);
