@@ -1,12 +1,11 @@
+import React from 'react';
 import Router from './Router';
-import { useEffect, useState } from 'react';
+
+import useQuery from './hooks/useQuery';
 import apis from './apis';
 
 function App() {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    apis.users.get().then((data) => setUser(data));
-  }, []);
+  const user = useQuery('user', () => apis.users.get());
   return <Router user={user} />;
 }
 
