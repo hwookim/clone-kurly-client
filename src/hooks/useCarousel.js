@@ -2,7 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 const TRANSITION = 'all 0.5s ease-in-out';
 
-export default function useCarousel({ infinite = false }) {
+export default function useCarousel(config = { infinite: false }) {
+  const { infinite } = config;
   const [data, setData] = useState([]);
   const [current, setCurrent] = useState(infinite ? 1 : 0);
   const [infiniteCurrent, setInfiniteCurrent] = useState(0);
