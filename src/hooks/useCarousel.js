@@ -8,6 +8,7 @@ export default function useCarousel(config = { infinite: false }) {
   const [current, setCurrent] = useState(infinite ? 1 : 0);
   const [infiniteCurrent, setInfiniteCurrent] = useState(0);
   const [transition, setTransition] = useState('');
+  const [delay, setDelay] = useState(false);
   const ref = useRef(null);
 
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function useCarousel(config = { infinite: false }) {
   }, []);
 
   const replaceSlide = useCallback((index) => {
+    setInfiniteCurrent(index - 1);
     const timer = setTimeout(() => {
       setTransition('');
       setCurrent(index);
@@ -33,21 +35,24 @@ export default function useCarousel(config = { infinite: false }) {
   }, []);
 
   const moveCarousel = (direction) => {
+    if (delay) return;
+    setDelay(true);
+
     setTransition(TRANSITION);
     const value = current + direction;
-    if (!infinite) {
-      setCurrent(value);
-      return;
-    }
-
     setCurrent(value);
+
+    setTimeout(() => {
+      setDelay(false);
+    }, 500);
+
+    if (!infinite) return;
+
     if (value === 0) {
-      setInfiniteCurrent(data.length - 3);
       replaceSlide(data.length - 2);
       return;
     }
     if (value > data.length - 2) {
-      setInfiniteCurrent(0);
       replaceSlide(1);
       return;
     }
