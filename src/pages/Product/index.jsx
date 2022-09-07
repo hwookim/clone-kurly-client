@@ -1,27 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Button from '../../components/Button';
 import AmountInput from '../../components/AmountInput';
 
+import useQuery from '../../hooks/useQuery';
 import apis from '../../apis';
 
 import './ProductPage.scss';
 
 export default function ProductPage() {
   const { id } = useParams();
-  const [product, setProduct] = useState({
-    title: '',
-    thumbnail: '',
-    description: '',
-    price: 0,
-    salesPrice: 0,
+  const product = useQuery(`products/${id}`, () => apis.products.get(id), {
+    initialData: {
+      title: '',
+      thumbnail: '',
+      description: '',
+      price: 0,
+      salesPrice: 0,
+    },
   });
   const [amount, setAmount] = useState(1);
-
-  useEffect(() => {
-    apis.products.get(id).then((data) => setProduct(data));
-  }, [id]);
 
   const handleAmountInput = (value) => {
     setAmount(value);

@@ -4,6 +4,7 @@ import Button from '../../components/Button';
 import Checkbox from './Checkbox';
 import BasketItem from './BasketItem';
 
+import useQuery from '../../hooks/useQuery';
 import apis from '../../apis';
 import auth from '../../utils/auth';
 
@@ -27,13 +28,12 @@ export default function BasketsPage() {
     [deliveryCharge, discountPrice, isGuest, price]
   );
 
-  useEffect(() => {
-    (async () => {
-      const baskets = await apis.baskets.getAll();
-      setBaskets(baskets);
-      setSelected(baskets.map(({ id }) => id));
-    })();
-  }, []);
+  useQuery('baskets', () => apis.baskets.getAll(), {
+    onSuccess: (data) => {
+      setBaskets(data);
+      setSelected(data.map(({ id }) => id));
+    },
+  });
 
   useEffect(() => {
     const priceInfo = baskets.map(({ id, product, amount }) => ({

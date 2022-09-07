@@ -6,7 +6,7 @@ const users = {
     if (!auth.isLoggedIn()) {
       return;
     }
-    return request.get('/users').catch(() => auth.clear());
+    return await request.get('/users').catch(() => auth.clear());
   },
 
   async login(values) {
