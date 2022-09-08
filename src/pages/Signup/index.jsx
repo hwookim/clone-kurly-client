@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -21,6 +22,7 @@ export default function SignupPage() {
     passwordCheck: '',
     name: '',
   });
+  const navigate = useNavigate();
 
   const validateRule = useCallback(
     (id, value) => {
@@ -76,6 +78,7 @@ export default function SignupPage() {
     }
 
     await apis.users.signup(values);
+    navigate('/');
   };
 
   return (
