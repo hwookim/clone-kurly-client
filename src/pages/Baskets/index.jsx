@@ -16,6 +16,7 @@ export default function BasketsPage() {
   const [discountPrice, setDiscountPrice] = useState(0);
   const [deliveryCharge, setDeliveryCharge] = useState(0);
   const [selected, setSelected] = useState([]);
+  const isEmpty = useMemo(() => baskets.length === 0, [baskets.length]);
   const isAllSelected = useMemo(
     () =>
       baskets.length > 0 && baskets.every(({ id }) => selected.includes(id)),
@@ -109,11 +110,15 @@ export default function BasketsPage() {
       <div className="baskets__content">
         <div className="baskets__content__left">
           <div className="baskets__content__left__buttons">
-            <Checkbox value={isAllSelected} onChange={handleSelectAll}>
+            <Checkbox
+              value={isAllSelected}
+              disabled={isEmpty}
+              onChange={handleSelectAll}
+            >
               전체선택 ({selected.length}/{baskets.length})
             </Checkbox>
             <span className="baskets__content__left__buttons__separator" />
-            <button>선택삭제</button>
+            <button disabled={isEmpty}>선택삭제</button>
           </div>
           <ul className="baskets__content__left__list">
             {baskets.length === 0 ? (
@@ -134,11 +139,15 @@ export default function BasketsPage() {
             )}
           </ul>
           <div className="baskets__content__left__buttons">
-            <Checkbox value={isAllSelected} onChange={handleSelectAll}>
+            <Checkbox
+              value={isAllSelected}
+              disabled={isEmpty}
+              onChange={handleSelectAll}
+            >
               전체선택 ({selected.length}/{baskets.length})
             </Checkbox>
             <span className="baskets__content__left__buttons__separator" />
-            <button>선택삭제</button>
+            <button disabled={isEmpty}>선택삭제</button>
           </div>
         </div>
         <div className="baskets__content__right">

@@ -39,6 +39,11 @@
           font-size: 14px;
           line-height: 26px;
           background-color: transparent;
+
+          &:disabled {
+            color: black;
+            cursor: default;
+          }
         }
       }
 

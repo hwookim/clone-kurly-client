@@ -6,6 +6,7 @@ export default function Checkbox({
   children,
   checked,
   value,
+  disabled,
   onChange,
   ...args
 }) {
@@ -26,17 +27,19 @@ export default function Checkbox({
   };
 
   return (
-    <label className="checkbox">
+    <label className={'checkbox ' + (disabled ? 'checkbox--disabled' : '')}>
       <input
         {...args}
         type="checkbox"
         checked={isChecked}
         value={isChecked}
+        disabled={disabled}
         onChange={handleChange}
       />
       <span
         className={
           'material-symbols-outlined checkbox__icon' +
+          (disabled ? '--disabled' : '') +
           (isChecked ? '--checked' : '')
         }
       >
