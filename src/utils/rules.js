@@ -1,6 +1,6 @@
 const rules = {
   signup: {
-    id: [
+    login_id: [
       {
         validate: (value = '') => {
           return value.match(/(?=.*\d)(?=.*[a-zA-Z]).{6,16}/);

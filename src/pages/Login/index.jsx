@@ -10,7 +10,7 @@ import './LoginPage.scss';
 
 export default function LoginPage() {
   const [values, setValues] = useState({
-    id: '',
+    login_id: '',
     password: '',
   });
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ export default function LoginPage() {
         onChange={handleChangeInputs}
         onSubmit={handleSubmitForm}
       >
-        <Input id="id" placeholder="아이디를 입력해주세요"></Input>
+        <Input id="login_id" placeholder="아이디를 입력해주세요"></Input>
         <Input
           id="password"
           type="password"
