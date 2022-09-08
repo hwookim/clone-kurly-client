@@ -17,7 +17,10 @@ export default function MainPage() {
     current,
     moveCarousel,
   } = useCarousel();
-  const carouselLength = useMemo(() => products.length / 4, [products]);
+  const carouselLength = useMemo(
+    () => parseInt(products.length / 4),
+    [products]
+  );
 
   useQuery('products', () => apis.products.getAll(), {
     onSuccess: setProducts,

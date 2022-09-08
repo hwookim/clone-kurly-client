@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Input from '../../components/Input';
 
@@ -9,17 +10,18 @@ import './SignupPage.scss';
 
 export default function SignupPage() {
   const [values, setValues] = useState({
-    id: '',
+    login_id: '',
     password: '',
     passwordCheck: '',
     name: '',
   });
   const [messages, setMessages] = useState({
-    id: '',
+    login_id: '',
     password: '',
     passwordCheck: '',
     name: '',
   });
+  const navigate = useNavigate();
 
   const validateRule = useCallback(
     (id, value) => {
@@ -75,6 +77,7 @@ export default function SignupPage() {
     }
 
     await apis.users.signup(values);
+    navigate('/');
   };
 
   return (
@@ -91,14 +94,14 @@ export default function SignupPage() {
           onSubmit={handleSubmitForm}
         >
           <div className="signup__content__form__input">
-            <label htmlFor="id">
+            <label htmlFor="login_id">
               아이디<span className="point">*</span>
             </label>
             <Input
-              id="id"
+              id="login_id"
               type="text"
               placeholder="아이디를 입력해주세요"
-              warning={messages.id}
+              warning={messages.login_id}
             />
           </div>
           <div className="signup__content__form__input">

@@ -10,7 +10,7 @@ const users = {
   },
 
   async login(values) {
-    const { accessToken } = await request.post('/login', values);
+    const accessToken = await request.post('/login', values);
     auth.set(accessToken);
   },
 

@@ -22,7 +22,8 @@ const products = {
   },
 
   async getAll(searchParams) {
-    const data = await request.get(`/products?${searchParams?.toString()}`);
+    const query = searchParams ? `?${searchParams?.toString()}` : '';
+    const data = await request.get('/products' + query);
     return data.map((product) => convertProduct(product));
   },
 };
