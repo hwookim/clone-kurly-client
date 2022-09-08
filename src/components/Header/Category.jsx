@@ -13,7 +13,9 @@ export default function Category() {
   const dropdownRef = useRef(null);
 
   const renderSubCategories = useCallback(() => {
-    const subCategories = categories[hoveredCategory].sub_categories;
+    const subCategories = categories.find(
+      (category) => category.id === hoveredCategory
+    )?.sub_categories;
     if (!subCategories) {
       return;
     }
@@ -47,9 +49,9 @@ export default function Category() {
       <span className="category__icon material-symbols-outlined">menu</span>
       <span className="category__text">카테고리</span>
       <div className="category__dropdown" ref={dropdownRef}>
-        {categories?.map(({ id, name }) => (
+        {categories?.map(({ id, name }, index) => (
           <Link
-            key={name + id}
+            key={(id, index)}
             to={`/products?category=${id}`}
             className={
               'category__dropdown__item ' + (hoveredCategory === id && 'active')
