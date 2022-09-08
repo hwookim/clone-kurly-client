@@ -34,7 +34,10 @@ export default function LoginPage() {
 
     apis.users
       .login(values)
-      .then(() => navigate('/'))
+      .then(() => {
+        navigate('/');
+        window.location.reload();
+      })
       .catch((err) => alert(err));
   };
 
