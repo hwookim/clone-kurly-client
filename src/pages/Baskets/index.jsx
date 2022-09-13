@@ -68,7 +68,12 @@ export default function BasketsPage() {
     setDiscountPrice(discountPrice);
   }, [isGuest, priceInfo, selected]);
 
-  const handleAmountInput = debounce(async (targetId, value) => {
+  const updateBasket = debounce(
+    async (targetId, value) => await apis.baskets.update(targetId, value),
+    250
+  );
+
+  const handleAmountInput = async (targetId, value) => {
     const targetIndex = priceInfo.findIndex(({ id }) => id === targetId);
     const changedInfo = {
       ...priceInfo[targetIndex],
@@ -80,8 +85,8 @@ export default function BasketsPage() {
       ...prev.slice(targetIndex + 1, prev.length),
     ]);
 
-    await apis.baskets.update(targetId, value);
-  }, 250);
+    updateBasket(targetId, value);
+  };
 
   const handleSelectAll = () => {
     const ids = baskets.map(({ id }) => id);
