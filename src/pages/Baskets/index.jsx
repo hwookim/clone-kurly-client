@@ -6,6 +6,7 @@ import BasketItem from './BasketItem';
 import useQuery from '../../hooks/useQuery';
 import apis from '../../apis';
 import auth from '../../utils/auth';
+import debounce from '../../utils/debounce';
 
 import './BasketsPage.scss';
 
@@ -67,7 +68,7 @@ export default function BasketsPage() {
     setDiscountPrice(discountPrice);
   }, [isGuest, priceInfo, selected]);
 
-  const handleAmountInput = async (targetId, value) => {
+  const handleAmountInput = debounce(async (targetId, value) => {
     const targetIndex = priceInfo.findIndex(({ id }) => id === targetId);
     const changedInfo = {
       ...priceInfo[targetIndex],
@@ -80,7 +81,7 @@ export default function BasketsPage() {
     ]);
 
     await apis.baskets.update(targetId, value);
-  };
+  }, 250);
 
   const handleSelectAll = () => {
     const ids = baskets.map(({ id }) => id);

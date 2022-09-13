@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import apis from '../../apis';
+import throttle from '../../utils/throttle';
 
 import './ProductListItem.scss';
 
@@ -15,6 +16,11 @@ export default function ProductListItem({ product }) {
   );
   const navigate = useNavigate();
 
+  const createBaskets = throttle(
+    async () => await apis.baskets.create(id),
+    500
+  );
+
   const handleClickProduct = () => {
     navigate(`/products/${id}`);
   };
@@ -23,9 +29,9 @@ export default function ProductListItem({ product }) {
     async (event) => {
       event.preventDefault();
       event.stopPropagation();
-      await apis.baskets.create(id);
+      createBaskets();
     },
-    [id]
+    [createBaskets]
   );
 
   return (

@@ -5,6 +5,7 @@ import AmountInput from '../../components/AmountInput';
 
 import useQuery from '../../hooks/useQuery';
 import apis from '../../apis';
+import throttle from '../../utils/throttle';
 
 import './ProductPage.scss';
 
@@ -25,9 +26,9 @@ export default function ProductPage() {
     setAmount(value);
   };
 
-  const handleClickBasketButton = async () => {
+  const handleClickBasketButton = throttle(async () => {
     await apis.baskets.create(id, amount);
-  };
+  }, 250);
 
   return (
     <article className="product">
