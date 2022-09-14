@@ -23,12 +23,12 @@ export default function Category() {
 
     const height = dropdownRef.current.clientHeight;
     return (
-      <div className="category__sub-dropdown" style={{ height }}>
+      <div className="category-sub-dropdown" style={{ height }}>
         {subCategories.map(({ id, name }) => (
           <Link
             key={id}
             to={`/products?category=${id}`}
-            className="category__sub-dropdown__item"
+            className="category-sub-item"
           >
             {name}
           </Link>
@@ -47,15 +47,15 @@ export default function Category() {
 
   return (
     <div className="category" onMouseLeave={handleMouseLeave}>
-      <span className="category__icon material-symbols-outlined">menu</span>
-      <span className="category__text">카테고리</span>
-      <div className="category__dropdown" ref={dropdownRef}>
+      <span className="category-icon material-symbols-outlined">menu</span>
+      <span>카테고리</span>
+      <div className="category-dropdown" ref={dropdownRef}>
         {categories?.map(({ id, name }) => (
           <Link
             key={id}
             to={`/products?category=${id}`}
             className={
-              'category__dropdown__item ' + (hoveredCategory === id && 'active')
+              'category-item ' + (hoveredCategory === id ? 'active' : '')
             }
             onMouseEnter={handleMouseEnter(id)}
           >

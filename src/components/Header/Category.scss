@@ -11,11 +11,11 @@
     color: $primary-color;
   }
 
-  &__icon {
+  &-icon {
     margin-right: 10px;
   }
 
-  &__dropdown {
+  &-dropdown {
     display: none;
     position: absolute;
     top: 56px;
@@ -26,45 +26,48 @@
     background-color: white;
     z-index: 1;
     overflow-y: auto;
+  }
 
-    &__item {
-      height: 40px;
-      padding-left: 14px;
-      display: flex;
-      align-items: center;
+  &-item {
+    height: 40px;
+    padding-left: 14px;
+    display: flex;
+    align-items: center;
 
-      &.active {
-        background-color: rgb(247, 247, 247);
-        color: $primary-color;
-      }
+    &.active {
+      background-color: rgb(247, 247, 247);
+      color: $primary-color;
     }
   }
 
   &:hover & {
-    &__dropdown {
+    &-dropdown {
       display: block;
       color: black;
     }
   }
 
-  &__sub-dropdown {
-    position: absolute;
-    top: 56px;
-    left: 248px;
-    width: 250px;
-    max-height: calc(-55px + 95vh);
-    border: 1px solid rgb(221, 221, 221);
-    border-left: none;
-    background-color: rgb(247, 247, 247);
-    z-index: 1;
-    overflow-y: auto;
+  &-sub {
+    &-dropdown {
+      position: absolute;
+      top: 56px;
+      left: 248px;
+      width: 250px;
+      max-height: calc(-55px + 95vh);
+      border: 1px solid rgb(221, 221, 221);
+      border-left: none;
+      background-color: rgb(247, 247, 247);
+      z-index: 1;
+      overflow-y: auto;
+    }
 
-    &__item {
+    &-item {
       height: 40px;
       padding-left: 14px;
       display: flex;
       align-items: center;
       color: black;
+
       &:hover {
         color: $primary-color;
         text-decoration: underline;
@@ -74,7 +77,7 @@
     }
 
     &:hover {
-      .category__dropdown {
+      .category-dropdown {
         display: block;
       }
     }
