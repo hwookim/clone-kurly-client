@@ -37,19 +37,13 @@ export default function MainPage() {
   return (
     <>
       <Banner />
-      <section className="main-contents">
-        <div className="main-contents__title">이 상품 어때요?</div>
-        <div className="main-contents__carousel">
-          <div className="main-contents__carousel__content">
-            <div
-              className="main-contents__carousel__content__product-list"
-              ref={carouselRef}
-            >
+      <section className="main-content">
+        <div className="list-title">이 상품 어때요?</div>
+        <div className="products-carousel">
+          <div className="carousel-content">
+            <div className="carousel-list" ref={carouselRef}>
               {products.map((product) => (
-                <div
-                  key={product.id}
-                  className="main-contents__carousel__content__product-list__item"
-                >
+                <div key={product.id} className="carousel-list-item">
                   <ProductListItem product={product} />
                 </div>
               ))}
@@ -57,7 +51,7 @@ export default function MainPage() {
           </div>
           {current === 0 || (
             <button
-              className="main-contents__carousel__btn main-contents__carousel__btn-left"
+              className="carousel-btn carousel-btn-left"
               onClick={handleClickLeftButton}
             >
               <span className="material-symbols-outlined">arrow_back_ios</span>
@@ -65,7 +59,7 @@ export default function MainPage() {
           )}
           {current === carouselLength - 1 || (
             <button
-              className="main-contents__carousel__btn main-contents__carousel__btn-right"
+              className="carousel-btn carousel-btn-right"
               onClick={handleClickRightButton}
             >
               <span className="material-symbols-outlined">
