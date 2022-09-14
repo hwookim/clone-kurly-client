@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 
-import ProductListItem from '../../components/ProductListItem';
-import Banner from './Banner';
+import ProductListItem from '../../components/ProductListItem/ProductListItem';
+import Banner from './Banner/Banner';
 
 import apis from '../../apis';
 import useCarousel from '../../hooks/useCarousel';
