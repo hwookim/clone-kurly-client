@@ -13,8 +13,8 @@ export default function NotFoundPage() {
         <br />
         입력하신 경로가 정확한지 다시 한번 확인해 주시기 바랍니다.
       </p>
-      <Link to="/" className="not-found__btn">
-        <button variant="primary">홈으로</button>
+      <Link to="/" className="btn">
+        홈으로
       </Link>
     </div>
   );

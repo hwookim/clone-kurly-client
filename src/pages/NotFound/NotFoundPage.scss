@@ -32,14 +32,11 @@
     text-align: center;
   }
 
-  &__btn {
+  .btn {
+    @include primary-btn;
     margin: 0 auto;
     width: 150px;
     height: 44px;
     font-size: 14px;
-
-    button {
-      @include primary-btn;
-    }
   }
 }

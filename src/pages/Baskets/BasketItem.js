@@ -10,19 +10,18 @@ import './BasketItem.scss';
 
 export default function BasketItem({
   basket,
-  check,
+  checked,
   onChangeAmount,
   onSelect,
   onRemove,
 }) {
   const { id, product, amount: defaultAmount } = basket;
+
   const [amount, setAmount] = useState(defaultAmount);
-  const price = useMemo(() => product.price * amount, [amount, product]);
-  const salesPrice = useMemo(
-    () => (product.salesPrice ? product.salesPrice * amount : null),
-    [amount, product]
-  );
   const isLoggedIn = useMemo(() => auth.isLoggedIn(), []);
+
+  const price = product.price * amount;
+  const salesPrice = product.salesPrice ? product.salesPrice * amount : null;
 
   const handleAmountInput = (changed) => {
     setAmount(changed);
@@ -39,7 +38,7 @@ export default function BasketItem({
 
   return (
     <li className="basket-item">
-      <Checkbox value={check} onChange={handleSelect} />
+      <Checkbox value={checked} onChange={handleSelect} />
       <Link to={`/products/${product.id}`} className="basket-item__thumbnail">
         <img src={product.thumbnail} alt={product.title} />
       </Link>

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import apis from '../../apis';
@@ -8,13 +8,13 @@ import './ProductListItem.scss';
 
 export default function ProductListItem({ product }) {
   const { id, title, thumbnail, price, discount } = product;
-  const originPrice = useMemo(() => price.toLocaleString('ko-KR'), [price]);
-  const salesPrice = useMemo(
-    () =>
-      discount ? (price * (1 - discount)).toLocaleString('ko-KR') : originPrice,
-    [discount, originPrice, price]
-  );
+
   const navigate = useNavigate();
+
+  const originPrice = price.toLocaleString('ko-KR');
+  const salesPrice = discount
+    ? (price * (1 - discount)).toLocaleString('ko-KR')
+    : originPrice;
 
   const createBaskets = throttle(
     async () => await apis.baskets.create(id),

@@ -6,6 +6,7 @@ import useQuery from '../../../hooks/useQuery';
 import apis from '../../../apis';
 
 import './Banner.scss';
+
 export default function Banner() {
   const {
     data: promotions,
@@ -13,7 +14,7 @@ export default function Banner() {
     ref: bannerRef,
     current,
     moveCarousel,
-  } = useCarousel({ infinite: true });
+  } = useCarousel({ isInfinite: true });
   const [isHover, setIsHover] = useState(false);
 
   useQuery('promotinos', () => apis.promotions.getAll(), {
@@ -54,7 +55,11 @@ export default function Banner() {
         onMouseLeave={handleMouseLeave}
       >
         {promotions.map(({ id, img_src, link }, index) => (
-          <Link key={index} to={link} className="banner__image-container__link">
+          <Link
+            key={id + '' + index}
+            to={link}
+            className="banner__image-container__link"
+          >
             <img
               src={img_src}
               alt={`banner-${id}`}

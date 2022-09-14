@@ -3,11 +3,11 @@ import React, { useMemo } from 'react';
 import ProductListItem from '../../components/ProductListItem';
 import Banner from './Banner';
 
-import apis from '../../apis';
 import useCarousel from '../../hooks/useCarousel';
+import useQuery from '../../hooks/useQuery';
+import apis from '../../apis';
 
 import './MainPage.scss';
-import useQuery from '../../hooks/useQuery';
 
 export default function MainPage() {
   const {
@@ -45,9 +45,9 @@ export default function MainPage() {
               className="main-contents__carousel__content__product-list"
               ref={carouselRef}
             >
-              {products.map((product, index) => (
+              {products.map((product) => (
                 <div
-                  key={index}
+                  key={product.id}
                   className="main-contents__carousel__content__product-list__item"
                 >
                   <ProductListItem product={product} />

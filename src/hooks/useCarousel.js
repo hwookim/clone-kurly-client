@@ -2,10 +2,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 const TRANSITION = 'all 0.5s ease-in-out';
 
-export default function useCarousel(config = { infinite: false }) {
-  const { infinite } = config;
+export default function useCarousel(config = { isInfinite: false }) {
+  const { isInfinite } = config;
   const [data, setData] = useState([]);
-  const [current, setCurrent] = useState(infinite ? 1 : 0);
+  const [current, setCurrent] = useState(isInfinite ? 1 : 0);
   const [infiniteCurrent, setInfiniteCurrent] = useState(0);
   const [transition, setTransition] = useState('');
   const [delay, setDelay] = useState(false);
@@ -46,7 +46,7 @@ export default function useCarousel(config = { infinite: false }) {
       setDelay(false);
     }, 500);
 
-    if (!infinite) return;
+    if (!isInfinite) return;
 
     if (value === 0) {
       replaceSlide(data.length - 2);
@@ -61,8 +61,8 @@ export default function useCarousel(config = { infinite: false }) {
 
   return {
     data,
-    setData: infinite ? setInfiniteData : setData,
-    current: infinite ? infiniteCurrent : current,
+    setData: isInfinite ? setInfiniteData : setData,
+    current: isInfinite ? infiniteCurrent : current,
     moveCarousel,
     ref,
     setCurrent,

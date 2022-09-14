@@ -1,18 +1,19 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import apis from '../../apis';
 import useQuery from '../../hooks/useQuery';
+import apis from '../../apis';
 
 import './Category.scss';
 
 export default function Category() {
   const categories = useQuery('category', () => apis.categories.getAll());
   const [hoveredCategory, setHoveredCategory] = useState(-1);
-  const isHovered = useMemo(() => hoveredCategory !== -1, [hoveredCategory]);
   const dropdownRef = useRef(null);
 
-  const renderSubCategories = useCallback(() => {
+  const isHovered = hoveredCategory !== -1;
+
+  const renderSubCategories = () => {
     const subCategories = categories.find(
       (category) => category.id === hoveredCategory
     )?.sub_categories;
@@ -25,21 +26,21 @@ export default function Category() {
       <div className="category__sub-dropdown" style={{ height }}>
         {subCategories.map(({ id, name }) => (
           <Link
-            key={name + id}
+            key={id}
             to={`/products?category=${id}`}
             className="category__sub-dropdown__item"
-            data-id={id}
           >
             {name}
           </Link>
         ))}
       </div>
     );
-  }, [categories, hoveredCategory]);
+  };
 
   const handleMouseEnter = (id) => () => {
     setHoveredCategory(id);
   };
+
   const handleMouseLeave = () => {
     setHoveredCategory(-1);
   };
@@ -49,9 +50,9 @@ export default function Category() {
       <span className="category__icon material-symbols-outlined">menu</span>
       <span className="category__text">카테고리</span>
       <div className="category__dropdown" ref={dropdownRef}>
-        {categories?.map(({ id, name }, index) => (
+        {categories?.map(({ id, name }) => (
           <Link
-            key={(id, index)}
+            key={id}
             to={`/products?category=${id}`}
             className={
               'category__dropdown__item ' + (hoveredCategory === id && 'active')
