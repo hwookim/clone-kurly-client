@@ -28,5 +28,10 @@
       @include primary-btn;
       height: 54px;
     }
+
+    .btn {
+      @include primary-btn;
+      height: 54px;
+    }
   }
 }

@@ -57,8 +57,8 @@ export default function LoginPage() {
         <button type="submit" variant="primary">
           로그인
         </button>
-        <Link to="/signup">
-          <button type="button">회원가입</button>
+        <Link to="/signup" className="btn">
+          회원가입
         </Link>
       </form>
     </div>
