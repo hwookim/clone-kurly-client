@@ -111,11 +111,11 @@ export default function BasketsPage() {
   };
 
   return (
-    <div className="baskets">
-      <h2 className="baskets__title">장바구니</h2>
-      <div className="baskets__content">
-        <div className="baskets__content__left">
-          <div className="baskets__content__left__buttons">
+    <div className="baskets-page">
+      <h2 className="title">장바구니</h2>
+      <div className="content">
+        <div className="content-left">
+          <div className="btns">
             <Checkbox
               value={isAllSelected}
               disabled={isEmpty}
@@ -123,14 +123,14 @@ export default function BasketsPage() {
             >
               전체선택 ({selected.length}/{baskets.length})
             </Checkbox>
-            <span className="baskets__content__left__buttons__separator" />
-            <button disabled={isEmpty}>선택삭제</button>
+            <span className="separator" />
+            <button className="remove-btn" disabled={isEmpty}>
+              선택삭제
+            </button>
           </div>
-          <ul className="baskets__content__left__list">
+          <ul className="basket-list">
             {baskets.length === 0 ? (
-              <li className="baskets__content__left__list__empty">
-                장바구니에 담긴 상품이 없습니다.
-              </li>
+              <li className="empty">장바구니에 담긴 상품이 없습니다.</li>
             ) : (
               baskets.map((basket) => (
                 <BasketItem
@@ -144,7 +144,7 @@ export default function BasketsPage() {
               ))
             )}
           </ul>
-          <div className="baskets__content__left__buttons">
+          <div className="btns">
             <Checkbox
               value={isAllSelected}
               disabled={isEmpty}
@@ -152,17 +152,19 @@ export default function BasketsPage() {
             >
               전체선택 ({selected.length}/{baskets.length})
             </Checkbox>
-            <span className="baskets__content__left__buttons__separator" />
-            <button disabled={isEmpty}>선택삭제</button>
+            <span className="separator" />
+            <button className="remove-btn" disabled={isEmpty}>
+              선택삭제
+            </button>
           </div>
         </div>
-        <div className="baskets__content__right">
-          <div className="baskets__content__right__bill">
+        <div className="content-right">
+          <div className="bill">
             <div>
               <span>상품금액</span>
               <span>{price.toLocaleString()} 원</span>
             </div>
-            <div className="baskets__content__right__bill__item">
+            <div className="bill-item">
               <span>상품할인금액</span>
               <span>
                 {!isGuest && discountPrice > 0 && '-'}
@@ -170,11 +172,9 @@ export default function BasketsPage() {
               </span>
             </div>
             {isGuest && discountPrice > 0 && (
-              <p className="baskets__content__right__bill__discount-info">
-                로그인 후 할인 금액 적용
-              </p>
+              <p className="discount-info">로그인 후 할인 금액 적용</p>
             )}
-            <div className="baskets__content__right__bill__item">
+            <div className="bill-item">
               <span>배송비</span>
               <span>
                 {deliveryCharge > 0 && '+'}
@@ -182,27 +182,29 @@ export default function BasketsPage() {
               </span>
             </div>
             {isGuest && deliveryCharge > 0 && (
-              <p className="baskets__content__right__bill__delivery-info">
+              <p className="delivery-info">
                 {40000 - (totalPrice - deliveryCharge)}원 추가주문 시,{' '}
                 <span>무료배송</span>
               </p>
             )}
-            <div className="baskets__content__right__bill__total">
+            <div className="total">
               <span>결제예정금액</span>
               <span>
-                <span className="baskets__content__right__bill__total__price">
+                <span className="total__price">
                   {totalPrice.toLocaleString()}
                 </span>{' '}
                 원
               </span>
             </div>
           </div>
-          <button disabled={selected.length === 0}>
+          <button className="order-btn" disabled={selected.length === 0}>
             {selected.length !== 0 ? '주문하기' : '상품을 담아주세요'}
           </button>
-          <ul>
-            <li>[주문완료] 상태일 경우에만 주문 취소 가능합니다.</li>
-            <li>
+          <ul className="info">
+            <li className="info-item">
+              [주문완료] 상태일 경우에만 주문 취소 가능합니다.
+            </li>
+            <li className="info-item">
               [마이컬리 &gt; 주문내역 상세페이지] 에서 직접 취소하실 수
               있습니다.
             </li>

@@ -46,20 +46,20 @@ export default function BasketItem({
           className="thumbnail-img"
         />
       </Link>
-      <div className="title">{product.title}</div>
+      <div className="basket-title">{product.title}</div>
       <AmountInput value={amount} onChange={handleAmountInput} />
-      <div className="price">
-        <div className="sales">
+      <div className="basket-price">
+        <div className="basket-sales">
           {isLoggedIn && salesPrice
             ? salesPrice.toLocaleString('ko-KR')
             : price.toLocaleString('ko-KR')}
           원
         </div>
         {isLoggedIn && salesPrice && (
-          <div className="origin">{price.toLocaleString('ko-KR')}</div>
+          <div className="basket-origin">{price.toLocaleString('ko-KR')}</div>
         )}
       </div>
-      <button className="remove-btn" onClick={handleClickRemoveButton}>
+      <button className="basket-remove-btn" onClick={handleClickRemoveButton}>
         <span className="material-symbols-outlined">close</span>
       </button>
     </li>

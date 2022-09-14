@@ -17,41 +17,43 @@
     }
   }
 
-  .title {
-    margin-right: 20px;
-    width: 345px;
-    max-height: 54px;
-    padding-top: 8px;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 22px;
-    @include shortened-text;
-  }
+  .basket {
+    &-title {
+      margin-right: 20px;
+      width: 345px;
+      max-height: 54px;
+      padding-top: 8px;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+      @include shortened-text;
+    }
 
-  .price {
-    width: 127px;
-    text-align: right;
-    word-break: break-all;
+    &-price {
+      width: 127px;
+      text-align: right;
+      word-break: break-all;
+    }
 
-    .sales {
+    &-sales {
       font-weight: 700;
       font-size: 16px;
       line-height: 24px;
     }
 
-    .origin {
+    &-origin {
       font-size: 14px;
       line-height: 24px;
       color: rgb(181, 181, 181);
       text-decoration: line-through;
       padding-top: 4px;
     }
-  }
 
-  .remove-btn {
-    margin-left: auto;
-    border: none;
-    background-color: transparent;
-    color: rgb(217, 217, 217);
+    &-remove-btn {
+      margin-left: auto;
+      border: none;
+      background-color: transparent;
+      color: rgb(217, 217, 217);
+    }
   }
 }
