@@ -23,23 +23,24 @@ export default function SignupPage() {
   });
   const navigate = useNavigate();
 
-  const validateRule = useCallback(
-    (key, value) => {
-      for (const rule of rules.signup[key]) {
-        if (rule.validate(value, values.password)) {
-          continue;
-        }
-        return rule.message;
+  const validateRule = useCallback((key, value, password) => {
+    for (const rule of rules.signup[key]) {
+      if (rule.validate(value, password)) {
+        continue;
       }
-      return '';
-    },
-    [values.password]
-  );
+      return rule.message;
+    }
+    return '';
+  }, []);
 
   useEffect(() => {
     if (!values.passwordCheck) return;
 
-    const message = validateRule('passwordCheck', values.passwordCheck);
+    const message = validateRule(
+      'passwordCheck',
+      values.passwordCheck,
+      values.password
+    );
     setMessages((prev) => ({
       ...prev,
       passwordCheck: message,
@@ -54,7 +55,7 @@ export default function SignupPage() {
       [name]: value,
     }));
 
-    const message = validateRule(name, value);
+    const message = validateRule(name, value, values.password);
     setMessages((prev) => ({
       ...prev,
       [name]: message,
