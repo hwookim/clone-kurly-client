@@ -6,6 +6,7 @@ import useQuery from '../../../hooks/useQuery';
 import apis from '../../../apis';
 
 import './Banner.scss';
+
 export default function Banner() {
   const {
     data: promotions,
@@ -53,8 +54,12 @@ export default function Banner() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {promotions.map(({ id, img_src, link }) => (
-          <Link key={id} to={link} className="banner__image-container__link">
+        {promotions.map(({ id, img_src, link }, index) => (
+          <Link
+            key={id + '' + index}
+            to={link}
+            className="banner__image-container__link"
+          >
             <img
               src={img_src}
               alt={`banner-${id}`}
