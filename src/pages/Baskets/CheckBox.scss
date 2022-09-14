@@ -7,28 +7,25 @@
   line-height: 26px;
   cursor: pointer;
 
-  &--disabled {
+  &.disabled {
     cursor: default;
   }
 
-  input {
+  &-input {
     display: none;
   }
 
-  span {
+  &-icon {
     margin-right: 12px;
-  }
-
-  &__icon {
     font-variation-settings: 'FILL' 0;
     color: rgb(230 230 230);
 
-    &--disabled {
+    &.disabled {
       font-variation-settings: 'FILL' 1;
       color: rgb(242 242 242);
     }
 
-    &--checked {
+    &.checked {
       font-variation-settings: 'FILL' 1;
       color: $primary-color;
     }

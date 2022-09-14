@@ -7,18 +7,18 @@
   margin-bottom: 40px;
   overflow: hidden;
 
-  &__image-container {
+  .image-container {
     position: absolute;
     height: 100%;
     display: flex;
     flex-wrap: nowrap;
 
-    &__link {
+    .img-wrapper {
       flex: 0 0 auto;
       width: 100%;
       height: 100%;
 
-      &__image {
+      .img {
         width: 100%;
         height: 100%;
         object-fit: contain;
@@ -26,7 +26,7 @@
     }
   }
 
-  &__btn {
+  .btn {
     position: absolute;
     top: 50%;
     transform: translate(0, -50%);
@@ -53,11 +53,11 @@
     }
   }
 
-  &:hover &__btn {
+  &:hover .btn {
     opacity: 1;
   }
 
-  &__counter {
+  .counter {
     position: absolute;
     bottom: 24px;
     right: 21%;

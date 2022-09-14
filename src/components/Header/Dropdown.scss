@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
 
-  &__content {
+  &-contents {
     display: none;
     position: absolute;
     right: 0;
@@ -25,7 +25,7 @@
   }
 
   &:hover & {
-    &__content {
+    &-contents {
       display: block;
     }
   }

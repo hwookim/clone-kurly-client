@@ -10,7 +10,7 @@
   align-items: center;
   z-index: 1;
 
-  &__main {
+  &-main {
     position: relative;
     padding-top: 35px;
     width: 1050px;
@@ -19,7 +19,7 @@
     align-items: center;
     justify-content: space-between;
 
-    &__user-info {
+    .user-info {
       position: absolute;
       top: 0;
       right: 0;
@@ -28,29 +28,29 @@
       align-items: center;
       font-size: 12px;
 
-      &__separator {
+      .separator {
         width: 1px;
         height: 13px;
         margin: 0 12px;
         background-color: rgb(217, 217, 217);
       }
 
-      &__signup {
+      .signup {
         color: $primary-color;
       }
     }
 
-    &__left {
+    .logo {
       display: flex;
       align-items: center;
 
-      &__logo {
+      &-img {
         width: 82px;
         height: 42px;
         margin-right: 20px;
       }
 
-      &__link {
+      .title {
         border: none;
         background: none;
         font-weight: 500;
@@ -59,71 +59,70 @@
     }
   }
 
-  &__bottom {
-    position: relative;
-    width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.07) 0 3px 4px 0;
+  &-bottom {
     display: flex;
     justify-content: center;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.07) 0 3px 4px 0;
 
-    &__nav {
-      width: 1050px;
-      height: 56px;
+    &.sticky {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 16px;
-      font-weight: 500;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      box-shadow: rgba(0, 0, 0, 0.07) 0 3px 4px 0;
+      background-color: white;
 
-      ul {
-        margin-left: 30px;
-        display: flex;
-        li {
-          width: 150px;
-          text-align: center;
-          cursor: pointer;
+      .header-nav {
+        justify-content: flex-start;
 
-          &:hover {
-            color: $primary-color;
-            text-decoration: underline;
-            text-decoration-color: $primary-color;
-            text-underline-offset: 4px;
+        .nav-list {
+          &-item {
+            width: 120px;
           }
         }
       }
+    }
+  }
 
-      &__notice {
-        padding: 6px 16px;
-        border: solid 1px #eee;
-        border-radius: 18px;
-        color: #666;
-        font-size: 13px;
-        letter-spacing: -0.32px;
+  &-nav {
+    width: 1050px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 500;
 
-        span {
+    .nav-list {
+      margin-left: 30px;
+      display: flex;
+      &-item {
+        width: 150px;
+        text-align: center;
+        cursor: pointer;
+
+        &:hover {
           color: $primary-color;
+          text-decoration: underline;
+          text-decoration-color: $primary-color;
+          text-underline-offset: 4px;
         }
       }
     }
 
-    &--sticky {
-      width: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      box-shadow: rgba(0, 0, 0, 0.07) 0 3px 4px 0;
-      display: flex;
-      justify-content: center;
-      background-color: white;
+    .notice {
+      padding: 6px 16px;
+      border: solid 1px #eee;
+      border-radius: 18px;
+      color: #666;
+      font-size: 13px;
+      letter-spacing: -0.32px;
 
-      .header__bottom__nav {
-        justify-content: flex-start;
-
-        ul {
-          li {
-            width: 120px;
-          }
-        }
+      .emphasis {
+        color: $primary-color;
       }
     }
   }

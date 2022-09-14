@@ -4,32 +4,33 @@
   margin: 30px auto auto;
   width: 1050px;
 
-  &__title {
+  .category-name {
     margin: 25px 0;
     text-align: center;
     font-size: 28px;
     font-weight: 500;
   }
 
-  &__header {
+  &-header {
     margin: 20px 0;
     display: flex;
     justify-content: space-between;
     font-size: 12px;
     font-weight: 500;
 
-    &__order {
+    .order-types {
       display: flex;
       color: rgb(153, 153, 153);
 
-      &__method {
+      .order-type {
         cursor: pointer;
+
         &.active {
           color: black;
         }
       }
 
-      &__separator {
+      .separator {
         width: 1px;
         height: 13px;
         margin: 0 12px;
@@ -38,11 +39,11 @@
     }
   }
 
-  &__list {
+  .product-list {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 
-    &__item {
+    &-item-wrapper {
       height: 650px;
       font-size: 20px;
 

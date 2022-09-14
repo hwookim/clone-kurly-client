@@ -1,17 +1,19 @@
 @import '../../styles/variables.scss';
 
 .login {
-  margin: 50px auto auto;
-  max-width: 1050px;
+  &-page {
+    margin: 50px auto auto;
+    max-width: 1050px;
+  }
 
-  &__title {
+  &-title {
     font-weight: 800;
     font-size: 20px;
     line-height: 20px;
     text-align: center;
   }
 
-  &__form {
+  &-form {
     margin: 30px auto auto;
     width: 340px;
     display: flex;
@@ -19,19 +21,14 @@
     flex-direction: column;
     gap: 10px;
     letter-spacing: -0.6px;
+  }
 
-    input {
-      font-size: 14px;
-    }
+  &-input {
+    font-size: 14px;
+  }
 
-    button {
-      @include primary-btn;
-      height: 54px;
-    }
-
-    .btn {
-      @include primary-btn;
-      height: 54px;
-    }
+  &-btn {
+    @include primary-btn;
+    height: 54px;
   }
 }

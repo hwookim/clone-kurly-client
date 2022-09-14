@@ -35,39 +35,37 @@ export default function ProductPage() {
       <img
         src={product.thumbnail}
         alt={product.title}
-        className="product__thumbnail"
+        className="product-thumbnail"
       />
-      <div className="product__content">
-        <h2 className="product__content__title">{product.title}</h2>
-        <p className="product__content__description">{product.description}</p>
-        <div className="product__content__price">
+      <div className="product-content">
+        <h2 className="product-title">{product.title}</h2>
+        <p className="product-description">{product.description}</p>
+        <div className="product-price">
           {product.discount && (
-            <span className="product__content__price__discount">
-              {product.discount * 100}%
-            </span>
+            <span className="product-discount">{product.discount * 100}%</span>
           )}
           {product.salesPrice.toLocaleString('ko-Kr')}
-          <span className="product__content__price__unit">원</span>
+          <span className="product-price-unit">원</span>
         </div>
         {product.discount && (
-          <div className="product__content__origin-price">
+          <div className="product-origin-price">
             {product.price.toLocaleString('ko-KR')}원
           </div>
         )}
-        <div className="product__content__amount">
+        <div className="product-amount">
           <span>구매수량</span>
           <AmountInput value={amount} onChange={handleAmountInput} />
         </div>
-        <div className="product__content__total-price">
+        <div className="product-total-price">
           총 상품금액 :
-          <span className="product__content__total-price__value">
+          <span className="product-total-price-value">
             {(product.salesPrice * amount).toLocaleString('ko-KR')}
           </span>
-          <span className="product__content__total-price__unit">원</span>
+          <span className="product-price-unit">원</span>
         </div>
         <button
           variant="primary"
-          className="product__content__cart-btn"
+          className="cart-btn"
           onClick={handleClickBasketButton}
         >
           장바구니 담기

@@ -44,32 +44,28 @@ export default function ProductsPage() {
 
   return (
     <div className="products">
-      <h3 className="products__title">{category.name}</h3>
-      <div className="products__header">
-        <div className="products__header__count">총 {products.length}건</div>
-        <div className="products__header__order">
+      <h3 className="category-name">{category.name}</h3>
+      <div className="products-header">
+        <div>총 {products.length}건</div>
+        <div className="order-types">
           <span
-            className={
-              'products__header__order__method ' + (isDESC ? '' : 'active')
-            }
+            className={'order-type ' + (isDESC ? '' : 'active')}
             onClick={handleClickOrder('asc')}
           >
             낮은 가격순
           </span>
-          <div className="products__header__order__separator" />
+          <div className="separator" />
           <span
-            className={
-              'products__header__order__method ' + (isDESC ? 'active' : '')
-            }
+            className={'order-type ' + (isDESC ? 'active' : '')}
             onClick={handleClickOrder('desc')}
           >
             높은 가격순
           </span>
         </div>
       </div>
-      <div className="products__list">
+      <div className="product-list">
         {products.map((product) => (
-          <div key={product.id} className="products__list__item">
+          <div key={product.id} className="product-list-item-wrapper">
             <ProductListItem product={product} />
           </div>
         ))}

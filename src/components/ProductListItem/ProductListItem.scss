@@ -4,11 +4,11 @@
   cursor: pointer;
   width: 95%;
 
-  &__thumbnail {
+  .thumbnail {
     position: relative;
     overflow: hidden;
 
-    &__img {
+    &-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -19,7 +19,7 @@
       }
     }
 
-    &__btn {
+    .basket-btn {
       position: absolute;
       bottom: 16px;
       right: 16px;
@@ -29,7 +29,7 @@
       border-radius: 50%;
       background-color: rgba(151, 128, 157, 0.5);
 
-      &__icon {
+      &-icon {
         font-variation-settings: 'wght' 300;
         margin-top: 4px;
         margin-left: 2px;
@@ -38,28 +38,28 @@
     }
   }
 
-  &__info {
+  .product-info {
     padding-top: 14px;
     padding-right: 10px;
 
-    &__title {
+    .title {
       margin-bottom: 8px;
       font-size: 1em;
       line-height: 1.45;
       @include shortened-text;
     }
 
-    &__price {
+    .price {
       font-size: 0.9em;
       font-weight: 800;
       line-height: 1.5;
 
-      &__discount {
+      .discount {
         margin-right: 7px;
         color: $discount-color;
       }
 
-      &__origin {
+      .origin {
         margin-top: 2px;
         color: rgb(181, 181, 181);
         font-size: 0.9em;

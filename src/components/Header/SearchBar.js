@@ -3,18 +3,16 @@ import React from 'react';
 import './SearchBar.scss';
 
 export default function SearchBar({ isSticky }) {
-  const className = 'search-bar' + isSticky ? '--sticky' : '';
-
   return (
-    <div className={'search-bar ' + className}>
+    <label className={'search-bar ' + (isSticky ? 'sticky' : '')}>
       <input
-        className="search-bar__input"
+        className="search-input"
         type="text"
         placeholder="검색어를 입력해주세요"
       />
-      <button type="button">
-        <span className="material-symbols-outlined">search</span>
+      <button type="button" className="search-btn">
+        <span className="search-icon material-symbols-outlined">search</span>
       </button>
-    </div>
+    </label>
   );
 }

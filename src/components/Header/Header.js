@@ -16,8 +16,6 @@ export default function Header({ username }) {
   const isInViewport = useIsInViewport(headerMainRef);
   const navigate = useNavigate();
 
-  const additionalClassName = isInViewport ? '' : '--sticky';
-
   const handleClickLogout = () => {
     auth.clear();
     navigate(0);
@@ -25,8 +23,8 @@ export default function Header({ username }) {
 
   return (
     <div className="header">
-      <div className="header__main" ref={headerMainRef}>
-        <div className="header__main__user-info">
+      <div className="header-main" ref={headerMainRef}>
+        <div className="user-info">
           {username ? (
             <Dropdown title={<Link to="/notice">{username} 님 ▼</Link>}>
               <Link to="/baskets">장바구니</Link>
@@ -34,46 +32,44 @@ export default function Header({ username }) {
             </Dropdown>
           ) : (
             <>
-              <Link to="/signup" className="header__main__user-info__signup">
+              <Link to="/signup" className="signup">
                 회원가입
               </Link>
-              <div className="header__main__user-info__separator" />
-              <Link to="/login" className="header__main__user-info__login">
-                로그인
-              </Link>
+              <div className="separator" />
+              <Link to="/login">로그인</Link>
             </>
           )}
-          <div className="header__main__user-info__separator" />
+          <div className="separator" />
           <Dropdown title={<Link to="/notice">고객센터 ▼</Link>}>
             <Link to="/notice">공지사항</Link>
             <Link to="/qna">자주하는 질문</Link>
             <Link to="/inquiry/list">1:1 문의</Link>
             <Link to="/inquiry/bulk-order">대량주문 문의</Link>
           </Dropdown>
-          <div className="header__main__user-info__dropdown"></div>
+          <div className="dropdown"></div>
         </div>
-        <div className="header__main__left">
-          <img className="header__main__left__logo" alt="로고" />
-          <Link to="/" className="header__main__left__link">
+        <div className="logo">
+          <img className="logo-img" alt="로고" />
+          <Link to="/" className="title">
             마켓컬리
           </Link>
         </div>
         <SearchBar isSticky={!isInViewport} />
         <UserButtons isSticky={!isInViewport} />
       </div>
-      <div className={'header__bottom' + additionalClassName}>
-        <nav className="header__bottom__nav">
+      <div className={'header-bottom ' + (isInViewport ? '' : 'sticky')}>
+        <nav className="header-nav">
           <Category />
-          <ul>
-            <li>신상품</li>
-            <li>베스트</li>
-            <li>알뜰쇼핑</li>
-            <li>특가/혜택</li>
+          <ul className="nav-list">
+            <li className="nav-list-item">신상품</li>
+            <li className="nav-list-item">베스트</li>
+            <li className="nav-list-item">알뜰쇼핑</li>
+            <li className="nav-list-item">특가/혜택</li>
           </ul>
           {isInViewport && (
-            <div className="header__bottom__nav__notice">
+            <div className="notice">
               <Link to="/">
-                <span>샛별・낮</span> 배송안내
+                <span className="emphasis">샛별・낮</span> 배송안내
               </Link>
             </div>
           )}

@@ -82,19 +82,19 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="signup">
-      <div className="signup__title">회원가입</div>
-      <div className="signup__content">
-        <div className="signup__content__header">
+    <div className="signup-page">
+      <div className="signup-title">회원가입</div>
+      <div className="signup-content">
+        <div className="signup-header">
           <span className="point">* </span>
           필수입력사항
         </div>
         <form
-          className="signup__content__form"
+          className="signup-form"
           onChange={handleChangeInputs}
           onSubmit={handleSubmitForm}
         >
-          <div className="signup__content__form__input">
+          <div className="signup-input">
             <label htmlFor="login_id">
               아이디<span className="point">*</span>
             </label>
@@ -105,7 +105,7 @@ export default function SignupPage() {
               warning={messages.login_id}
             />
           </div>
-          <div className="signup__content__form__input">
+          <div className="signup-input">
             <label htmlFor="password">
               비밀번호<span className="point">*</span>
             </label>
@@ -116,7 +116,7 @@ export default function SignupPage() {
               warning={messages.password}
             />
           </div>
-          <div className="signup__content__form__input">
+          <div className="signup-input">
             <label htmlFor="passwordCheck">
               비밀번호 확인<span className="point">*</span>
             </label>
@@ -127,7 +127,7 @@ export default function SignupPage() {
               warning={messages.passwordCheck}
             />
           </div>
-          <div className="signup__content__form__input">
+          <div className="signup-input">
             <label htmlFor="name">
               이름<span className="point">*</span>
             </label>
@@ -138,7 +138,7 @@ export default function SignupPage() {
               warning={messages.name}
             />
           </div>
-          <button type="submit" variant="primary">
+          <button className="signup-btn" type="submit" variant="primary">
             가입하기
           </button>
         </form>

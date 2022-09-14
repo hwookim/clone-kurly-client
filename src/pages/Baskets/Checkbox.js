@@ -27,9 +27,10 @@ export default function Checkbox({
   };
 
   return (
-    <label className={'checkbox ' + (disabled ? 'checkbox--disabled' : '')}>
+    <label className={'checkbox ' + (disabled ? 'disabled' : '')}>
       <input
         {...args}
+        className="checkbox-input"
         type="checkbox"
         checked={isChecked}
         value={isChecked}
@@ -38,9 +39,9 @@ export default function Checkbox({
       />
       <span
         className={
-          'material-symbols-outlined checkbox__icon' +
-          (disabled ? '--disabled' : '') +
-          (isChecked ? '--checked' : '')
+          'material-symbols-outlined checkbox-icon ' +
+          (disabled ? 'disabled' : '') +
+          (isChecked ? 'checked' : '')
         }
       >
         check_circle

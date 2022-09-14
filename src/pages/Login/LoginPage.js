@@ -41,23 +41,28 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="login">
-      <div className="login__title">로그인</div>
+    <div className="login-page">
+      <div className="login-title">로그인</div>
       <form
-        className="login__form"
+        className="login-form"
         onChange={handleChangeInputs}
         onSubmit={handleSubmitForm}
       >
-        <Input name="login_id" placeholder="아이디를 입력해주세요" />
         <Input
+          className="login-input"
+          name="login_id"
+          placeholder="아이디를 입력해주세요"
+        />
+        <Input
+          className="login-input"
           name="password"
           type="password"
           placeholder="비밀번호를 입력해주세요"
         />
-        <button type="submit" variant="primary">
+        <button className="login-btn" type="submit" variant="primary">
           로그인
         </button>
-        <Link to="/signup" className="btn">
+        <Link to="/signup" className="login-btn">
           회원가입
         </Link>
       </form>
