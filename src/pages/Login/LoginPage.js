@@ -41,7 +41,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="login">
+    <div className="login-page">
       <div className="login__title">로그인</div>
       <form
         className="login__form"

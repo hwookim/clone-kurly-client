@@ -82,7 +82,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="signup">
+    <div className="signup-page">
       <div className="signup__title">회원가입</div>
       <div className="signup__content">
         <div className="signup__content__header">

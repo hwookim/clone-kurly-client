@@ -1,9 +1,11 @@
 @import '../../styles/variables.scss';
 
-.login {
+.login-page {
   margin: 50px auto auto;
   max-width: 1050px;
+}
 
+.login {
   &__title {
     font-weight: 800;
     font-size: 20px;
