@@ -39,25 +39,27 @@ export default function BasketItem({
   return (
     <li className="basket-item">
       <Checkbox value={checked} onChange={handleSelect} />
-      <Link to={`/products/${product.id}`} className="basket-item__thumbnail">
-        <img src={product.thumbnail} alt={product.title} />
+      <Link to={`/products/${product.id}`} className="thumbnail">
+        <img
+          src={product.thumbnail}
+          alt={product.title}
+          className="thumbnail-img"
+        />
       </Link>
-      <div className="basket-item__title">{product.title}</div>
+      <div className="title">{product.title}</div>
       <AmountInput value={amount} onChange={handleAmountInput} />
-      <div className="basket-item__price">
-        <div className="basket-item__price__sales">
+      <div className="price">
+        <div className="sales">
           {isLoggedIn && salesPrice
             ? salesPrice.toLocaleString('ko-KR')
             : price.toLocaleString('ko-KR')}
           원
         </div>
         {isLoggedIn && salesPrice && (
-          <div className="basket-item__price__origin">
-            {price.toLocaleString('ko-KR')}
-          </div>
+          <div className="origin">{price.toLocaleString('ko-KR')}</div>
         )}
       </div>
-      <button className="basket-item__remove" onClick={handleClickRemoveButton}>
+      <button className="remove-btn" onClick={handleClickRemoveButton}>
         <span className="material-symbols-outlined">close</span>
       </button>
     </li>
