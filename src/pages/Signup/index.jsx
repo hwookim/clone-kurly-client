@@ -24,8 +24,8 @@ export default function SignupPage() {
   const navigate = useNavigate();
 
   const validateRule = useCallback(
-    (id, value) => {
-      for (const rule of rules.signup[id]) {
+    (key, value) => {
+      for (const rule of rules.signup[key]) {
         if (rule.validate(value, values.password)) {
           continue;
         }
@@ -47,17 +47,17 @@ export default function SignupPage() {
   }, [values.password, values.passwordCheck, validateRule]);
 
   const handleChangeInputs = (event) => {
-    const { id, value } = event.target;
+    const { name, value } = event.target;
 
     setValues((prev) => ({
       ...prev,
-      [id]: value,
+      [name]: value,
     }));
 
-    const message = validateRule(id, value);
+    const message = validateRule(name, value);
     setMessages((prev) => ({
       ...prev,
-      [id]: message,
+      [name]: message,
     }));
   };
 
@@ -98,7 +98,7 @@ export default function SignupPage() {
               아이디<span className="point">*</span>
             </label>
             <Input
-              id="login_id"
+              name="login_id"
               type="text"
               placeholder="아이디를 입력해주세요"
               warning={messages.login_id}
@@ -109,7 +109,7 @@ export default function SignupPage() {
               비밀번호<span className="point">*</span>
             </label>
             <Input
-              id="password"
+              name="password"
               type="password"
               placeholder="비밀번호를 입력해주세요"
               warning={messages.password}
@@ -120,7 +120,7 @@ export default function SignupPage() {
               비밀번호 확인<span className="point">*</span>
             </label>
             <Input
-              id="passwordCheck"
+              name="passwordCheck"
               type="password"
               placeholder="비밀번호를 한번 더 입력해주세요"
               warning={messages.passwordCheck}
@@ -131,7 +131,7 @@ export default function SignupPage() {
               이름<span className="point">*</span>
             </label>
             <Input
-              id="name"
+              name="name"
               type="text"
               placeholder="이름을 입력해주세요"
               warning={messages.name}

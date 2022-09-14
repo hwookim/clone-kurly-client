@@ -15,11 +15,11 @@ export default function LoginPage() {
   const navigate = useNavigate();
 
   const handleChangeInputs = (event) => {
-    const { id, value } = event.target;
+    const { name, value } = event.target;
 
     setValues((prev) => ({
       ...prev,
-      [id]: value,
+      [name]: value,
     }));
   };
 
@@ -48,9 +48,9 @@ export default function LoginPage() {
         onChange={handleChangeInputs}
         onSubmit={handleSubmitForm}
       >
-        <Input id="login_id" placeholder="아이디를 입력해주세요" />
+        <Input name="login_id" placeholder="아이디를 입력해주세요" />
         <Input
-          id="password"
+          name="password"
           type="password"
           placeholder="비밀번호를 입력해주세요"
         />
