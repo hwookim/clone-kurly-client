@@ -48,12 +48,12 @@ export default function LoginPage() {
         onChange={handleChangeInputs}
         onSubmit={handleSubmitForm}
       >
-        <Input id="login_id" placeholder="아이디를 입력해주세요"></Input>
+        <Input id="login_id" placeholder="아이디를 입력해주세요" />
         <Input
           id="password"
           type="password"
           placeholder="비밀번호를 입력해주세요"
-        ></Input>
+        />
         <button type="submit" variant="primary">
           로그인
         </button>
