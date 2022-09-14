@@ -28,7 +28,6 @@ export default function Category() {
             key={id}
             to={`/products?category=${id}`}
             className="category__sub-dropdown__item"
-            data-id={id}
           >
             {name}
           </Link>
@@ -49,7 +48,7 @@ export default function Category() {
       <span className="category__icon material-symbols-outlined">menu</span>
       <span className="category__text">카테고리</span>
       <div className="category__dropdown" ref={dropdownRef}>
-        {categories?.map(({ id, name }, index) => (
+        {categories?.map(({ id, name }) => (
           <Link
             key={id}
             to={`/products?category=${id}`}
