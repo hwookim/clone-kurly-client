@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import useQuery from '../../hooks/useQuery';
@@ -13,7 +13,7 @@ export default function Category() {
 
   const isHovered = hoveredCategory !== -1;
 
-  const renderSubCategories = useCallback(() => {
+  const renderSubCategories = () => {
     const subCategories = categories.find(
       (category) => category.id === hoveredCategory
     )?.sub_categories;
@@ -35,7 +35,7 @@ export default function Category() {
         ))}
       </div>
     );
-  }, [categories, hoveredCategory]);
+  };
 
   const handleMouseEnter = (id) => () => {
     setHoveredCategory(id);
