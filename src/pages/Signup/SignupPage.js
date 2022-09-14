@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Input from '../../components/Input/Input';
+import Input from '../../components/Input';
 
 import rules from '../../utils/rules';
 import apis from '../../apis';

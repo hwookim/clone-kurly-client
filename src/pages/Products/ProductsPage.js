@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
-import ProductListItem from '../../components/ProductListItem/ProductListItem';
+import ProductListItem from '../../components/ProductListItem';
 
 import useQuery from '../../hooks/useQuery';
 import apis from '../../apis';

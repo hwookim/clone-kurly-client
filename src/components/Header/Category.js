@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import apis from '../../apis';
 import useQuery from '../../hooks/useQuery';
+import apis from '../../apis';
 
 import './Category.scss';
 

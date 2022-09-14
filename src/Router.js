@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Header from './components/Header/Header';
-import MainPage from './pages/Main/MainPage';
-import NotFoundPage from './pages/NotFound/NotFoundPage';
-import SignupPage from './pages/Signup/SignupPage';
-import LoginPage from './pages/Login/LoginPage';
-import ProductPage from './pages/Product/ProductPage';
-import ProductsPage from './pages/Products/ProductsPage';
-import BasketsPage from './pages/Baskets/BasketsPage';
+
+import Header from './components/Header';
+import MainPage from './pages/Main';
+import SignupPage from './pages/Signup';
+import LoginPage from './pages/Login';
+import ProductsPage from './pages/Products';
+import ProductPage from './pages/Product';
+import BasketsPage from './pages/Baskets';
+import NotFoundPage from './pages/NotFound';
 
 const Router = ({ user }) => {
   return (

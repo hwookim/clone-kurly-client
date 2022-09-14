@@ -1,13 +1,13 @@
 import React, { useMemo } from 'react';
 
-import ProductListItem from '../../components/ProductListItem/ProductListItem';
-import Banner from './Banner/Banner';
+import ProductListItem from '../../components/ProductListItem';
+import Banner from './Banner';
 
-import apis from '../../apis';
 import useCarousel from '../../hooks/useCarousel';
+import useQuery from '../../hooks/useQuery';
+import apis from '../../apis';
 
 import './MainPage.scss';
-import useQuery from '../../hooks/useQuery';
 
 export default function MainPage() {
   const {
