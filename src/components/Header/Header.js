@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import UserButtons from './UserButtons';
@@ -14,11 +14,9 @@ import './Header.scss';
 export default function Header({ username }) {
   const headerMainRef = useRef();
   const isInViewport = useIsInViewport(headerMainRef);
-  const additionalClassName = useMemo(
-    () => (isInViewport ? '' : '--sticky'),
-    [isInViewport]
-  );
   const navigate = useNavigate();
+
+  const additionalClassName = isInViewport ? '' : '--sticky';
 
   const handleClickLogout = () => {
     auth.clear();

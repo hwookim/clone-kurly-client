@@ -16,13 +16,12 @@ export default function BasketItem({
   onRemove,
 }) {
   const { id, product, amount: defaultAmount } = basket;
+
   const [amount, setAmount] = useState(defaultAmount);
-  const price = useMemo(() => product.price * amount, [amount, product]);
-  const salesPrice = useMemo(
-    () => (product.salesPrice ? product.salesPrice * amount : null),
-    [amount, product]
-  );
   const isLoggedIn = useMemo(() => auth.isLoggedIn(), []);
+
+  const price = product.price * amount;
+  const salesPrice = product.salesPrice ? product.salesPrice * amount : null;
 
   const handleAmountInput = (changed) => {
     setAmount(changed);

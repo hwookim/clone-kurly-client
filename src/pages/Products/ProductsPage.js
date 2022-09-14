@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 import ProductListItem from '../../components/ProductListItem';
@@ -10,10 +10,7 @@ import './ProductsPage.scss';
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const isDESC = useMemo(
-    () => searchParams.get('order') === 'desc',
-    [searchParams]
-  );
+  const isDESC = searchParams.get('order') === 'desc';
 
   const orderProducts = useCallback(
     (isDESC) => (products) => {

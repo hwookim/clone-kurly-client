@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import useQuery from '../../hooks/useQuery';
@@ -9,8 +9,9 @@ import './Category.scss';
 export default function Category() {
   const categories = useQuery('category', () => apis.categories.getAll());
   const [hoveredCategory, setHoveredCategory] = useState(-1);
-  const isHovered = useMemo(() => hoveredCategory !== -1, [hoveredCategory]);
   const dropdownRef = useRef(null);
+
+  const isHovered = hoveredCategory !== -1;
 
   const renderSubCategories = useCallback(() => {
     const subCategories = categories.find(
@@ -39,6 +40,7 @@ export default function Category() {
   const handleMouseEnter = (id) => () => {
     setHoveredCategory(id);
   };
+
   const handleMouseLeave = () => {
     setHoveredCategory(-1);
   };

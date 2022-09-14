@@ -1,13 +1,10 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './UserButtons.scss';
 
 export default function UserButtons({ isSticky }) {
-  const className = useMemo(
-    () => 'user-buttons' + (isSticky ? '--sticky' : ''),
-    [isSticky]
-  );
+  const className = 'user-buttons' + (isSticky ? '--sticky' : '');
 
   return (
     <div className={className}>
