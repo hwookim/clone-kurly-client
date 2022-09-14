@@ -13,7 +13,7 @@ export default function Banner() {
     ref: bannerRef,
     current,
     moveCarousel,
-  } = useCarousel({ infinite: true });
+  } = useCarousel({ isInfinite: true });
   const [isHover, setIsHover] = useState(false);
 
   useQuery('promotinos', () => apis.promotions.getAll(), {

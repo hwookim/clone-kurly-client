@@ -136,7 +136,7 @@ export default function BasketsPage() {
                 <BasketItem
                   key={basket.id}
                   basket={basket}
-                  check={selected.includes(basket.id)}
+                  checked={selected.includes(basket.id)}
                   onChangeAmount={handleAmountInput}
                   onSelect={handleSelect}
                   onRemove={handleRemove}

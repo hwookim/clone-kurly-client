@@ -10,7 +10,7 @@ import './BasketItem.scss';
 
 export default function BasketItem({
   basket,
-  check,
+  checked,
   onChangeAmount,
   onSelect,
   onRemove,
@@ -39,7 +39,7 @@ export default function BasketItem({
 
   return (
     <li className="basket-item">
-      <Checkbox value={check} onChange={handleSelect} />
+      <Checkbox value={checked} onChange={handleSelect} />
       <Link to={`/products/${product.id}`} className="basket-item__thumbnail">
         <img src={product.thumbnail} alt={product.title} />
       </Link>
