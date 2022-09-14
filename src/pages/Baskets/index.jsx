@@ -132,9 +132,9 @@ export default function BasketsPage() {
                 장바구니에 담긴 상품이 없습니다.
               </li>
             ) : (
-              baskets.map((basket, index) => (
+              baskets.map((basket) => (
                 <BasketItem
-                  key={(basket.id, index)}
+                  key={basket.id}
                   basket={basket}
                   check={selected.includes(basket.id)}
                   onChangeAmount={handleAmountInput}

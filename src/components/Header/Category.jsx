@@ -25,7 +25,7 @@ export default function Category() {
       <div className="category__sub-dropdown" style={{ height }}>
         {subCategories.map(({ id, name }) => (
           <Link
-            key={name + id}
+            key={id}
             to={`/products?category=${id}`}
             className="category__sub-dropdown__item"
             data-id={id}
@@ -51,7 +51,7 @@ export default function Category() {
       <div className="category__dropdown" ref={dropdownRef}>
         {categories?.map(({ id, name }, index) => (
           <Link
-            key={(id, index)}
+            key={id}
             to={`/products?category=${id}`}
             className={
               'category__dropdown__item ' + (hoveredCategory === id && 'active')
