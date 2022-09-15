@@ -1,7 +1,7 @@
 @import '../../styles/variables.scss';
 
 .products {
-  margin: 30px auto auto;
+  margin: 30px auto;
   width: 1050px;
 
   .category-name {
@@ -49,6 +49,33 @@
 
       img {
         height: 435px;
+      }
+    }
+  }
+
+  .page-list {
+    display: flex;
+    justify-content: center;
+    margin-top: 36px;
+
+    &-item {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgb(221, 221, 221);
+      border-left: none;
+      font-size: 14px;
+      cursor: pointer;
+
+      &:first-child {
+        border-left: 1px solid rgb(221, 221, 221);
+      }
+
+      &.active {
+        background-color: rgb(247, 247, 247);
+        color: rgb(95, 0, 128);
       }
     }
   }

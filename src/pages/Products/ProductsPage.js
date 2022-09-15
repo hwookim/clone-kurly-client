@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useCallback, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import ProductListItem from '../../components/ProductListItem';
 
@@ -12,6 +12,8 @@ export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryId = searchParams.get('category');
   const isDESC = searchParams.get('order') === 'desc';
+  const pages = [...Array(TOTAL_PAGE).keys()].map((no) => no + 1);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const orderProducts = useCallback(
     (isDESC) => (products) => {
@@ -71,6 +73,31 @@ export default function ProductsPage() {
           </div>
         ))}
       </div>
+      <div className="page-list">
+        <Link to="" className="page-list-item material-symbols-outlined">
+          keyboard_double_arrow_left
+        </Link>
+        <Link to="" className="page-list-item material-symbols-outlined">
+          chevron_left
+        </Link>
+        {pages.map((no) => (
+          <Link
+            key={no}
+            to=""
+            className={'page-list-item ' + (currentPage === no ? 'active' : '')}
+          >
+            {no}
+          </Link>
+        ))}
+        <Link to="" className="page-list-item material-symbols-outlined">
+          chevron_right
+        </Link>
+        <Link to="" className="page-list-item material-symbols-outlined">
+          double_arrow
+        </Link>
+      </div>
     </div>
   );
 }
+
+const TOTAL_PAGE = 10;
