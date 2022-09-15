@@ -16,22 +16,12 @@ export default function ProductsPage() {
   const isDESC = searchParams.get('order') === 'desc';
   const pages = [...Array(totalPage).keys()].map((no) => no + 1);
 
-  const orderProducts = useCallback(
-    (isDESC) => (products) => {
-      return products.sort((a, b) =>
-        isDESC ? b.salesPrice - a.salesPrice : a.salesPrice - b.salesPrice
-      );
-    },
-    []
-  );
-
   const products = useQuery(
     `/products/${searchParams.toString()}`,
     () => apis.products.getAll(searchParams),
     {
       initialData: [],
       onSuccess: (result) => {
-        orderProducts(isDESC)(result.data);
         setTotalPage(result.meta.pagenation.total_page);
       },
       onFail: console.log,
