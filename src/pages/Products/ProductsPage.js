@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import ProductListItem from '../../components/ProductListItem';
 
@@ -10,36 +10,62 @@ import './ProductsPage.scss';
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [totalPage, setTotalPage] = useState(1);
+  const currentPage = parseInt(searchParams.get('page'));
+  const categoryId = searchParams.get('category');
   const isDESC = searchParams.get('order') === 'desc';
-
-  const orderProducts = useCallback(
-    (isDESC) => (products) => {
-      return products.sort((a, b) =>
-        isDESC ? b.salesPrice - a.salesPrice : a.salesPrice - b.salesPrice
-      );
-    },
-    []
-  );
+  const pages = [...Array(totalPage).keys()].map((no) => no + 1);
 
   const products = useQuery(
     `/products/${searchParams.toString()}`,
     () => apis.products.getAll(searchParams),
     {
       initialData: [],
-      onSuccess: orderProducts(isDESC),
+      onSuccess: (result) => {
+        setTotalPage(result.meta.pagenation.total_page);
+      },
     }
   );
+
   const category = useQuery(
-    `/categories/${searchParams.get('category')}`,
-    () => apis.categories.get(searchParams.get('category')),
+    `/categories/${categoryId}`,
+    () => apis.categories.get(categoryId),
     { initialData: { name: '카테고리' } }
   );
 
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [searchParams]);
+
   const handleClickOrder = (orderType) => () => {
     setSearchParams({
-      category: searchParams.get('category'),
+      category: categoryId,
       order: orderType,
     });
+  };
+
+  const onClickPageLink = (index) => (event) => {
+    event.preventDefault();
+    if (currentPage === index) return;
+
+    searchParams.set('page', index);
+    setSearchParams(searchParams);
+  };
+
+  const onClickPrevPageLink = (event) => {
+    event.preventDefault();
+    if (currentPage === 1) return;
+
+    searchParams.set('page', currentPage - 1);
+    setSearchParams(searchParams);
+  };
+
+  const onClickNextPageLink = (event) => {
+    event.preventDefault();
+    if (currentPage === totalPage) return;
+
+    searchParams.set('page', currentPage + 1);
+    setSearchParams(searchParams);
   };
 
   return (
@@ -69,6 +95,46 @@ export default function ProductsPage() {
             <ProductListItem product={product} />
           </div>
         ))}
+      </div>
+      <div className="page-list">
+        <Link
+          to=""
+          className="page-list-item material-symbols-outlined"
+          onClick={onClickPageLink(1)}
+        >
+          keyboard_double_arrow_left
+        </Link>
+        <Link
+          to=""
+          className="page-list-item material-symbols-outlined"
+          onClick={onClickPrevPageLink}
+        >
+          chevron_left
+        </Link>
+        {pages.map((no) => (
+          <Link
+            key={no}
+            to=""
+            className={'page-list-item ' + (currentPage === no ? 'active' : '')}
+            onClick={onClickPageLink(no)}
+          >
+            {no}
+          </Link>
+        ))}
+        <Link
+          to=""
+          className="page-list-item material-symbols-outlined"
+          onClick={onClickNextPageLink}
+        >
+          chevron_right
+        </Link>
+        <Link
+          to=""
+          className="page-list-item material-symbols-outlined"
+          onClick={onClickPageLink(totalPage)}
+        >
+          double_arrow
+        </Link>
       </div>
     </div>
   );

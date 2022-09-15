@@ -6,12 +6,12 @@ const categories = {
   },
 
   async getAll() {
-    const result = await request.get('/categories');
-    return result
+    const { data } = await request.get('/categories');
+    return data
       .filter((category) => !category.parent_id)
       .map((category) => ({
         ...category,
-        sub_categories: result.filter(
+        sub_categories: data.filter(
           ({ parent_id }) => parent_id === category.id
         ),
       }));

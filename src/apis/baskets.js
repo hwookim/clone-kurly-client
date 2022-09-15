@@ -17,7 +17,7 @@ const baskets = {
     const isGuest = !auth.isLoggedIn();
     const baskets = isGuest
       ? localstorage.getBaskets()
-      : await request.get('/baskets');
+      : await request.get('/baskets').then(({ data }) => data);
 
     const getProductPromise = baskets.map(({ product_id }) =>
       apis.products.get(product_id)
