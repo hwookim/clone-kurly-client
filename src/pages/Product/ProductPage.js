@@ -8,6 +8,7 @@ import apis from '../../apis';
 import throttle from '../../utils/throttle';
 
 import './ProductPage.scss';
+import localstorage from '../../utils/localstorage';
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -18,6 +19,9 @@ export default function ProductPage() {
       description: '',
       price: 0,
       salesPrice: 0,
+    },
+    onSuccess: (data) => {
+      localstorage.addRecentProducts(id, data.thumbnail);
     },
   });
   const [amount, setAmount] = useState(1);
