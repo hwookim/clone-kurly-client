@@ -10,10 +10,11 @@ import './ProductsPage.scss';
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [totalPage, setTotalPage] = useState(1);
+  const currentPage = parseInt(searchParams.get('page'));
   const categoryId = searchParams.get('category');
   const isDESC = searchParams.get('order') === 'desc';
-  const pages = [...Array(TOTAL_PAGE).keys()].map((no) => no + 1);
-  const [currentPage, setCurrentPage] = useState(1);
+  const pages = [...Array(totalPage).keys()].map((no) => no + 1);
 
   const orderProducts = useCallback(
     (isDESC) => (products) => {
@@ -29,9 +30,14 @@ export default function ProductsPage() {
     () => apis.products.getAll(searchParams),
     {
       initialData: [],
-      onSuccess: orderProducts(isDESC),
+      onSuccess: (result) => {
+        orderProducts(isDESC)(result.data);
+        setTotalPage(result.meta.pagenation.total_page);
+      },
+      onFail: console.log,
     }
   );
+
   const category = useQuery(
     `/categories/${categoryId}`,
     () => apis.categories.get(categoryId),
@@ -49,21 +55,23 @@ export default function ProductsPage() {
     event.preventDefault();
     if (currentPage === index) return;
 
-    setCurrentPage(index);
+    searchParams.set('page', index);
+    setSearchParams(searchParams);
   };
 
   const onClickPrevPageLink = (event) => {
     event.preventDefault();
     if (currentPage === 1) return;
 
-    setCurrentPage((prev) => prev - 1);
+    searchParams.set('page', currentPage - 1);
+    setSearchParams(searchParams);
   };
 
   const onClickNextPageLink = (event) => {
     event.preventDefault();
-    if (currentPage === TOTAL_PAGE) return;
+    if (currentPage === totalPage) return;
 
-    setCurrentPage((prev) => prev + 1);
+    searchParams.set('page', currentPage + 1);
   };
 
   return (
@@ -129,7 +137,7 @@ export default function ProductsPage() {
         <Link
           to=""
           className="page-list-item material-symbols-outlined"
-          onClick={onClickPageLink(TOTAL_PAGE)}
+          onClick={onClickPageLink(totalPage)}
         >
           double_arrow
         </Link>
@@ -137,5 +145,3 @@ export default function ProductsPage() {
     </div>
   );
 }
-
-const TOTAL_PAGE = 10;
