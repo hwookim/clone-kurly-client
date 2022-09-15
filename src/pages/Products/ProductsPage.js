@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import ProductListItem from '../../components/ProductListItem';
@@ -33,6 +33,10 @@ export default function ProductsPage() {
     () => apis.categories.get(categoryId),
     { initialData: { name: '카테고리' } }
   );
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 });
+  }, [searchParams]);
 
   const handleClickOrder = (orderType) => () => {
     setSearchParams({
