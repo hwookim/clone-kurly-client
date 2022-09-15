@@ -10,6 +10,7 @@ import './ProductsPage.scss';
 
 export default function ProductsPage() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const categoryId = searchParams.get('category');
   const isDESC = searchParams.get('order') === 'desc';
 
   const orderProducts = useCallback(
@@ -30,14 +31,14 @@ export default function ProductsPage() {
     }
   );
   const category = useQuery(
-    `/categories/${searchParams.get('category')}`,
-    () => apis.categories.get(searchParams.get('category')),
+    `/categories/${categoryId}`,
+    () => apis.categories.get(categoryId),
     { initialData: { name: '카테고리' } }
   );
 
   const handleClickOrder = (orderType) => () => {
     setSearchParams({
-      category: searchParams.get('category'),
+      category: categoryId,
       order: orderType,
     });
   };
