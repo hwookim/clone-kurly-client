@@ -24,7 +24,6 @@ export default function ProductsPage() {
       onSuccess: (result) => {
         setTotalPage(result.meta.pagenation.total_page);
       },
-      onFail: console.log,
     }
   );
 
