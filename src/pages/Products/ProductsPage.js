@@ -62,6 +62,7 @@ export default function ProductsPage() {
     if (currentPage === totalPage) return;
 
     searchParams.set('page', currentPage + 1);
+    setSearchParams(searchParams);
   };
 
   return (
