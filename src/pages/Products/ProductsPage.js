@@ -45,6 +45,27 @@ export default function ProductsPage() {
     });
   };
 
+  const onClickPageLink = (index) => (event) => {
+    event.preventDefault();
+    if (currentPage === index) return;
+
+    setCurrentPage(index);
+  };
+
+  const onClickPrevPageLink = (event) => {
+    event.preventDefault();
+    if (currentPage === 1) return;
+
+    setCurrentPage((prev) => prev - 1);
+  };
+
+  const onClickNextPageLink = (event) => {
+    event.preventDefault();
+    if (currentPage === TOTAL_PAGE) return;
+
+    setCurrentPage((prev) => prev + 1);
+  };
+
   return (
     <div className="products">
       <h3 className="category-name">{category.name}</h3>
@@ -74,10 +95,18 @@ export default function ProductsPage() {
         ))}
       </div>
       <div className="page-list">
-        <Link to="" className="page-list-item material-symbols-outlined">
+        <Link
+          to=""
+          className="page-list-item material-symbols-outlined"
+          onClick={onClickPageLink(1)}
+        >
           keyboard_double_arrow_left
         </Link>
-        <Link to="" className="page-list-item material-symbols-outlined">
+        <Link
+          to=""
+          className="page-list-item material-symbols-outlined"
+          onClick={onClickPrevPageLink}
+        >
           chevron_left
         </Link>
         {pages.map((no) => (
@@ -85,14 +114,23 @@ export default function ProductsPage() {
             key={no}
             to=""
             className={'page-list-item ' + (currentPage === no ? 'active' : '')}
+            onClick={onClickPageLink(no)}
           >
             {no}
           </Link>
         ))}
-        <Link to="" className="page-list-item material-symbols-outlined">
+        <Link
+          to=""
+          className="page-list-item material-symbols-outlined"
+          onClick={onClickNextPageLink}
+        >
           chevron_right
         </Link>
-        <Link to="" className="page-list-item material-symbols-outlined">
+        <Link
+          to=""
+          className="page-list-item material-symbols-outlined"
+          onClick={onClickPageLink(TOTAL_PAGE)}
+        >
           double_arrow
         </Link>
       </div>
