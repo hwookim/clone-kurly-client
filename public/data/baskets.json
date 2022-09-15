@@ -1,12 +1,14 @@
-[
-  {
-    "id": 0,
-    "product_id": 1,
-    "amount": 1
-  },
-  {
-    "id": 1,
-    "product_id": 2,
-    "amount": 3
-  }
-]
+{
+  "data": [
+    {
+      "id": 0,
+      "product_id": 1,
+      "amount": 1
+    },
+    {
+      "id": 1,
+      "product_id": 2,
+      "amount": 3
+    }
+  ]
+}
