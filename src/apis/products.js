@@ -17,14 +17,17 @@ const convertProduct = (data) => {
 
 const products = {
   async get(id) {
-    const data = await request.get(`/products/${id}`);
+    const { data } = await request.get(`/products/${id}`);
     return convertProduct(data);
   },
 
   async getAll(searchParams) {
     const query = searchParams ? `?${searchParams?.toString()}` : '';
-    const data = await request.get('/products' + query);
-    return data.map((product) => convertProduct(product));
+    const result = await request.get('/products' + query);
+    return {
+      ...result,
+      data: result.data.map((product) => convertProduct(product)),
+    };
   },
 };
 

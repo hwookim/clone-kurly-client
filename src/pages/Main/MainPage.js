@@ -23,7 +23,7 @@ export default function MainPage() {
   );
 
   useQuery('products', () => apis.products.getAll(), {
-    onSuccess: setProducts,
+    onSuccess: ({ data }) => setProducts(data),
   });
 
   const handleClickLeftButton = () => {

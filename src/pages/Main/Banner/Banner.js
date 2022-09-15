@@ -18,6 +18,7 @@ export default function Banner() {
   const [isHover, setIsHover] = useState(false);
 
   useQuery('promotinos', () => apis.promotions.getAll(), {
+    initialData: [],
     onSuccess: setPromotions,
   });
 
