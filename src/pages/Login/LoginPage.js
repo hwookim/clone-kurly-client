@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Input from '../../components/Input';
 
 import apis from '../../apis';
+import { KAKAO_AUTH_URL } from '../../config';
 
 import './LoginPage.scss';
 
@@ -40,6 +41,10 @@ export default function LoginPage() {
       .catch((err) => alert(err));
   };
 
+  const handleClickKakao = () => {
+    window.location.href = KAKAO_AUTH_URL;
+  };
+
   return (
     <div className="login-page">
       <div className="login-title">로그인</div>
@@ -65,6 +70,9 @@ export default function LoginPage() {
         <Link to="/signup" className="login-btn">
           회원가입
         </Link>
+        <button className="login-btn-kakao" onClick={handleClickKakao}>
+          카카오톡 로그인
+        </button>
       </form>
     </div>
   );
