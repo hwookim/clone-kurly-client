@@ -16,7 +16,7 @@ export default function Category() {
   const renderSubCategories = () => {
     const subCategories = categories.find(
       (category) => category.id === hoveredCategory
-    )?.sub_categories;
+    )?.subCategories;
     if (!subCategories) {
       return;
     }

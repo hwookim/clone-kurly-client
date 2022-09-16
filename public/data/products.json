@@ -90,7 +90,7 @@
   ],
   "meta": {
     "pagenation": {
-      "total_page": 10
+      "totalPage": 10
     }
   }
 }
