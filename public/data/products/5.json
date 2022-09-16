@@ -1,0 +1,10 @@
+{
+  "data": {
+    "id": 5,
+    "title": "ㅁㅁㅁㅃㅂ",
+    "thumbnail": "https://cdn.pixabay.com/photo/2021/09/05/16/48/rapeseed-6599950_1280.jpg",
+    "description": "테스트를 위한 가짜상품입니다.",
+    "price": 10000,
+    "discount": 0.3
+  }
+}

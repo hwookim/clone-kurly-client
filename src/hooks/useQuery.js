@@ -11,7 +11,7 @@ export default function useQuery(
 
   useEffect(() => {
     api().then((result) => {
-      setData(result.data || result);
+      setData(result?.data || result);
       onSuccess(result);
     });
   }, [key]);

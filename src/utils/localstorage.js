@@ -1,5 +1,6 @@
 const STORAGE_KEYS = {
   BASKETS: 'baskets',
+  RECENT: 'recent',
 };
 
 const localstorage = {
@@ -63,6 +64,32 @@ const localstorage = {
     const targetIndex = baskets.findIndex((basket) => basket.id === id);
     baskets.splice(targetIndex, 1);
     localstorage.set(STORAGE_KEYS.BASKETS, baskets);
+  },
+
+  getRecentProducts() {
+    return localstorage.get(STORAGE_KEYS.RECENT) || [];
+  },
+
+  addRecentProducts(id, thumbnail) {
+    let products = localstorage.getRecentProducts();
+
+    const isExist = products.some((product) => product.id === id);
+    if (isExist) localstorage.removeRecentProduct(id);
+
+    products = localstorage.getRecentProducts();
+    products.unshift({ id, thumbnail });
+    localstorage.set(STORAGE_KEYS.RECENT, products);
+  },
+
+  removeRecentProduct(id) {
+    const products = localstorage.getRecentProducts();
+    if (products.length === 1) {
+      localstorage.set(STORAGE_KEYS.RECENT, []);
+      return;
+    }
+    const targetIndex = products.findIndex((product) => product.id === id);
+    products.splice(targetIndex, 1);
+    localstorage.set(STORAGE_KEYS.RECENT, products);
   },
 };
 

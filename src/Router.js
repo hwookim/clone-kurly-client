@@ -14,15 +14,17 @@ const Router = ({ user }) => {
   return (
     <BrowserRouter>
       <Header username={user?.name} />
-      <Routes>
-        <Route path="/" element={<MainPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/products" element={<ProductsPage />} />
-        <Route path="/products/:id" element={<ProductPage />} />
-        <Route path="/baskets" element={<BasketsPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <div className="layout">
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/products" element={<ProductsPage />} />
+          <Route path="/products/:id" element={<ProductPage />} />
+          <Route path="/baskets" element={<BasketsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 };

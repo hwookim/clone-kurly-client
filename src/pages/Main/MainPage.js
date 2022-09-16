@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 
+import RecentProducts from '../../components/RecentProducts';
 import ProductListItem from '../../components/ProductListItem';
 import Banner from './Banner';
 
@@ -69,6 +70,7 @@ export default function MainPage() {
           )}
         </div>
       </section>
+      <RecentProducts startTop="544" />
     </>
   );
 }

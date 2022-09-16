@@ -51,7 +51,8 @@ body * {
   font-family: 'Noto Sans', 'malgun gothic', AppleGothic, dotum, sans-serif;
 }
 
-#root {
+.layout {
+  position: relative;
   padding-bottom: 80px;
 }
 

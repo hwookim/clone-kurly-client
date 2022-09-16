@@ -8,6 +8,8 @@ import apis from '../../apis';
 import throttle from '../../utils/throttle';
 
 import './ProductPage.scss';
+import localstorage from '../../utils/localstorage';
+import RecentProducts from '../../components/RecentProducts';
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -18,6 +20,9 @@ export default function ProductPage() {
       description: '',
       price: 0,
       salesPrice: 0,
+    },
+    onSuccess: (data) => {
+      localstorage.addRecentProducts(id, data.thumbnail);
     },
   });
   const [amount, setAmount] = useState(1);
@@ -71,6 +76,7 @@ export default function ProductPage() {
           장바구니 담기
         </button>
       </div>
+      <RecentProducts startTop="70" />
     </article>
   );
 }
