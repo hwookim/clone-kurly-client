@@ -1,0 +1,10 @@
+{
+  "data": {
+    "id": 6,
+    "title": "ㅁㅁㅁㅃㅂ",
+    "thumbnail": "https://cdn.pixabay.com/photo/2022/09/08/20/58/sea-7441916_1280.jpg",
+    "description": "테스트를 위한 가짜상품입니다.",
+    "price": 10000,
+    "discount": 0.3
+  }
+}

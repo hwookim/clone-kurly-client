@@ -1,0 +1,10 @@
+{
+  "data": {
+    "id": 0,
+    "title": "ㅁㄴㅇㄹㅇㄴㄹㅁ",
+    "thumbnail": "https://cdn.pixabay.com/photo/2022/09/09/11/33/silver-wattle-7442792_1280.jpg",
+    "description": "테스트를 위한 가짜상품입니다.",
+    "price": 10000,
+    "discount": 0.3
+  }
+}

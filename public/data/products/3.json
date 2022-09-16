@@ -1,0 +1,10 @@
+{
+  "data": {
+    "id": 3,
+    "title": "ㅌㅌㅌ",
+    "thumbnail": "https://cdn.pixabay.com/photo/2020/05/12/04/29/snake-5161215_1280.jpg",
+    "description": "테스트를 위한 가짜상품입니다.",
+    "price": 10000,
+    "discount": 0.3
+  }
+}
