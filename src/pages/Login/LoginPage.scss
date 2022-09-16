@@ -30,5 +30,12 @@
   &-btn {
     @include primary-btn;
     height: 54px;
+
+    &-kakao {
+      @include primary-btn;
+      height: 54px;
+      background-color: #f7e600;
+      color: rgb(0, 0, 0);
+    }
   }
 }
