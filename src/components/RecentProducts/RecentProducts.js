@@ -28,7 +28,7 @@ export default function RecentProducts({ startTop }) {
   }, []);
 
   useEffect(() => {
-    if (!containerRef) return;
+    if (!containerRef.current) return;
 
     const viewportY = containerRef.current.getBoundingClientRect().y;
     if (viewportY >= 150 && !isMoving) {
