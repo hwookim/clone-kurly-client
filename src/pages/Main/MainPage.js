@@ -70,7 +70,7 @@ export default function MainPage() {
           )}
         </div>
       </section>
-      <RecentProducts />
+      <RecentProducts startTop="544" />
     </>
   );
 }

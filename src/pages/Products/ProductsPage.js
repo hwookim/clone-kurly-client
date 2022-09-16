@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 
 import ProductListItem from '../../components/ProductListItem';
+import RecentProducts from '../../components/RecentProducts';
 
 import useQuery from '../../hooks/useQuery';
 import apis from '../../apis';
@@ -136,6 +137,7 @@ export default function ProductsPage() {
           double_arrow
         </Link>
       </div>
+      <RecentProducts startTop="82" />
     </div>
   );
 }

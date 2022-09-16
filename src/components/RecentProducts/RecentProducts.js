@@ -1,15 +1,51 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import localstorage from '../../utils/localstorage';
 
 import './RecentProducts.scss';
 
-export default function RecentProducts() {
+export default function RecentProducts({ startTop }) {
   const products = localstorage.getRecentProducts();
+  const containerRef = useRef(null);
+  const [scrollY, setScrollY] = useState(0);
+  const [containerTop, setContainerTop] = useState(startTop);
+  const [pivot, setPiviot] = useState(0);
+  const [isMoving, setIsMoving] = useState(false);
   const [listTop, setListTop] = useState(0);
   const isTop = listTop >= 0;
   const isBottom = listTop < (products.length - 3) * -80;
+
+  const handleScroll = () => {
+    setScrollY(window.pageYOffset);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!containerRef) return;
+
+    const viewportY = containerRef.current.getBoundingClientRect().y;
+    if (viewportY >= 150 && !isMoving) {
+      setPiviot(scrollY);
+      return;
+    }
+    setIsMoving(true);
+    if (scrollY < pivot) {
+      setIsMoving(false);
+      setContainerTop(startTop);
+      return;
+    }
+
+    const viewportCenterTop =
+      scrollY + window.innerHeight * 0.5 - containerRef.current.clientHeight;
+    setContainerTop(viewportCenterTop);
+  }, [isMoving, pivot, scrollY, startTop]);
 
   const onClickUpBtn = () => {
     if (isTop) return;
@@ -36,7 +72,11 @@ export default function RecentProducts() {
   if (products.length === 0) return <></>;
 
   return (
-    <nav className="recent-products">
+    <nav
+      className="recent-products"
+      style={{ top: `${containerTop}px` }}
+      ref={containerRef}
+    >
       <span
         className={'icon material-symbols-outlined ' + (isTop ? '' : 'active')}
         onClick={onClickUpBtn}
