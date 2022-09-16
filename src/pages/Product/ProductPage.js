@@ -9,6 +9,7 @@ import throttle from '../../utils/throttle';
 
 import './ProductPage.scss';
 import localstorage from '../../utils/localstorage';
+import RecentProducts from '../../components/RecentProducts';
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -75,6 +76,7 @@ export default function ProductPage() {
           장바구니 담기
         </button>
       </div>
+      <RecentProducts startTop="70" />
     </article>
   );
 }
