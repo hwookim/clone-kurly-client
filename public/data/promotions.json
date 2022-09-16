@@ -2,22 +2,22 @@
   "data": [
     {
       "id": 0,
-      "img_src": "https://cdn.pixabay.com/photo/2022/06/29/17/47/coffee-7292250_960_720.jpg",
+      "src": "https://cdn.pixabay.com/photo/2022/06/29/17/47/coffee-7292250_960_720.jpg",
       "link": "/"
     },
     {
       "id": 1,
-      "img_src": "https://cdn.pixabay.com/photo/2018/03/06/19/25/yacht-3204310_960_720.jpg",
+      "src": "https://cdn.pixabay.com/photo/2018/03/06/19/25/yacht-3204310_960_720.jpg",
       "link": "/"
     },
     {
       "id": 2,
-      "img_src": "https://cdn.pixabay.com/photo/2022/08/26/00/07/bird-7411459_960_720.jpg",
+      "src": "https://cdn.pixabay.com/photo/2022/08/26/00/07/bird-7411459_960_720.jpg",
       "link": "/"
     },
     {
       "id": 3,
-      "img_src": "https://cdn.pixabay.com/photo/2021/09/06/16/45/nature-6602056_960_720.jpg",
+      "src": "https://cdn.pixabay.com/photo/2021/09/06/16/45/nature-6602056_960_720.jpg",
       "link": "/"
     }
   ]

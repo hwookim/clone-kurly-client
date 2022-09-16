@@ -2,105 +2,105 @@
   "data": [
     {
       "id": 1,
-      "parent_id": null,
+      "parentId": null,
       "name": "신선식품",
       "createdAt": "2022-09-08T01:51:25.000Z",
       "updatedAt": "2022-09-08T01:51:25.000Z"
     },
     {
       "id": 2,
-      "parent_id": null,
+      "parentId": null,
       "name": "과일",
       "createdAt": "2022-09-08T01:51:25.000Z",
       "updatedAt": "2022-09-08T01:51:25.000Z"
     },
     {
       "id": 3,
-      "parent_id": null,
+      "parentId": null,
       "name": "냉동식품",
       "createdAt": "2022-09-08T01:51:25.000Z",
       "updatedAt": "2022-09-08T01:51:25.000Z"
     },
     {
       "id": 4,
-      "parent_id": null,
+      "parentId": null,
       "name": "냉장식품",
       "createdAt": "2022-09-08T01:51:25.000Z",
       "updatedAt": "2022-09-08T01:51:25.000Z"
     },
     {
       "id": 5,
-      "parent_id": 1,
+      "parentId": 1,
       "name": "고기",
       "createdAt": "2022-09-08T01:52:59.000Z",
       "updatedAt": "2022-09-08T01:52:59.000Z"
     },
     {
       "id": 6,
-      "parent_id": 1,
+      "parentId": 1,
       "name": "야채",
       "createdAt": "2022-09-08T01:52:59.000Z",
       "updatedAt": "2022-09-08T01:52:59.000Z"
     },
     {
       "id": 7,
-      "parent_id": 1,
+      "parentId": 1,
       "name": "과일",
       "createdAt": "2022-09-08T01:52:59.000Z",
       "updatedAt": "2022-09-08T01:52:59.000Z"
     },
     {
       "id": 8,
-      "parent_id": 1,
+      "parentId": 1,
       "name": "해산물",
       "createdAt": "2022-09-08T01:52:59.000Z",
       "updatedAt": "2022-09-08T01:52:59.000Z"
     },
     {
       "id": 9,
-      "parent_id": 2,
+      "parentId": 2,
       "name": "친환경",
       "createdAt": "2022-09-08T01:52:59.000Z",
       "updatedAt": "2022-09-08T01:52:59.000Z"
     },
     {
       "id": 10,
-      "parent_id": 2,
+      "parentId": 2,
       "name": "유기농",
       "createdAt": "2022-09-08T01:52:59.000Z",
       "updatedAt": "2022-09-08T01:52:59.000Z"
     },
     {
       "id": 11,
-      "parent_id": 3,
+      "parentId": 3,
       "name": "밀키트",
       "createdAt": "2022-09-08T01:52:59.000Z",
       "updatedAt": "2022-09-08T01:52:59.000Z"
     },
     {
       "id": 12,
-      "parent_id": 3,
+      "parentId": 3,
       "name": "아무거나",
       "createdAt": "2022-09-08T01:52:59.000Z",
       "updatedAt": "2022-09-08T01:52:59.000Z"
     },
     {
       "id": 13,
-      "parent_id": 3,
+      "parentId": 3,
       "name": "대충쓰자",
       "createdAt": "2022-09-08T01:52:59.000Z",
       "updatedAt": "2022-09-08T01:52:59.000Z"
     },
     {
       "id": 14,
-      "parent_id": 4,
+      "parentId": 4,
       "name": "아",
       "createdAt": "2022-09-08T01:52:59.000Z",
       "updatedAt": "2022-09-08T01:52:59.000Z"
     },
     {
       "id": 15,
-      "parent_id": 4,
+      "parentId": 4,
       "name": "으아아아",
       "createdAt": "2022-09-08T01:52:59.000Z",
       "updatedAt": "2022-09-08T01:52:59.000Z"

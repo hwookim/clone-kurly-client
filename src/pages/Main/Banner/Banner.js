@@ -55,9 +55,9 @@ export default function Banner() {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        {promotions.map(({ id, img_src, link }, index) => (
+        {promotions.map(({ id, src, link }, index) => (
           <Link key={id + '' + index} to={link} className="img-wrapper">
-            <img src={img_src} alt={`banner-${id}`} className="img" />
+            <img src={src} alt={`banner-${id}`} className="img" />
           </Link>
         ))}
       </div>

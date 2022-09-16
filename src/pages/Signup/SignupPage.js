@@ -10,13 +10,13 @@ import './SignupPage.scss';
 
 export default function SignupPage() {
   const [values, setValues] = useState({
-    login_id: '',
+    loginId: '',
     password: '',
     passwordCheck: '',
     name: '',
   });
   const [messages, setMessages] = useState({
-    login_id: '',
+    loginId: '',
     password: '',
     passwordCheck: '',
     name: '',
@@ -95,14 +95,14 @@ export default function SignupPage() {
           onSubmit={handleSubmitForm}
         >
           <div className="signup-input">
-            <label htmlFor="login_id">
+            <label htmlFor="loginId">
               아이디<span className="point">*</span>
             </label>
             <Input
-              name="login_id"
+              name="loginId"
               type="text"
               placeholder="아이디를 입력해주세요"
-              warning={messages.login_id}
+              warning={messages.loginId}
             />
           </div>
           <div className="signup-input">

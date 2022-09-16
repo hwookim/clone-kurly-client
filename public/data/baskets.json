@@ -2,12 +2,12 @@
   "data": [
     {
       "id": 0,
-      "product_id": 1,
+      "productId": 1,
       "amount": 1
     },
     {
       "id": 1,
-      "product_id": 2,
+      "productId": 2,
       "amount": 3
     }
   ]

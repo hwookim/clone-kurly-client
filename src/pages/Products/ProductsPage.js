@@ -23,7 +23,7 @@ export default function ProductsPage() {
     {
       initialData: [],
       onSuccess: (result) => {
-        setTotalPage(result.meta.pagenation.total_page);
+        setTotalPage(result.meta.pagenation.totalPage);
       },
     }
   );
