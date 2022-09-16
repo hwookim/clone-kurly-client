@@ -26,6 +26,11 @@
     font-weight: 500;
   }
 
+  &-list-wrapper {
+    max-height: 210px;
+    overflow: hidden;
+  }
+
   &-list {
     display: flex;
     flex-direction: column;
