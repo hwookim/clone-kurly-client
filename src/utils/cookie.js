@@ -9,7 +9,6 @@ const cookie = {
     }
 
     document.cookie = cookieString;
-    console.log(document.cookie);
   },
 
   get(key) {
