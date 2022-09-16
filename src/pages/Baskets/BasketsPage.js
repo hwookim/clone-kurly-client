@@ -190,7 +190,7 @@ export default function BasketsPage() {
             <div className="total">
               <span>결제예정금액</span>
               <span>
-                <span className="total__price">
+                <span className="total-price">
                   {totalPrice.toLocaleString()}
                 </span>{' '}
                 원
