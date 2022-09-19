@@ -3,9 +3,8 @@ const cookie = {
     let cookieString = `${key}=${value}`;
     if (expires !== undefined) {
       const expiresDate = new Date();
-      cookieString = `${cookieString}; expires=${expiresDate.setDate(
-        expiresDate.getDate() + expires
-      )}`;
+      expiresDate.setTime(expiresDate.setDate(expiresDate.getDate() + expires));
+      cookieString = `${cookieString}; expires=${expiresDate}; path=/;`;
     }
 
     document.cookie = cookieString;
