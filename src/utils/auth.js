@@ -2,7 +2,7 @@ import cookie from './cookie';
 
 const auth = {
   set(value) {
-    cookie.set('accessToken', value);
+    cookie.set('accessToken', value, 7);
   },
 
   get() {
