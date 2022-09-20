@@ -10,6 +10,7 @@ import ProductsPage from './pages/Products';
 import ProductPage from './pages/Product';
 import BasketsPage from './pages/Baskets';
 import NotFoundPage from './pages/NotFound';
+import Footer from './components/Footer';
 
 const Router = ({ user }) => {
   return (
@@ -27,6 +28,7 @@ const Router = ({ user }) => {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
+      <Footer />
     </BrowserRouter>
   );
 };
