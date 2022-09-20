@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import './KakaoMap.scss';
 
@@ -7,7 +7,7 @@ export default function KakaoMap() {
   const mapRef = useRef();
   const [map, setMap] = useState(null);
 
-  useEffect(() => {
+  const generateMap = useCallback(() => {
     if (!mapRef.current) return;
 
     const options = {
@@ -17,7 +17,7 @@ export default function KakaoMap() {
     setMap(new kakao.maps.Map(mapRef.current, options));
   }, [mapRef]);
 
-  useEffect(() => {
+  const generateMarker = useCallback(() => {
     const markerPosition = new kakao.maps.LatLng(
       COMPANY_POSITION.LAT,
       COMPANY_POSITION.LNG
@@ -26,7 +26,11 @@ export default function KakaoMap() {
       position: markerPosition,
     });
     marker.setMap(map);
-  });
+  }, [map]);
+
+  useEffect(() => generateMap(), [generateMap]);
+
+  useEffect(() => generateMarker(), [generateMarker]);
 
   return <div className="kakao-map" ref={mapRef} />;
 }
