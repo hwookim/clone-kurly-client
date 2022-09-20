@@ -70,6 +70,7 @@ export default function CreateProduct() {
       <div>
         <button
           className="thumbnail-input-btn"
+          type="button"
           onClick={handleClickThumbnailInput}
         >
           {thumbnail ? (
