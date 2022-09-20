@@ -96,7 +96,7 @@ export default function CreateProduct() {
             상품명<span className="point">*</span>
           </label>
           <div className="create-input-wrapper">
-            <Input name="title" value={title} />
+            <Input name="title" defaultValue={title} />
           </div>
         </div>
         <div className="create-input">
@@ -104,7 +104,7 @@ export default function CreateProduct() {
             상품 설명
           </label>
           <div className="create-input-wrapper">
-            <Input name="description" value={description} />
+            <Input name="description" defaultValue={description} />
           </div>
         </div>
         <div className="create-input">
@@ -116,7 +116,7 @@ export default function CreateProduct() {
               className="number"
               type="number"
               name="price"
-              value={price}
+              defaultValue={price}
             />
           </div>
           <span className="create-input-unit">원</span>
@@ -130,7 +130,7 @@ export default function CreateProduct() {
               className="number"
               type="number"
               name="discount"
-              value={discount}
+              defaultValue={discount}
               onChange={handleChangeDiscount}
             />
           </div>
