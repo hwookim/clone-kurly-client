@@ -5,8 +5,16 @@ import Input from '../../components/Input';
 import './CreateProduct.scss';
 
 export default function CreateProduct() {
-  const [thumbnail, setThumbnail] = useState();
+  const [product, setProduct] = useState({
+    title: '',
+    description: '',
+    price: 0,
+    discount: 0,
+    thumbnail: '',
+  });
+  const { title, description, price, discount, thumbnail } = product;
   const imgInputRef = useRef(null);
+  const salesPrice = parseInt(price * (1 - discount / 100));
 
   const handleClickThumbnailInput = () => {
     imgInputRef.current?.click();
@@ -19,11 +27,45 @@ export default function CreateProduct() {
     }
 
     const imgURL = URL.createObjectURL(files[0]);
-    setThumbnail(imgURL);
+    setProduct((prev) => ({
+      ...prev,
+      thumbnail: imgURL,
+    }));
+  };
+
+  const handleChangeForm = (event) => {
+    const { name, value } = event.target;
+    if (name === 'thumbnail') return;
+
+    if (name === 'discount') return;
+
+    setProduct((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleChangeDiscount = (event) => {
+    const { value } = event.target;
+
+    const discount = value > 100 ? 100 : value < 0 ? 0 : value;
+
+    setProduct((prev) => ({
+      ...prev,
+      discount,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
   };
 
   return (
-    <div className="create-product">
+    <form
+      className="create-product"
+      onChange={handleChangeForm}
+      onSubmit={handleSubmit}
+    >
       <div>
         <button
           className="thumbnail-input-btn"
@@ -42,49 +84,68 @@ export default function CreateProduct() {
           type="file"
           accept="image/*"
           hidden
+          name="thumbnail"
           ref={imgInputRef}
           onChange={handleSelectThumbnail}
         />
       </div>
       <div className="right">
         <div className="create-input">
-          <label className="create-input-label">
+          <label className="create-input-label" htmlFor="title">
             상품명<span className="point">*</span>
           </label>
           <div className="create-input-wrapper">
-            <Input />
+            <Input name="title" value={title} />
           </div>
         </div>
         <div className="create-input">
-          <label className="create-input-label">상품 설명</label>
+          <label className="create-input-label" htmlFor="description">
+            상품 설명
+          </label>
           <div className="create-input-wrapper">
-            <Input />
+            <Input name="description" value={description} />
           </div>
         </div>
         <div className="create-input">
-          <label className="create-input-label">
+          <label className="create-input-label" htmlFor="price">
             상품 가격<span className="point">*</span>
           </label>
           <div className="create-input-wrapper">
-            <Input type="number" />
+            <Input
+              className="number"
+              type="number"
+              name="price"
+              value={price}
+            />
           </div>
           <span className="create-input-unit">원</span>
         </div>
         <div className="create-input">
-          <label className="create-input-label">할인율</label>
+          <label className="create-input-label" htmlFor="discount">
+            할인율
+          </label>
           <div className="create-input-wrapper">
-            <Input type="number" />
+            <Input
+              className="number"
+              type="number"
+              name="discount"
+              value={discount}
+              onChange={handleChangeDiscount}
+            />
           </div>
           <span className="create-input-unit">%</span>
         </div>
         <div className="sales-price">
-          할인 후 상품 금액 :<span className="sales-price-value">{0}</span>
+          할인 후 상품 금액 :
+          <span className="sales-price-value">
+            {salesPrice.toLocaleString()}
+          </span>
           <span className="sales-price-unit">원</span>
         </div>
         <button type="submit" variant="primary" className="submit-btn">
           상품 생성하기
         </button>
       </div>
-    </div>
+    </form>
   );
 }

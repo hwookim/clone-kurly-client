@@ -42,7 +42,7 @@
 
       &-label {
         width: 150px;
-        padding-top: 12px;
+        margin: auto 0;
 
         .point {
           color: rgb(238, 106, 123);
@@ -55,6 +55,10 @@
 
         input::-webkit-inner-spin-button {
           -webkit-appearance: none;
+        }
+
+        .number {
+          text-align: right;
         }
       }
 
