@@ -47,25 +47,35 @@ export default function CreateProduct() {
         />
       </div>
       <div className="right">
-        <div className="create-input-wrapper">
+        <div className="create-input">
           <label className="create-input-label">
             상품명<span className="point">*</span>
           </label>
-          <Input className="create-input" />
+          <div className="create-input-wrapper">
+            <Input />
+          </div>
         </div>
-        <div className="create-input-wrapper">
+        <div className="create-input">
           <label className="create-input-label">상품 설명</label>
-          <Input className="create-input" />
+          <div className="create-input-wrapper">
+            <Input />
+          </div>
         </div>
-        <div className="create-input-wrapper">
+        <div className="create-input">
           <label className="create-input-label">
             상품 가격<span className="point">*</span>
           </label>
-          <Input className="create-input" />
+          <div className="create-input-wrapper">
+            <Input type="number" />
+          </div>
+          <span className="create-input-unit">원</span>
         </div>
-        <div className="create-input-wrapper">
+        <div className="create-input">
           <label className="create-input-label">할인율</label>
-          <Input className="create-input" />
+          <div className="create-input-wrapper">
+            <Input type="number" />
+          </div>
+          <span className="create-input-unit">%</span>
         </div>
         <div className="sales-price">
           할인 후 상품 금액 :<span className="sales-price-value">{0}</span>

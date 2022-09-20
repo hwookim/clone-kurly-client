@@ -36,21 +36,32 @@
     width: 560px;
 
     .create-input {
-      font-size: 16px;
-
-      &-wrapper {
-        display: flex;
-        width: 100%;
-        padding: 0 10px 20px;
-      }
+      display: flex;
+      width: 100%;
+      padding: 0 10px 20px;
 
       &-label {
-        width: 100px;
+        width: 150px;
         padding-top: 12px;
 
         .point {
           color: rgb(238, 106, 123);
         }
+      }
+
+      &-wrapper {
+        flex: 1;
+        font-size: 16px;
+
+        input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+        }
+      }
+
+      &-unit {
+        margin-top: auto;
+        margin-bottom: 5px;
+        margin-left: 10px;
       }
     }
 
