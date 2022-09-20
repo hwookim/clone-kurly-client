@@ -58,6 +58,7 @@ export default function CreateProduct() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(product);
   };
 
   return (
@@ -75,7 +76,7 @@ export default function CreateProduct() {
             <img src={thumbnail} alt="thumbnail-img" className="thumbnail" />
           ) : (
             <div className="thumbnail-text">
-              <div class="material-symbols-outlined">image</div>
+              <div className="material-symbols-outlined">image</div>
               <div>이미지를 선택해주세요</div>
             </div>
           )}
