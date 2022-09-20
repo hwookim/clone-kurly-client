@@ -18,6 +18,8 @@ export default function KakaoMap() {
   }, [mapRef]);
 
   const generateMarker = useCallback(() => {
+    if (!map) return;
+
     const markerPosition = new kakao.maps.LatLng(
       COMPANY_POSITION.LAT,
       COMPANY_POSITION.LNG
