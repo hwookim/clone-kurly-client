@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react';
 
 import Input from '../../components/Input';
 
+import apis from '../../apis';
+
 import './CreateProduct.scss';
 
 export default function CreateProduct() {
@@ -56,9 +58,10 @@ export default function CreateProduct() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(product);
+    const { url } = await apis.images.upload(product.thumbnail);
+    await apis.products.create({ ...product, thumbnail: url });
   };
 
   return (
