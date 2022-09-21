@@ -11,6 +11,7 @@ import ProductPage from './pages/Product';
 import BasketsPage from './pages/Baskets';
 import NotFoundPage from './pages/NotFound';
 import Footer from './components/Footer';
+import CreateProduct from './pages/CreateProduct';
 
 const Router = ({ user }) => {
   return (
@@ -25,6 +26,7 @@ const Router = ({ user }) => {
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/products/:id" element={<ProductPage />} />
           <Route path="/baskets" element={<BasketsPage />} />
+          <Route path="/create" element={<CreateProduct />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

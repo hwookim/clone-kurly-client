@@ -29,6 +29,10 @@ const products = {
       data: result.data.map((product) => convertProduct(product)),
     };
   },
+
+  create(product) {
+    return request.post('/products', product);
+  },
 };
 
 export default products;

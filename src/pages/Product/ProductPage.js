@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import AmountInput from '../../components/AmountInput';
+import RecentProducts from '../../components/RecentProducts';
 
 import useQuery from '../../hooks/useQuery';
 import apis from '../../apis';
 import throttle from '../../utils/throttle';
+import localstorage from '../../utils/localstorage';
 
 import './ProductPage.scss';
-import localstorage from '../../utils/localstorage';
-import RecentProducts from '../../components/RecentProducts';
 
 export default function ProductPage() {
   const { id } = useParams();
