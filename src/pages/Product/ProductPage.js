@@ -10,6 +10,7 @@ import throttle from '../../utils/throttle';
 import localstorage from '../../utils/localstorage';
 
 import './ProductPage.scss';
+import NotFound from '../NotFound';
 
 export default function ProductPage() {
   const { id } = useParams();
@@ -42,6 +43,10 @@ export default function ProductPage() {
   const handleClickBasketButton = throttle(async () => {
     await apis.baskets.create(id, amount);
   }, 250);
+
+  if (!product.title) {
+    return <NotFound />;
+  }
 
   return (
     <article className="product">
