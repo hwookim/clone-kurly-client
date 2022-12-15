@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import AmountInput from '../../components/AmountInput';
 import RecentProducts from '../../components/RecentProducts';
@@ -26,6 +26,14 @@ export default function ProductPage() {
     },
   });
   const [amount, setAmount] = useState(1);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isNaN(id)) {
+      navigate('/not-found');
+    }
+  }, [id, navigate]);
 
   const handleAmountInput = (value) => {
     setAmount(value);
