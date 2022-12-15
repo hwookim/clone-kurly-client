@@ -10,15 +10,16 @@ import ProductsPage from './pages/Products';
 import ProductPage from './pages/Product';
 import BasketsPage from './pages/Baskets';
 import NotFoundPage from './pages/NotFound';
-import Footer from './components/Footer';
+
 import CreateProduct from './pages/CreateProduct';
+import Layout from './components/Layout/Layout';
 
 const Router = ({ user }) => {
   return (
     <BrowserRouter>
       <Header username={user?.name} />
-      <div className="layout">
-        <Routes>
+      <Routes>
+        <Route element={<Layout user={user} />}>
           <Route path="/" element={<MainPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -27,10 +28,9 @@ const Router = ({ user }) => {
           <Route path="/products/:id" element={<ProductPage />} />
           <Route path="/baskets" element={<BasketsPage />} />
           <Route path="/create" element={<CreateProduct />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </div>
-      <Footer />
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </BrowserRouter>
   );
 };
